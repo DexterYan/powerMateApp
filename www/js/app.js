@@ -18,7 +18,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    document.addEventListener('SOCKET_RECEIVE_DATA_HOOK', function (ev) {
+      console.log('Data has been received: ', JSON.stringify(ev.metadata));
+      
+      alert(ev.metadata.data);
+      
+      var p = JSON.parse(ev.metadata.data);
+      console.log(p);
+      
+      });
   });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

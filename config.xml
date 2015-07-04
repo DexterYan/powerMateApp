@@ -17,5 +17,4 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
-    <plugin name="cz.blocshop.socketsforcordova" spec="^1.1.0" />
 </widget>

@@ -51,27 +51,24 @@ angular.module('starter.services', [])
 })
 
 .factory('socket', function ($rootScope) {
-  var socket = new Socket();
-  socket.onData = function(data) {
-    console.log(data);
-    $rootScope.data = data;
-  };
-  socket.onError = function(data) {
+  var host = '10.10.100.254';
+  var port = 8899;
 
-  };
-  socket.onClose = function(data) {
-
-  };
-  socket.open(
-  "10.10.100.254",
-  8899,
-  function() {
-    // invoked after successful opening of socket
-  },
-  function(errorMessage) {
-    // invoked after unsuccessful opening of socket
-  });
   return {
+    connect: function () {
+      window.tlantic.plugins.socket.connect(
+      function (connectionId) {
+        console.log('worked! This is the connection ID: ', connectionId);
+        $rootScope.isConnected = window.tlantic.plugins.socket.receiveHookName;
+        $rootScope.$apply();
+      },
+      function () {
+        alert('Fail to Connect!');
+        $rootScope.isConnected = false;
+        $rootScope.$apply();
+      },
+      host, port);
+    },
     send: function (dataString) {
       var dataString = "Hello world";
       var data = new Uint8Array(dataString.length);
