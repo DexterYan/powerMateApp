@@ -45,6 +45,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'DashCtrl'
       }
     }
+  })
+
+  .state('app.dash', {
+    url: "/dash",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/dash.html",
+        controller: 'DashCtrl'
+      }
+    }
   });
 
   $urlRouterProvider.otherwise('/app/dash');
