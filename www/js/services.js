@@ -56,18 +56,30 @@ angular.module('starter.services', [])
 
   return {
     connect: function () {
-      window.tlantic.plugins.socket.connect(
-      function (connectionId) {
-        console.log('worked! This is the connection ID: ', connectionId);
-        $rootScope.isConnected = window.tlantic.plugins.socket.receiveHookName;
+      var socket = new Socket();
+      socket.onData = function(data) {
+        var result = String.fromCharCode.apply(null, new Uint8Array(data));
+        $rootScope.result = result;
         $rootScope.$apply();
-      },
-      function () {
-        alert('Fail to Connect!');
-        $rootScope.isConnected = false;
+      };
+      socket.onError = function(errorMessage) {
+        // invoked after error occurs during connection
+      };
+      socket.onClose = function(hasError) {
+        // invoked after connection close
+      };
+      socket.open(
+      host,
+      port,
+      function() {
+        $rootScope.isConnected = true;
         $rootScope.$apply();
+        // invoked after successful opening of socket
       },
-      host, port);
+      function(errorMessage) {
+        alert(errorMessage);
+        // invoked after unsuccessful opening of socket
+      });
     },
     send: function (dataString) {
       var dataString = "Hello world";
