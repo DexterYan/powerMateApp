@@ -53,6 +53,21 @@ angular.module('starter.services', [])
 .factory('socket', function ($rootScope) {
   var host = '10.10.100.254';
   var port = 8899;
+  var ledStatus = [on: '01', off: '00', blink: '02'];
+  var keypadButtons = {a_l1:'01', b_l1: '02', c_l1: '03', d_l1: '04'};
+  var ledKeypadNumber = ["3180", "3280", "3380", "3480",
+      "3580", "3680", "3780", "3880", "3980", "3A80", "3B80", "3C80",
+      "3D80", "3E80", "3F80"];
+  var LedNumber = ledKeypadNumber[$rootScope.keypadNumber];
+  var led_status_check = function(result) {
+      for (var key1 in keypadButtons) {
+        for(var key2 in ledStatus) {
+          if(result.match(LedNumber + keypadButtons[key1] + ledStatus[key2])) {
+            $rootScope.keypad[$rootScope.keypadNumber].led[key1] = [key2]
+          }
+        }
+      }
+  };
 
   return {
     connect: function () {
