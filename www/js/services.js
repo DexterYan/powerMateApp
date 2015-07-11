@@ -53,7 +53,7 @@ angular.module('starter.services', [])
 .factory('socket', function ($rootScope) {
   var host = '10.10.100.254';
   var port = 8899;
-  var ledStatus = [on: '01', off: '00', blink: '02'];
+  var ledStatus = {on: '01', off: '00', blink: '02'};
   var keypadButtons = {a_l1:'01', b_l1: '02', c_l1: '03', d_l1: '04'};
   var ledKeypadNumber = ["3180", "3280", "3380", "3480",
       "3580", "3680", "3780", "3880", "3980", "3A80", "3B80", "3C80",
