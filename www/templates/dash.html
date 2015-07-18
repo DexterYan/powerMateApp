@@ -1,12 +1,14 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
-    
+    <button ng-click='addMsg()' class="button button-light">
+    {{result}}
+  </button>
+  <pre>{{ keypad | json }}</pre>
     <div class="row">&nbsp;</div>
     
     <div class="row">
       <div class="col">
-        <button class="button button-block button-assertive">
-          
+        <button keypad-button ng-click='sendClickMsg("!A")'  on-release='sendReleaseMsg("!a")' class="button button-block button-assertive">
           <div class="row row-center">
             <div class="col col-center">
               <div class="button button-small button-assertive">Z</div>

@@ -1,26 +1,10 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('DashCtrl', function($scope, socketTest) {
+.controller('DashCtrl', function($scope, socket) {
   $scope.addMsg = function(data) {
-    data = Math.random()*10000;
-    socketTest(data);
+   socket.connect()
   }
 
-})
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -31,4 +15,18 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.directive('keypadButton', ['socket', function(socket) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attr) {
+      scope.sendClickMsg = function(data) {
+        socket.send(data);
+      };
+      scope.sendReleaseMsg = function(data) {
+        socket.send(data);
+      }
+    }
+  }
+}]);
