@@ -1,9 +1,8 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('DashCtrl', function($scope, socketTest, socket) {
+.controller('DashCtrl', function($scope, socketTest) {
   $scope.addMsg = function(data) {
     data = Math.random()*10000;
-    socket.connect();
     socketTest(data);
   }
 
