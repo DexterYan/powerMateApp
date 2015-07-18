@@ -30,6 +30,7 @@ gulp.task('less', function () {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.less, ['less']);
 });
 
 gulp.task('install', ['git-check'], function() {
