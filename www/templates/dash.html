@@ -1,58 +1,45 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
+
     <button ng-click='addMsg()' class="button button-light">
-    {{result}}
-  </button>
-  <pre>{{ keypad | json }}</pre>
-    <div class="row">&nbsp;</div>
+      {{result}}
+    </button>
+
+    <div class="row" >
+      <div class="col">
+        <keypad-button type='a' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
+
+      <div class="col">
+        <keypad-button type='b' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
+    </div>
     
     <div class="row">
       <div class="col">
-        <button keypad-button ng-click='sendClickMsg("!A")'  on-release='sendReleaseMsg("!a")' class="button button-block button-assertive">
-          <div class="row row-center">
-            <div class="col col-center">
-              <div class="button button-small button-assertive">Z</div>
-              <div class="button button-small button-calm">Y</div>
-              <div class="button button-small button-assertive">X</div>
-            </div>
-          </div>
-          <div class="row row-center">
-            <div class="col col-center">Anthony</div>
-          </div>
-        </button>
+        <keypad-button type='c' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
       </div>
-      <div class="col"><button class="button button-block button-calm">
-          B
-        </button></div>
+      <div class="col">
+        <keypad-button type='d' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
     </div>
     
     <div class="row">
-      <div class="col"><button class="button button-block button-energized">
-          C
-        </button></div>
-      <div class="col"><button class="button button-block button-positive">
-          D
-        </button></div>
+      <div class="col">
+        <keypad-button type='e' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
+      <div class="col">
+        <keypad-button type='f' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
     </div>
     
     <div class="row">
-      <div class="col"><button class="button button-block button-balanced">
-          E
-        </button></div>
-      <div class="col"><button class="button button-block button-royal">
-          F
-        </button></div>
+      <div class="col">
+        <keypad-button type='g' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
+      <div class="col">
+        <keypad-button type='h' ng-click='sendClickMsg()'  on-release='sendReleaseMsg()'></keypad-button>
+      </div>
     </div>
-    
-    <div class="row">
-      <div class="col"><button class="button button-block button-light">
-          G
-        </button></div>
-      <div class="col"><button class="button button-block button-dark">
-          H
-        </button></div>
-    </div>
-    
-    
   </ion-content>
 </ion-view>

@@ -95,4 +95,11 @@ angular.module('starter.services', [])
       $rootScope.$apply();
     }
   };
+})
+
+.factory('keypad', function() {
+  return {
+    keypadNumberPrefix: ["!", "\"", "#", "$", "%", "&",
+      "'", "(", ")", "*", "+", ",", "-", ".", "/"]
+  }
 });

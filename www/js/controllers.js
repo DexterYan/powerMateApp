@@ -1,5 +1,6 @@
 angular.module('starter.controllers', ['starter.services'])
 
+
 .controller('DashCtrl', function($scope, socket) {
   $scope.addMsg = function(data) {
    socket.connect()
@@ -7,26 +8,20 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-})
-
-.directive('keypadButton', ['socket', function(socket) {
+.directive('keypadButton', [ 'keypad', function(keypad) {
   return {
-    restrict: 'A',
+    restrict: 'E',
+    templateUrl: 'templates/elements/button.html',
     link: function(scope, element, attr) {
-      scope.sendClickMsg = function(data) {
-        socket.send(data);
+      scope.sendClickMsg = function() {
+        var sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + attr.type.toUpperCase();
+        socket.send(sendData);
       };
-      scope.sendReleaseMsg = function(data) {
-        socket.send(data);
+      scope.sendReleaseMsg = function() {
+        var sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + attr.type.toLowerCase();
+        socket.send(sendData);
       }
     }
   }
 }]);
+

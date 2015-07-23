@@ -19,9 +19,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleLightContent();
     }
     $rootScope.keypad = [];
+    $rootScope.currentKeypad = 0;
+    var tenButtons = ["a","b","c","d","e","f","g","h","i","j"];
     for (var i=0; i<10; i++) {
-      $rootScope.keypad[i] = {led:{  }};
+      $rootScope.keypad[i] = { led:{} };
+      for (var k=0; k<3; k++) {
+        tenButtons.forEach(function(element){
+          $rootScope.keypad[i].led[element + k] = "off";
+        })
+      }
     }
+    $rootScope.keypad[0].led['a1'] = "on";
+    console.log($rootScope.keypad);
   });
 
 })
@@ -54,52 +63,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   $urlRouterProvider.otherwise('/app/dash');
   // // setup an abstract state for the tabs directive
-  //   .state('tab', {
-  //   url: "/tab",
-  //   abstract: true,
-  //   templateUrl: "templates/tabs.html"
-  // })
-
-  // // Each tab has its own nav history stack:
-
-  // .state('tab.dash', {
-  //   url: '/dash',
-  //   views: {
-  //     'tab-dash': {
-  //       templateUrl: 'templates/tab-dash.html',
-  //       controller: 'DashCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.chats', {
-  //     url: '/chats',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/tab-chats.html',
-  //         controller: 'ChatsCtrl'
-  //       }
-  //     }
-  //   })
-  //   .state('tab.chat-detail', {
-  //     url: '/chats/:chatId',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/chat-detail.html',
-  //         controller: 'ChatDetailCtrl'
-  //       }
-  //     }
-  //   })
-
-  // .state('tab.account', {
-  //   url: '/account',
-  //   views: {
-  //     'tab-account': {
-  //       templateUrl: 'templates/tab-account.html',
-  //       controller: 'AccountCtrl'
-  //     }
-  //   }
-  // });
 
   // // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/dash');
