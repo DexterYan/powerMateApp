@@ -1,44 +1,51 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
-
     <button ng-click='addMsg()' class="button button-light">
       {{result}}
     </button>
-
+    <pre>{{keypad[0]}}</pre>
     <div class="row" >
       <div class="col">
-        <keypad-button type='a' ></keypad-button>
-      </div>
-
-      <div class="col">
-        <keypad-button type='b' ></keypad-button>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col">
-        <keypad-button type='c' ></keypad-button>
+        <keypad-button info="keypad[0].buttons[0]" color1="'button-assertive'" color2="'button-calm'"></keypad-button>
       </div>
       <div class="col">
-        <keypad-button type='d'></keypad-button>
+        <keypad-button info="keypad[0].buttons[1]" color2="'button-assertive'" color1="'button-calm'" ></keypad-button>
       </div>
     </div>
     
     <div class="row">
       <div class="col">
-        <keypad-button type='e'></keypad-button>
+        <keypad-button info="keypad[0].buttons[2]" color2="'button-energized'" color1="'button-positive'"></keypad-button>
       </div>
       <div class="col">
-        <keypad-button type='f'></keypad-button>
+        <keypad-button info="keypad[0].buttons[3]" color1="'button-energized'" color2="'button-positive'"></keypad-button>
       </div>
     </div>
     
     <div class="row">
       <div class="col">
-        <keypad-button type='g'></keypad-button>
+        <keypad-button info="keypad[0].buttons[4]" color1="'button-light'" color2="'button-dark'"></keypad-button>
       </div>
       <div class="col">
-        <keypad-button type='h'></keypad-button>
+        <keypad-button info="keypad[0].buttons[5]" color2="'button-light'" color1="'button-dark'"></keypad-button>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <keypad-button info="keypad[0].buttons[6]" color2="'button-royal'" color1="'button-balanced'"></keypad-button>
+      </div>
+      <div class="col">
+        <keypad-button info="keypad[0].buttons[7]" color1="'button-royal'" color2="'button-balanced'"></keypad-button>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <keypad-button info="keypad[0].buttons[8]" color1="'button-calm'" color2="'button-assertive'"></keypad-button>
+      </div>
+      <div class="col">
+        <keypad-button info="keypad[0].buttons[9]" color2="'button-calm'" color1="'button-assertive'"></keypad-button>
       </div>
     </div>
   </ion-content>
