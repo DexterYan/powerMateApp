@@ -13,6 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      window.plugins.insomnia.keepAwake()
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
