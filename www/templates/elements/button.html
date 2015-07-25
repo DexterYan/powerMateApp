@@ -1,12 +1,15 @@
-<button class="button button-block button-assertive">
+<button ng-class="color1" class="button button-block">
   <div class="row row-center">
     <div class="col col-center">
-      <div class="button button-small button-assertive">Z</div>
-      <div class="button button-small button-calm">Y</div>
-      <div class="button button-small button-assertive">X</div>
+      <div ng-show="info.led != 1" ng-class="color1" class="button button-small">1</div>
+      <div ng-show="info.led == 1" ng-class="color2" class="button button-small">1</div>
+      <div ng-show="info.led != 2" ng-class="color1" class="button button-small">2</div>
+      <div ng-show="info.led == 2" ng-class="color2" class="button button-small">2</div>
+      <div ng-show="info.led != 3" ng-class="color1" class="button button-small">3</div>
+      <div ng-show="info.led == 3" ng-class="color2" class="button button-small">3</div>
     </div>
   </div>
   <div class="row row-center">
-    <div class="col col-center lineh03">Anthony</div>
+    <div class="col col-center lineh03">{{ info }}</div>
   </div>
 </button>

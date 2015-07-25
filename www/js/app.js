@@ -19,17 +19,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleLightContent();
     }
     $rootScope.keypad = [];
-    var tenButtons = ["a","b","c","d","e","f","g","h","i","j"];
+    var buttons10DN = ["A","B","C","D","E","F","G","H","I","J"];
+    var colors = ["light", "stable", "positive", "calm", "balanced", "energized", "assertive", "royal", "dark"]
     for (var i=0; i<10; i++) {
-      $rootScope.keypad[i] = { led:{} };
-      for (var k=0; k<3; k++) {
-        tenButtons.forEach(function(element){
-          $rootScope.keypad[i].led[element + k] = "off";
-        })
-      }
+      $rootScope.keypad.push({"buttons":[]});
+      buttons10DN.forEach(function(element){
+        $rootScope.keypad[i].buttons.push({"name":element, "led":0});
+      })
     }
-    $rootScope.keypad[0].led['a1'] = "on";
-    console.log($rootScope.keypad);
+    $rootScope.keypad[0].buttons[0].led = 2;
+    //console.log($rootScope.keypad);
   });
 
 })

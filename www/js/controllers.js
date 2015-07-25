@@ -4,12 +4,14 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.directive('keypadButton', function() {
+.directive('keypadButton', function($rootScope) {
   return {
     restrict: 'E',
-    templateUrl: 'templates/elements/button.html',
-    link: function(scope, elem, attr) {
-        
-    }
+    scope: {
+      info: '=',
+      color1: '=',
+      color2: '='
+    },
+    templateUrl: 'templates/elements/button.html'
   }
 });
