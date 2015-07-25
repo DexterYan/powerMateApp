@@ -21,12 +21,12 @@ angular.module('starter.controllers', ['starter.services'])
             link: function(scope, element, attrs) {
                 element.on('click', function() {
                     var sendData;
-                    sendData = keypad.keypadNumberPrefix[0] + attrs.info.name.toUpperCase();
+                    sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
                     socket.send(sendData);
                 });
 
                 element.on('release', function() {
-                    sendData = keypad.keypadNumberPrefix[0] + attrs.info.name.toLowerCase();
+                    sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
                     socket.send(sendData);
                 });
             }
