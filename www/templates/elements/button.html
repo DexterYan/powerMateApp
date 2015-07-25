@@ -1,12 +1,9 @@
 <button ng-class="color1" class="button button-block">
   <div class="row row-center">
     <div class="col col-center">
-      <div ng-show="info.led[0] == 'off'" ng-class="color1" class="button button-small">1</div>
-      <div ng-show="info.led[0] == 'on'" ng-class="color2" class="button button-small">1</div>
-      <div ng-show="info.led[1] == 'off'" ng-class="color1" class="button button-small">2</div>
-      <div ng-show="info.led[1] == 'on'" ng-class="color2" class="button button-small">2</div>
-      <div ng-show="info.led[2] == 'off'" ng-class="color1" class="button button-small">3</div>
-      <div ng-show="info.led[2] == 'on'" ng-class="color2" class="button button-small">3</div>
+      <div ng-class="color(info.led[0])" class="button button-small">1</div>
+      <div ng-class="color(info.led[1])" class="button button-small">2</div>
+      <div ng-class="color(info.led[2])" class="button button-small">3</div>
     </div>
   </div>
   <div class="row row-center">

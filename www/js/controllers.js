@@ -5,6 +5,8 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.addMsg = function(data) {
         socket.connect()
     }
+    
+    
 
 })
 
@@ -14,11 +16,11 @@ angular.module('starter.controllers', ['starter.services'])
             restrict: 'E',
             templateUrl: 'templates/elements/button.html',
             scope: {
-                info: '=',
-                color1: '=',
-                color2: '='
+                info: '='
             },
             link: function(scope, element, attrs) {
+                scope.color1 = attrs.color1;
+                
                 element.on('click', function() {
                     var sendData;
                     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
@@ -29,6 +31,16 @@ angular.module('starter.controllers', ['starter.services'])
                     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
                     socket.send(sendData);
                 });
+                
+                
+                
+                scope.color = function(state){
+                  console.log(attrs.color2);
+                  if (state == 'on') 
+                    return attrs.color2;
+                  else if (state == 'off') 
+                    return attrs.color1;
+                }
             }
         }
     }
