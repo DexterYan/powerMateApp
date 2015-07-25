@@ -8,19 +8,21 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.directive('keypadButton', [ 'keypad', function(keypad) {
+.directive('keypadButton', [ 'keypad', 'socket', function(keypad, socket) {
   return {
     restrict: 'E',
     templateUrl: 'templates/elements/button.html',
-    link: function(scope, element, attr) {
-      scope.sendClickMsg = function() {
-        var sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + attr.type.toUpperCase();
+    link: function(scope, element, attrs) {
+      element.on('click', function(){
+        var sendData; 
+        sendData = keypad.keypadNumberPrefix[0] + attrs.type.toUpperCase();
         socket.send(sendData);
-      };
-      scope.sendReleaseMsg = function() {
-        var sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + attr.type.toLowerCase();
+      });
+
+      element.on('release', function(){
+        sendData = keypad.keypadNumberPrefix[0] + attrs.type.toLowerCase();
         socket.send(sendData);
-      }
+      });
     }
   }
 }]);
