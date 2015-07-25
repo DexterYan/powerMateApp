@@ -119,13 +119,12 @@ angular.module('starter.services', [])
                             var ledStatusCheckString = hexToString(tmp);
                             if ( result.match(ledStatusCheckString) ) {
                                 $rootScope.keypad[index].buttons[buttonIndex].led[ledIndex] = status;
+                                $rootScope.$apply();
                             }
                         }
                     })
                 })
             });
-
-            $rootScope.$apply();
         }
     };
 })
