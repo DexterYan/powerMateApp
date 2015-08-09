@@ -32,7 +32,6 @@ angular.module('dash.controller', ['starter.services'])
                 
                 
                 scope.color = function(state){
-                  console.log(attrs.color2);
                   if (state == 'on') 
                     return attrs.color2;
                   else if (state == 'off') 
