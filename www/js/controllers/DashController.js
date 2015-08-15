@@ -16,7 +16,6 @@ angular.module('dash.controller', ['starter.services'])
                 info: '='
             },
             link: function(scope, element, attrs) {
-                scope.color1 = attrs.color1;
                 
                 element.on('click', function() {
                     var sendData;
@@ -28,15 +27,6 @@ angular.module('dash.controller', ['starter.services'])
                     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
                     socket.send(sendData);
                 });
-                
-                
-                
-                scope.color = function(state){
-                  if (state == 'on') 
-                    return attrs.color2;
-                  else if (state == 'off') 
-                    return attrs.color1;
-                }
             }
         }
     }

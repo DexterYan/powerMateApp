@@ -33,6 +33,7 @@ angular.module('starter', ['ionic', 'dash.controller', 'diy.controller' ,'starte
                 });
             })
         }
+        
     });
 
 })
