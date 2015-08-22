@@ -14,8 +14,8 @@ angular.module('diy.controller', ['starter.services'])
                 $scope.keypadName = keypadName[keypadNumberTmp];
                 $scope.confirm = function(valName, val) {
                     $scope.$parent.keypadsTypes.push({
-                        name: keypadName[keypadNumberTmp], 
-                        type: val, 
+                        name: keypadName[keypadNumberTmp],
+                        type: val,
                         index: keypadNumberTmp
                     })
                     $scope.closeThisDialog();
@@ -58,6 +58,11 @@ angular.module('diy.controller', ['starter.services'])
                 }]
             });
     }
+
+    $scope.selectTabWithIndex = function(index) {
+        $ionicTabsDelegate.select(index);
+    }
+    
     $scope.configStepOne();
     
 })
