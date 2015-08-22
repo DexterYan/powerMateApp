@@ -17,21 +17,21 @@ angular.module('dash.controller', ['starter.services'])
             },
             link: function(scope, element, attrs) {
                 
-                // element.on('click', function() {
-                //     scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
-                //     scope.$apply();
-                // });
-                
                 element.on('click', function() {
-                    var sendData;
-                    sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
-                    socket.send(sendData);
+                    scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
+                    scope.$apply();
                 });
+                
+                // element.on('click', function() {
+                //     var sendData;
+                //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
+                //     socket.send(sendData);
+                // });
 
-                element.on('release', function() {
-                    sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
-                    socket.send(sendData);
-                });
+                // element.on('release', function() {
+                //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
+                //     socket.send(sendData);
+                // });
             }
         }
     }
