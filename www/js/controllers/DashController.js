@@ -1,7 +1,7 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', function($scope, socket) {
+.controller('DashCtrl', function($rootScope, $scope, socket) {
     $scope.addMsg = function(data) {
         socket.connect()
     }
@@ -16,6 +16,11 @@ angular.module('dash.controller', ['starter.services'])
                 info: '='
             },
             link: function(scope, element, attrs) {
+                
+                // element.on('click', function() {
+                //     scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
+                //     scope.$apply();
+                // });
                 
                 element.on('click', function() {
                     var sendData;
