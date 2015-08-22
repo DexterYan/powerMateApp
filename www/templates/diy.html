@@ -1,4 +1,4 @@
-<ion-view view-title="Keypad Config">
+<ion-view view-title="Keypad Config" id="diy-page">
     <ion-tabs class="tabs-dark tabs-top">
         <ion-tab title="Step 1">
             <div class="list">
@@ -17,9 +17,11 @@
                             {{keypadType.type}}
                         </span>
                     </a>
+                    <button ng-click="selectTabWithIndex(1)" class="button button-outline button-positive next-step-button">
+                        Next Step
+                    </button>
                 </ion-content>
             </div>
-            <!-- <button ng-click="selectTabWithIndex(1)">Select tab 2!</button> -->
         </ion-tab>
         <ion-tab title="Step 2">
              
@@ -67,6 +69,7 @@
                     <option value='8p'>8 Pro Buttons Keypad</option><option value=10> 10 Buttons Keypad</option>
                     <option value=14> 14 Buttons Keypad</option>
             </select>
+
         </label>
     </div>
     <div class="ngdialog-buttons">
