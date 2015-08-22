@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'dash.controller', 'diy.controller' ,'starter.services'])
+angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controller' ,'starter.services'])
 
 .run(function($ionicPlatform, $rootScope, tenKeypad) {
     $ionicPlatform.ready(function() {
@@ -33,7 +33,6 @@ angular.module('starter', ['ionic', 'dash.controller', 'diy.controller' ,'starte
                 });
             })
         }
-        
     });
 
 })
@@ -66,7 +65,7 @@ angular.module('starter', ['ionic', 'dash.controller', 'diy.controller' ,'starte
 
     .state('app.diy', {
         url: "/diy",
-        cache: false,
+        cache: true,
         views: {
             'menuContent': {
                 templateUrl: "templates/diy.html",
