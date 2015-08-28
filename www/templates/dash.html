@@ -1,5 +1,5 @@
 <ion-view view-title="Home">
-  <ion-content id="dash">
+  <ion-content overflow-scroll="true" id="dash">
     <div class="row" >
       <div class="col">
         <keypad-button info="keypad[0].buttons[0]"></keypad-button>
@@ -17,34 +17,6 @@
         <keypad-button info="keypad[0].buttons[3]"></keypad-button>
       </div>
     </div>
-    
-    <div class="row">
-      <div class="col">
-        <keypad-button info="keypad[0].buttons[4]"></keypad-button>
-      </div>
-      <div class="col">
-        <keypad-button info="keypad[0].buttons[5]"></keypad-button>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col">
-        <keypad-button info="keypad[0].buttons[6]"></keypad-button>
-      </div>
-      <div class="col">
-        <keypad-button info="keypad[0].buttons[7]"></keypad-button>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col">
-        <keypad-button info="keypad[0].buttons[8]"></keypad-button>
-      </div>
-      <div class="col">
-        <keypad-button info="keypad[0].buttons[9]"></keypad-button>
-      </div>
-    </div>
-    
     <div class="row">
       <div class="col">
         <button ng-click='addMsg()' class="button_custom red">
@@ -54,6 +26,5 @@
         </button>
       </div>
     </div>
-    
   </ion-content>
 </ion-view>
