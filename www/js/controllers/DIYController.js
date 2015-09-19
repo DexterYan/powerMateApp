@@ -62,6 +62,11 @@ angular.module('diy.controller', ['starter.services'])
     $scope.selectTabWithIndex = function(index) {
         $ionicTabsDelegate.select(index);
     }
+
+    $scope.reset = function() {
+        $ionicTabsDelegate.select(1);
+        $scope.configStepOne();
+    }
     
     $scope.configStepOne();
     
