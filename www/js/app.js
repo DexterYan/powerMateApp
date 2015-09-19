@@ -19,20 +19,6 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
             // org.apache.cordova.statusbar required
             StatusBar.styleLightContent();
         }
-        $rootScope.keypad = [];
-        $rootScope.currentKeypad = 0;
-        var colors = ["light", "stable", "positive", "calm", "balanced", "energized", "assertive", "royal", "dark"]
-        for (var i = 0; i < tenKeypad.keypads.length; i++) {
-            $rootScope.keypad.push({
-                "buttons": []
-            });
-            tenKeypad.buttons.forEach(function(element) {
-                $rootScope.keypad[i].buttons.push({
-                    "name": element.name,
-                    "led": ['off', 'off', 'off']
-                });
-            })
-        }
     });
 
 })
@@ -58,7 +44,34 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         views: {
             'menuContent': {
                 templateUrl: "templates/dash.html",
-                controller: 'DashCtrl'
+                controller: 'DashCtrl',
+                resolve: {
+                    setup: function($q, $rootScope, tenKeypad) {
+                        $rootScope.config = {
+                            keypads: [
+                                {type: '10b', buttons: []}
+                            ]
+                        };
+
+                        $rootScope.keypad = [];
+                        $rootScope.currentKeypad = 0;
+                        $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
+                        for (var i = 0; i < $rootScope.config.keypads.length; i++) {
+                            var keypadType = $rootScope.config.keypads[i].type;
+                            $rootScope.keypad.push({
+                                "buttons": []
+                            });
+                            tenKeypad.buttons[keypadType].forEach(function(element) {
+                                $rootScope.keypad[i].buttons.push({
+                                    "name": element.name,
+                                    "led": ['off', 'off', 'off']
+                                });
+                            })
+                        }
+
+                        return;
+                    }
+                }
             }
         }
     })
