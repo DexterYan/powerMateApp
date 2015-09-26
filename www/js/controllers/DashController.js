@@ -10,8 +10,8 @@ angular.module('dash.controller', ['starter.services'])
     }
 })
 
-.directive('keypadButton', ['keypad', 'socket',
-    function(keypad, socket) {
+.directive('keypadButton', ['keypad', 'socket', '$ionicScrollDelegate', 
+    function(keypad, socket, $ionicScrollDelegate) {
         return {
             restrict: 'E',
             templateUrl: 'templates/elements/button.html',
@@ -19,8 +19,7 @@ angular.module('dash.controller', ['starter.services'])
                 info: '='
             },
             link: function(scope, element, attrs) {
-                
-                // var a = function() {
+                // element.on('click', function() {
                 //     scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
                 //     scope.$apply();
                 // };
