@@ -5,6 +5,7 @@ angular.module('dash.controller', ['starter.services'])
     if ( $rootScope.currentKeypadType === '10b') {
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     }
+    $scope.currentKeypadType = $rootScope.currentKeypadType
     $scope.addMsg = function(data) {
         socket.connect()
     }
