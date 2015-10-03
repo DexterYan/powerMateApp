@@ -7,10 +7,13 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controller' ,'starter.services'])
 
-.run(function($ionicPlatform, $rootScope, tenKeypad) {
+.constant('_', window._)
+
+.run(function($ionicPlatform, $rootScope, keypadSetting) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+        $rootScope.config = {keypads: []};
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             window.plugins.insomnia.keepAwake()
@@ -46,13 +49,16 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                 templateUrl: "templates/dash.html",
                 controller: 'DashCtrl',
                 resolve: {
-                    setup: function($q, $rootScope, tenKeypad) {
-                        $rootScope.config = {
-                            keypads: [
-                                {type: '10b', buttons: []}
-                            ]
-                        };
-
+                    setup: function($q, $rootScope, keypadSetting, _) {
+                        if (_.isUndefined($rootScope.config)) {
+                            $rootScope.config = {
+                                keypads: [
+                                    {type: '10b', buttons: []}
+                                ]
+                            };
+                        }
+                        console.log($rootScope.config.keypads)
+                        keypadSetting.initialize($rootScope.config.keypads);
                         $rootScope.keypad = [];
                         $rootScope.currentKeypad = 0;
                         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
@@ -61,14 +67,14 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                             $rootScope.keypad.push({
                                 "buttons": []
                             });
-                            tenKeypad.buttons[keypadType].forEach(function(element) {
+                            keypadSetting.buttons[keypadType].forEach(function(element) {
                                 $rootScope.keypad[i].buttons.push({
                                     "name": element.name,
                                     "led": ['off', 'off', 'off']
                                 });
                             })
                         }
-
+                        
                         return;
                     }
                 }
