@@ -2,7 +2,7 @@
 angular.module('starter.services', [])
 
 
-.factory('socket', function($rootScope, tenKeypad) {
+.factory('socket', function($rootScope, keypadSetting) {
     var host = '10.10.100.254';
     var port = 8899;
     var socket;
@@ -11,7 +11,7 @@ angular.module('starter.services', [])
             socket = new Socket();
             socket.onData = function(data) {
                 var result = String.fromCharCode.apply(null, new Uint8Array(data));
-                tenKeypad.ledStatusCheck(data);
+                keypadSetting.ledStatusCheck(data);
             };
             socket.onError = function(errorMessage) {
                 // invoked after error occurs during connection
@@ -46,16 +46,16 @@ angular.module('starter.services', [])
 })
 
 
-.factory('socketTest', function($rootScope, tenKeypad) {
+.factory('socketTest', function($rootScope, keypadSetting) {
     var msgs = ['hello'];
     return function(msg) {
-        msgs.push(tenKeypad.ledStatusCheck());
+        msgs.push(keypadSetting.ledStatusCheck());
         console.log(msgs);
         $rootScope.msgs = msgs;
     }
 })
 
-.factory('tenKeypad', function($rootScope) {
+.factory('keypadSetting', function($rootScope) {
     var ledStatus = {
             on: 0x01,
             off: 0x00,
@@ -99,9 +99,41 @@ angular.module('starter.services', [])
                 }, {
                     name: "j",
                     led: [0x1D, 0x1E]
+                }],
+            '14b': [{
+                    name: "a",
+                    led: [0x11, 0x12, 0x13]
+                }, {
+                    name: "b",
+                    led: [0x14, 0x15, 0x16]
+                }, {
+                    name: "c",
+                    led: [0x17, 0x18, 0x19]
+                }, {
+                    name: "d",
+                    led: [0x1A, 0x1B, 0x1C]
+                }, {
+                    name: "e",
+                    led: [0x05, 0x06, 0x07]
+                }, {
+                    name: "f",
+                    led: [0x08, 0x09, 0x0A]
+                }, {
+                    name: "g",
+                    led: [0x0B, 0x0C, 0x0D]
+                }, {
+                    name: "h",
+                    led: [0x0E, 0x0F, 0x10]
+                }, {
+                    name: "i",
+                    led: [0x03, 0x04]
+                }, {
+                    name: "j",
+                    led: [0x1D, 0x1E]
                 }]
         };
-    
+
+
     var keypads = [keypadsConst[0]];
 
     var hexToString = function(data) {
@@ -115,6 +147,14 @@ angular.module('starter.services', [])
     return {
         keypads: keypads,
         buttons: buttons,
+
+        initialize: function(keypadConfigs) {
+            keypadConfigs.forEach(function(keypadConfig, i) {
+                keypadsConst[i].type = keypadConfig.type;
+                keypads[i] = keypadsConst[i];
+            });
+        },
+
         ledStatusCheck: function(res) {
             var result = hexToString(res);
 

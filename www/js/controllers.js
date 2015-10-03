@@ -29,8 +29,6 @@ angular.module('dash.controller', ['starter.services'])
                     socket.send(sendData);
                 });
                 
-                
-                
                 scope.color = function(state){
                   console.log(attrs.color2);
                   if (state == 'on') 

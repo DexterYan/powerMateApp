@@ -1,6 +1,6 @@
 angular.module('diy.controller', ['starter.services'])
 
-.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog) {
+.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope) {
      var keypadName = ['First', 'Second', 'Third', 'Fourth', 
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
@@ -13,11 +13,12 @@ angular.module('diy.controller', ['starter.services'])
             controller: ['$scope', function($scope) {
                 $scope.keypadName = keypadName[keypadNumberTmp];
                 $scope.confirm = function(valName, val) {
+                    $rootScope.config.keypads.push({type: val, buttons: []});
                     $scope.$parent.keypadsTypes.push({
                         name: keypadName[keypadNumberTmp],
                         type: val,
                         index: keypadNumberTmp
-                    })
+                    });
                     $scope.closeThisDialog();
                     if (keypadNumber < $scope.totalKeypad) {
                         console.log(keypadNumber);
@@ -64,10 +65,13 @@ angular.module('diy.controller', ['starter.services'])
     }
 
     $scope.reset = function() {
-        $ionicTabsDelegate.select(1);
+        $rootScope.config = {keypads: []};
+        $scope.keypadsTypes = [];
+        $scope.totalKeypad = null;
+        $ionicTabsDelegate.select(0);
         $scope.configStepOne();
     }
-    
+
     $scope.configStepOne();
-    
+
 })
