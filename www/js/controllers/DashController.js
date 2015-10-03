@@ -3,18 +3,34 @@ angular.module('dash.controller', ['starter.services'])
 
 .controller('DashCtrl', ["$rootScope", "$scope", "socket", function($rootScope, $scope, socket) {
     if ( $rootScope.currentKeypadType === '10b') {
-        console.log($rootScope.keypad[$rootScope.currentKeypad]);
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
-        console.log($scope.keypad);
     }
     $scope.addMsg = function(data) {
         socket.connect()
     }
 }])
+.directive('fourButtonKeypad', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/elements/fourButtonKeypad.html'
+    }
+})
+.directive('eightButtonKeypad', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/elements/eightButtonKeypad.html'
+    }
+})
 .directive('tenButtonKeypad', function(){
     return {
         restrict: 'E',
         templateUrl: 'templates/elements/tenButtonKeypad.html'
+    }
+})
+.directive('forteenButtonKeypad', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/elements/forteenButtonKeypad.html'
     }
 })
 .directive('keypadButton', function(keypad, socket, $ionicScrollDelegate) {

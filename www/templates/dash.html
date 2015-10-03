@@ -1,5 +1,32 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
-    <ten-button-keypad ></ten-button-keypad>
+    <four-button-keypad ng-show="true" ></four-button-keypad>
+    <eight-button-keypad ng-show="false" ></eight-button-keypad>
+    <ten-button-keypad ng-show="false" ></ten-button-keypad>
+    <forteen-button-keypad ng-show="false" ></forteen-button-keypad>
+    
+    <div class="row">
+      <div class="col">
+        <button ng-click='' class="button_custom green">
+          <div class="row row-center">
+            <div class="col col-center lineh03">prev</div>
+          </div>
+        </button>
+      </div>
+      <div class="col">
+        <button ng-click='addMsg()' class="button_custom connect red">
+          <div class="row row-center">
+            <div class="col col-center lineh03">connect</div>
+          </div>
+        </button>
+      </div>
+      <div class="col">
+        <button ng-click='' class="button_custom green">
+          <div class="row row-center">
+            <div class="col col-center lineh03">next</div>
+          </div>
+        </button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
