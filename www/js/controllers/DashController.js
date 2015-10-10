@@ -1,7 +1,7 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", function($rootScope, $scope, socket) {
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", function($rootScope, $scope, socket, ngDialog) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
@@ -13,7 +13,7 @@ angular.module('dash.controller', ['starter.services'])
 
     $scope.previousKeypad = function() {
         var maxKeypad = $rootScope.config.keypads.length - 1;
-        if ($rootScope.currentKeypad ===0) {
+        if ($rootScope.currentKeypad === 0) {
             $rootScope.currentKeypad = maxKeypad;
         } else {
             $rootScope.currentKeypad--;
@@ -39,7 +39,9 @@ angular.module('dash.controller', ['starter.services'])
     };
     
     $scope.resetName = function(data){
-        
+        $rootScope.keypad[$rootScope.currentKeypad].buttons.forEach(function(e){
+            e.name = ""
+        });
     }
     
 }])
@@ -70,7 +72,7 @@ angular.module('dash.controller', ['starter.services'])
         }
     }
 })
-.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate) {
+.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, ngDialog) {
     return {
         restrict: 'E',
         templateUrl: 'templates/elements/button.html',
@@ -80,6 +82,21 @@ angular.module('dash.controller', ['starter.services'])
         link: function(scope, element, attrs) {
             element.on('click', function() {
                 scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
+                if (scope.info.name == "") {
+                    
+                    ngDialog.open({
+                        template: 'buttonsNameTemplate',
+                        closeByDocument: false,
+                        scope: scope,
+                        controller: ['$scope', function($scope) {
+                            $scope.confirm = function(valName, val) {
+                                scope.info.name = val;
+                                $scope.closeThisDialog();
+                            }
+                        }]
+                    });
+                }
+                
                 scope.$apply();
             });
 
