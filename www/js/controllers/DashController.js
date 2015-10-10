@@ -2,10 +2,41 @@ angular.module('dash.controller', ['starter.services'])
 
 
 .controller('DashCtrl', ["$rootScope", "$scope", "socket", function($rootScope, $scope, socket) {
-    if ( $rootScope.currentKeypadType === '10b') {
+    $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
+    $scope.currentKeypadType = $rootScope.currentKeypadType;
+    $scope.maxKeypad = $rootScope.config.keypads.length;
+    console.log($scope.maxKeypad);
+    $scope.addMsg = function(data) {
+        socket.connect()
+    };
+
+    $scope.previousKeypad = function() {
+        var maxKeypad = $rootScope.config.keypads.length - 1;
+        if ($rootScope.currentKeypad ===0) {
+            $rootScope.currentKeypad = maxKeypad;
+        } else {
+            $rootScope.currentKeypad--;
+        }
+        $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
+        $scope.currentKeypadType = $rootScope.currentKeypadType;
+        console.log($scope.currentKeypadType);
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
-    }
-    $scope.currentKeypadType = $rootScope.currentKeypadType
+    };
+    $scope.nextKeypad = function() {
+        console.log($rootScope.config.keypads);
+        var maxKeypad = $rootScope.config.keypads.length - 1;
+        console.log(maxKeypad);
+        if ($rootScope.currentKeypad === maxKeypad) {
+            $rootScope.currentKeypad = 0;
+        } else {
+            $rootScope.currentKeypad++;
+        }
+        $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
+        $scope.currentKeypadType = $rootScope.currentKeypadType;
+        $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
+        console.log($scope.currentKeypadType);
+    };
+
     $scope.addMsg = function(data) {
         socket.connect()
     }
@@ -42,34 +73,34 @@ angular.module('dash.controller', ['starter.services'])
             info: '='
         },
         link: function(scope, element, attrs) {
-            element.on('click', function() {
-                scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
-                scope.$apply();
+            // element.on('click', function() {
+            //     scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
+            //     scope.$apply();
+            // });
+
+            var onTouch = function() {
+                var sendData;
+                sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
+                socket.send(sendData);
+            };
+
+            var onRelease =  function() {
+                var sendData;
+                sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
+              socket.send(sendData);
+            };
+            
+            element.on('touchstart', function() {
+                scope.$apply(function() {
+                    scope.$eval(onTouch);
+                });
             });
 
-            // var onTouch = function() {
-            //     var sendData;
-            //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
-            //     socket.send(sendData);
-            // };
-
-            // var onRelease =  function() {
-            //     var sendData;
-            //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
-            //   socket.send(sendData);
-            // };
-            
-            // element.on('touchstart', function() {
-            //     scope.$apply(function() {
-            //         scope.$eval(onTouch);
-            //     });
-            // });
-
-            // element.on('touchend', function() {
-            //     scope.$apply(function() {
-            //         scope.$eval(onRelease);
-            //     });
-            // });
+            element.on('touchend', function() {
+                scope.$apply(function() {
+                    scope.$eval(onRelease);
+                });
+            });
         }
     }
 });

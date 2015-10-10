@@ -130,6 +130,12 @@ angular.module('starter.services', [])
                 }, {
                     name: "j",
                     led: [0x1D, 0x1E]
+                }, {
+                    name: "k",
+                    led: [0x03, 0x04]
+                }, {
+                    name: "l",
+                    led: [0x1D, 0x1E]
                 }]
         };
 

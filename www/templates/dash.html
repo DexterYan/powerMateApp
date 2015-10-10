@@ -1,13 +1,13 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
-    <four-button-keypad ng-show="currentKeypadType==='4b'" ></four-button-keypad>
-    <eight-button-keypad ng-show="currentKeypadType==='8b'" ></eight-button-keypad>
-    <ten-button-keypad ng-show="currentKeypadType==='10b'" ></ten-button-keypad>
-    <forteen-button-keypad ng-show="currentKeypadType==='14b'" ></forteen-button-keypad>
+    <four-button-keypad ng-show="currentKeypadType=='4b'" ></four-button-keypad>
+    <eight-button-keypad ng-show="currentKeypadType=='8b'" ></eight-button-keypad>
+    <ten-button-keypad ng-show="currentKeypadType=='10b'" ></ten-button-keypad>
+    <forteen-button-keypad ng-show="currentKeypadType=='14b'" ></forteen-button-keypad>
     
     <div class="row">
       <div class="col">
-        <button ng-click='' class="button_custom green">
+        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">prev</div>
           </div>
@@ -21,7 +21,7 @@
         </button>
       </div>
       <div class="col">
-        <button ng-click='' class="button_custom green">
+        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">next</div>
           </div>
