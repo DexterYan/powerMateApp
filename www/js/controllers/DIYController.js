@@ -57,6 +57,9 @@ angular.module('diy.controller', ['starter.services'])
                 controller: ['$scope', function($scope) {
                     $scope.confirm = function(valName, val) {
                         $scope.$parent[valName] = val;
+                        $rootScope.config.keypads = [];
+                        $localstorage.setObject('keypads', []);
+                        $scope.$parent.keypadsTypes = [];
                         $scope.closeThisDialog();
                         $scope.configStepTwo(1);
                     }
