@@ -5,32 +5,66 @@
     <ten-button-keypad ng-show="currentKeypadType=='10b'" keypad="keypad"></ten-button-keypad>
     <forteen-button-keypad ng-show="currentKeypadType=='14b'" keypad="keypad"></forteen-button-keypad>
     
-    <div class="row">
+    <div class="row pad">
       <div class="col">
         <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
-            <div class="col col-center lineh03">prev</div>
+            <div class="col col-center lineh03">Prev</div>
           </div>
         </button>
       </div>
       <div class="col">
         <button ng-click='addMsg()' class="button_custom margin-top red">
           <div class="row row-center">
-            <div class="col col-center lineh03">connect</div>
+            <div class="col col-center lineh03">Connect</div>
           </div>
         </button>
       </div>
       <div class="col">
         <button ng-click='resetName()' class="button_custom margin-top grey">
           <div class="row row-center">
-            <div class="col col-center lineh03">Reset Name</div>
+            <div class="col col-center lineh03">Reset</div>
           </div>
         </button>
       </div>
       <div class="col">
         <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
           <div class="row row-center">
-            <div class="col col-center lineh03">next</div>
+            <div class="col col-center lineh03">Next</div>
+          </div>
+        </button>
+      </div>
+    </div>
+    
+    
+    <div class="row phone">
+      <div class="col">
+        <button ng-click='addMsg()' class="button_custom margin-top red">
+          <div class="row row-center">
+            <div class="col col-center lineh03">Connect</div>
+          </div>
+        </button>
+      </div>
+      <div class="col">
+        <button ng-click='resetName()' class="button_custom margin-top grey">
+          <div class="row row-center">
+            <div class="col col-center lineh03">Reset</div>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="row phone">
+      <div class="col">
+        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
+          <div class="row row-center">
+            <div class="col col-center lineh03">Prev</div>
+          </div>
+        </button>
+      </div>
+      <div class="col">
+        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
+          <div class="row row-center">
+            <div class="col col-center lineh03">Next</div>
           </div>
         </button>
       </div>
