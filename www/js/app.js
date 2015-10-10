@@ -9,11 +9,11 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
 
 .constant('_', window._)
 
-.run(function($ionicPlatform, $rootScope, keypadSetting) {
+.run(function($ionicPlatform, $rootScope, keypadSetting, _, $localstorage) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        $rootScope.config = {keypads: []};
+
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             window.plugins.insomnia.keepAwake()
@@ -49,14 +49,21 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                 templateUrl: "templates/dash.html",
                 controller: 'DashCtrl',
                 resolve: {
-                    setup: function($q, $rootScope, keypadSetting, _) {
-                        if (_.isUndefined($rootScope.config)) {
+                    setup: function($q, $rootScope, keypadSetting, _, $localstorage) {
+
+                        var storeKeypads = $localstorage.getObject('keypads');
+                        if (_.isUndefined(storeKeypads)) {
                             $rootScope.config = {
                                 keypads: [
                                     {type: '10b', buttons: []}
                                 ]
                             };
+                        } else {
+                            $rootScope.config = {
+                                keypads: storeKeypads
+                            };
                         }
+
                         console.log($rootScope.config.keypads)
                         keypadSetting.initialize($rootScope.config.keypads);
                         $rootScope.keypad = [];
@@ -74,7 +81,6 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                                 });
                             })
                         }
-                        
                         return;
                     }
                 }

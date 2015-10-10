@@ -1,6 +1,6 @@
 angular.module('diy.controller', ['starter.services'])
 
-.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope) {
+.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage) {
      var keypadName = ['First', 'Second', 'Third', 'Fourth', 
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
@@ -23,6 +23,8 @@ angular.module('diy.controller', ['starter.services'])
                     if (keypadNumber < $scope.totalKeypad) {
                         console.log(keypadNumber);
                         $scope.configStepTwo(keypadNumber+1);
+                    } else {
+                        $localstorage.setObject('keypads', $rootScope.config.keypads);
                     }
                 }
             }]
@@ -38,6 +40,7 @@ angular.module('diy.controller', ['starter.services'])
                 $scope.keypadName = keypadName[index];
                 $scope.confirm = function(valName, val) {
                     $rootScope.config.keypads[index].type = val;
+                    $localstorage.setObject('keypads', $rootScope.config.keypads);
                     $scope.$parent.keypadsTypes[index].type = val;
                     $scope.closeThisDialog();
                 }
