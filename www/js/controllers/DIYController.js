@@ -69,6 +69,7 @@ angular.module('diy.controller', ['starter.services'])
     }
 
     $scope.reset = function() {
+        $localstorage.setObject('keypads', []);
         $rootScope.config = {keypads: []};
         $scope.keypadsTypes = [];
         $scope.totalKeypad = null;

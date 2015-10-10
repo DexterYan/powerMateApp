@@ -50,9 +50,9 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                 controller: 'DashCtrl',
                 resolve: {
                     setup: function($q, $rootScope, keypadSetting, _, $localstorage) {
-
                         var storeKeypads = $localstorage.getObject('keypads');
-                        if (_.isUndefined(storeKeypads)) {
+
+                        if (_.isEmpty(storeKeypads)) {
                             $rootScope.config = {
                                 keypads: [
                                     {type: '10b', buttons: []}
