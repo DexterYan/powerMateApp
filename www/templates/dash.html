@@ -1,9 +1,9 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
-    <four-button-keypad ng-show="currentKeypadType=='4b'" ></four-button-keypad>
-    <eight-button-keypad ng-show="currentKeypadType=='8b'" ></eight-button-keypad>
-    <ten-button-keypad ng-show="currentKeypadType=='10b'" ></ten-button-keypad>
-    <forteen-button-keypad ng-show="currentKeypadType=='14b'" ></forteen-button-keypad>
+    <four-button-keypad ng-show="currentKeypadType=='4b'" keypad="keypad"></four-button-keypad>
+    <eight-button-keypad ng-show="currentKeypadType=='8b'" keypad="keypad"></eight-button-keypad>
+    <ten-button-keypad ng-show="currentKeypadType=='10b'" keypad="keypad"></ten-button-keypad>
+    <forteen-button-keypad ng-show="currentKeypadType=='14b'" keypad="keypad"></forteen-button-keypad>
     
     <div class="row">
       <div class="col">
@@ -14,9 +14,16 @@
         </button>
       </div>
       <div class="col">
-        <button ng-click='addMsg()' class="button_custom connect red">
+        <button ng-click='addMsg()' class="button_custom margin-top red">
           <div class="row row-center">
             <div class="col col-center lineh03">connect</div>
+          </div>
+        </button>
+      </div>
+      <div class="col">
+        <button ng-click='resetName()' class="button_custom margin-top grey">
+          <div class="row row-center">
+            <div class="col col-center lineh03">Reset Name</div>
           </div>
         </button>
       </div>
