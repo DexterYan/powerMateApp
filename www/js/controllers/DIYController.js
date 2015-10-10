@@ -37,6 +37,7 @@ angular.module('diy.controller', ['starter.services'])
             controller: ['$scope', function($scope) {
                 $scope.keypadName = keypadName[index];
                 $scope.confirm = function(valName, val) {
+                    $rootScope.config.keypads[index].type = val;
                     $scope.$parent.keypadsTypes[index].type = val;
                     $scope.closeThisDialog();
                 }

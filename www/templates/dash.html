@@ -7,7 +7,7 @@
     
     <div class="row">
       <div class="col">
-        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">prev</div>
           </div>
@@ -28,7 +28,7 @@
         </button>
       </div>
       <div class="col">
-        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad > 0' ng-click='nextKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">next</div>
           </div>

@@ -4,7 +4,7 @@ angular.module('dash.controller', ['starter.services'])
 .controller('DashCtrl', ["$rootScope", "$scope", "socket", function($rootScope, $scope, socket) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
-    $scope.maxKeypad = $rootScope.config.keypads.length;
+    $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
     console.log($scope.maxKeypad);
     
     $scope.addMsg = function(data) {
