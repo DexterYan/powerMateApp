@@ -40,7 +40,7 @@ angular.module('dash.controller', ['starter.services'])
     
     $scope.resetName = function(data){
         $rootScope.keypad[$rootScope.currentKeypad].buttons.forEach(function(e){
-            e.name = ""
+            e.name = "Click to Edit";
         });
     }
     
@@ -82,21 +82,28 @@ angular.module('dash.controller', ['starter.services'])
         link: function(scope, element, attrs) {
             element.on('click', function() {
                 scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
-                if (scope.info.name == "") {
-                    
+                if (scope.info.name == "Click to Edit") {
+
                     ngDialog.open({
                         template: 'buttonsNameTemplate',
                         closeByDocument: false,
                         scope: scope,
-                        controller: ['$scope', function($scope) {
+                        controller: ['$scope', '$rootScope', '$localstorage', 
+                            function($scope, $rootScope, $localstorage) {
                             $scope.confirm = function(valName, val) {
                                 scope.info.name = val;
+                                console.log($rootScope.keypad);
+                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons 
+                                    = $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                                console.log($rootScope.storeKeypads);
+
+                                $localstorage.setObject('keypads', $rootScope.storeKeypads);
                                 $scope.closeThisDialog();
                             }
                         }]
                     });
                 }
-                
+
                 scope.$apply();
             });
 

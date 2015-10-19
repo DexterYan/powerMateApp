@@ -86,71 +86,93 @@ angular.module('starter.services', [])
         ledPrefix = 0x80,
         buttons = {
             '10b': [{
-                    name: "a",
+                    name: "Click to Edit",
+                    value: "a",
                     led: [0x11, 0x12, 0x13]
                 }, {
-                    name: "b",
+                    name: "Click to Edit",
+                    value: "b",
                     led: [0x14, 0x15, 0x16]
                 }, {
-                    name: "c",
+                    name: "Click to Edit",
+                    value: "c",
                     led: [0x17, 0x18, 0x19]
                 }, {
-                    name: "d",
+                    name: "Click to Edit",
+                    value: "d",
                     led: [0x1A, 0x1B, 0x1C]
                 }, {
-                    name: "e",
+                    name: "Click to Edit",
+                    value: "e",
                     led: [0x05, 0x06, 0x07]
                 }, {
-                    name: "f",
+                    name: "Click to Edit",
+                    value: "f",
                     led: [0x08, 0x09, 0x0A]
                 }, {
-                    name: "g",
+                    name: "Click to Edit",
+                    value: "g",
                     led: [0x0B, 0x0C, 0x0D]
                 }, {
-                    name: "h",
+                    name: "Click to Edit",
+                    value: "h",
                     led: [0x0E, 0x0F, 0x10]
                 }, {
-                    name: "i",
+                    name: "Click to Edit",
+                    value: "i",
                     led: [0x03, 0x04]
                 }, {
-                    name: "j",
+                    name: "Click to Edit",
+                    value: "j",
                     led: [0x1D, 0x1E]
                 }],
             '14b': [{
-                    name: "a",
+                    name: "Click to Edit",
+                    value: "a",
                     led: [0x11, 0x12, 0x13]
                 }, {
-                    name: "b",
+                    name: "Click to Edit",
+                    value: "b",
                     led: [0x14, 0x15, 0x16]
                 }, {
-                    name: "c",
+                    name: "Click to Edit",
+                    value: "c",
                     led: [0x17, 0x18, 0x19]
                 }, {
-                    name: "d",
+                    name: "Click to Edit",
+                    value: "d",
                     led: [0x1A, 0x1B, 0x1C]
                 }, {
-                    name: "e",
+                    name: "Click to Edit",
+                    value: "e",
                     led: [0x05, 0x06, 0x07]
                 }, {
-                    name: "f",
+                    name: "Click to Edit",
+                    value: "f",
                     led: [0x08, 0x09, 0x0A]
                 }, {
-                    name: "g",
+                    name: "Click to Edit",
+                    value: "g",
                     led: [0x0B, 0x0C, 0x0D]
                 }, {
-                    name: "h",
+                    name: "Click to Edit",
+                    value: "h",
                     led: [0x0E, 0x0F, 0x10]
                 }, {
-                    name: "i",
+                    name: "Click to Edit",
+                    value: "i",
                     led: [0x03, 0x04]
                 }, {
-                    name: "j",
+                    name: "Click to Edit",
+                    value: "j",
                     led: [0x1D, 0x1E]
                 }, {
-                    name: "k",
+                    name: "Click to Edit",
+                    value: "k",
                     led: [0x03, 0x04]
                 }, {
-                    name: "l",
+                    name: "Click to Edit",
+                    value: "l",
                     led: [0x1D, 0x1E]
                 }]
         };

@@ -50,9 +50,9 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                 controller: 'DashCtrl',
                 resolve: {
                     setup: function($q, $rootScope, keypadSetting, _, $localstorage) {
-                        var storeKeypads = $localstorage.getObject('keypads');
+                        $rootScope.storeKeypads = $localstorage.getObject('keypads');
 
-                        if (_.isEmpty(storeKeypads)) {
+                        if (_.isEmpty($rootScope.storeKeypads)) {
                             $rootScope.config = {
                                 keypads: [
                                     {type: '10b', buttons: []}
@@ -60,26 +60,42 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                             };
                         } else {
                             $rootScope.config = {
-                                keypads: storeKeypads
+                                keypads: $rootScope.storeKeypads
                             };
                         }
 
                         console.log($rootScope.config.keypads)
                         keypadSetting.initialize($rootScope.config.keypads);
+                        console.log($rootScope.config.keypads)
                         $rootScope.keypad = [];
                         $rootScope.currentKeypad = 0;
                         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
+                        
+                        console.log($rootScope)
+
                         for (var i = 0; i < $rootScope.config.keypads.length; i++) {
                             var keypadType = $rootScope.config.keypads[i].type;
                             $rootScope.keypad.push({
                                 "buttons": []
                             });
-                            keypadSetting.buttons[keypadType].forEach(function(element) {
-                                $rootScope.keypad[i].buttons.push({
-                                    "name": element.name,
-                                    "led": ['off', 'off', 'off']
-                                });
-                            })
+                            //check  if the diy mode has already generate the buttons names
+                            if ( _.isEmpty($rootScope.config.keypads[i].buttons)) {
+                                keypadSetting.buttons[keypadType].forEach(function(element) {
+                                    $rootScope.keypad[i].buttons.push({
+                                        "name": element.name,
+                                        "value": element.value,
+                                        "led": ['off', 'off', 'off']
+                                    });
+                                })
+                            } else {
+                                $rootScope.config.keypads[i].buttons.forEach(function(element) {
+                                    $rootScope.keypad[i].buttons.push({
+                                        "name": element.name,
+                                        "value": element.value,
+                                        "led": ['off', 'off', 'off']
+                                    });
+                                })
+                            }
                         }
                         return;
                     }
