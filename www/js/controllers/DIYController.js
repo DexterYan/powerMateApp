@@ -1,7 +1,7 @@
 angular.module('diy.controller', ['starter.services'])
 
 .controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage) {
-     var keypadName = ['First', 'Second', 'Third', 'Fourth', 
+     var keypadName = ['First', 'Second', 'Third', 'Fourth',
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
     $scope.configStepTwo = function(keypadNumber) {

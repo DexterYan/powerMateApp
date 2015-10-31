@@ -84,3 +84,11 @@
         <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('buttonsName', buttonsName)">Confirm</button>
     </div>
 </script>
+
+<script type="text/ng-template" id="EditModeWaring" >
+    <h4>If it is your first time to use this keypad, please go to "DIY" page to config your keypad.<br></br>Afterwards, you can name your keypads' buttons</h4>
+    <div  class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Name buttons</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">DIY</button>
+    </div>
+</script>

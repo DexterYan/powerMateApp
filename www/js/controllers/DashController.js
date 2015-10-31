@@ -1,12 +1,16 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", function($rootScope, $scope, socket, ngDialog) {
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", function($rootScope, $scope, socket, ngDialog) {
+
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
-    console.log($scope.maxKeypad);
-    
+    var editModeCheck = $rootScope._.find($scope.keypad.buttons, function(button) {
+        return button.name === 'Click to Edit'
+    });
+    $scope.enableEditMode = editModeCheck? true : false;
+
     $scope.addMsg = function(data) {
         socket.connect()
     };
@@ -23,6 +27,7 @@ angular.module('dash.controller', ['starter.services'])
         console.log($scope.currentKeypadType);
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     };
+
     $scope.nextKeypad = function() {
         console.log($rootScope.config.keypads);
         var maxKeypad = $rootScope.config.keypads.length - 1;
@@ -37,13 +42,25 @@ angular.module('dash.controller', ['starter.services'])
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
         console.log($scope.currentKeypadType);
     };
-    
+
     $scope.resetName = function(data){
         $rootScope.keypad[$rootScope.currentKeypad].buttons.forEach(function(e){
             e.name = "Click to Edit";
         });
     }
-    
+
+    if ($scope.enableEditMode) {
+        ngDialog.open({
+            template: 'EditModeWaring',
+            closeByDocument: false,
+            controller: ['$scope', '$rootScope', '$localstorage',
+                function($scope) {
+                $scope.closeThisDialog = function() {
+                    $scope.closeThisDialog();
+                }
+            }]
+        })
+    }
 }])
 .directive('fourButtonKeypad', function(){
     return {
@@ -93,7 +110,7 @@ angular.module('dash.controller', ['starter.services'])
                             $scope.confirm = function(valName, val) {
                                 scope.info.name = val;
                                 console.log($rootScope.keypad);
-                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons 
+                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
                                     = $rootScope.keypad[$rootScope.currentKeypad].buttons;
                                 console.log($rootScope.storeKeypads);
 
