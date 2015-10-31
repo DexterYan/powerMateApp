@@ -102,7 +102,7 @@ angular.module('starter.services', [])
                 value: "d",
                 led: [0x04]
             }],
-            '8b': [{
+            '8r': [{
                 name: "Click to Edit",
                 value: "a",
                 led: [0x01, 0x09]
