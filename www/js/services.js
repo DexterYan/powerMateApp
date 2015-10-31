@@ -85,7 +85,7 @@ angular.module('starter.services', [])
         ],
         ledPrefix = 0x80,
         buttons = {
-            '4b': [{
+            '4r': [{
                 name: "Click to Edit",
                 value: "a",
                 led: [0x01]

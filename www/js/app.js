@@ -22,6 +22,8 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
             // org.apache.cordova.statusbar required
             StatusBar.styleLightContent();
         }
+
+        $rootScope.config = {};
     });
 
 })
@@ -52,7 +54,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                     setup: function($q, $rootScope, keypadSetting, _, $localstorage) {
                         $rootScope.storeKeypads = $localstorage.getObject('keypads');
 
-                        if (_.isEmpty($rootScope.storeKeypads)) {
+                        if (_.isEmpty($rootScope.storeKeypads)) {$rootScope.config = {};
                             $rootScope.config = {
                                 keypads: [
                                     {type: '10b', buttons: []}
