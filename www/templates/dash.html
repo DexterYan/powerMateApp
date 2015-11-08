@@ -39,16 +39,16 @@
 
     <div class="row phone">
       <div class="col">
-        <button ng-click='addMsg()' ng-class="{red: !WifiConnect, green: WifiConnect, connected: WifiConnect}" class="button_custom margin-top">
+        <button ng-click='addMsg()' ng-class="{green: WifiConnect, connected: WifiConnect}" class="button_custom margin-top red">
           <div class="row row-center">
             <div class="col col-center lineh03">Connect{{ WifiConnect ? "ed" : "" }}</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-click='resetName()' class="button_custom margin-top grey">
+        <button ng-click='resetName()' ng-class="{green: enableEditMode}" class="button_custom margin-top grey">
           <div class="row row-center">
-            <div class="col col-center lineh03">Rename</div>
+            <div class="col col-center lineh03">{{ enableEditMode ? "Save" : "Rename"}}</div>
           </div>
         </button>
         <div ng-class="{visible: enableEditMode}" class="led editModeLED">&nbsp;</div>
