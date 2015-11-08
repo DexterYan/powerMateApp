@@ -48,7 +48,7 @@ angular.module('dash.controller', ['starter.services'])
 
     $scope.addMsg = function(data) {
         $rootScope.WifiConnect = true;
-        socket.connect()
+        socket.connect();
     };
 
     $scope.previousKeypad = function() {

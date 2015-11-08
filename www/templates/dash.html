@@ -7,14 +7,14 @@
 
     <div class="row pad">
       <div class="col">
-        <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom orange">
           <div class="row row-center">
             <div class="col col-center lineh03">Prev</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-click='addMsg()' class="button_custom margin-top red">
+        <button ng-click='addMsg()' ng-class="{red: !WifiConnect, green: WifiConnect}" class="button_custom margin-top">
           <div class="row row-center">
             <div class="col col-center lineh03">Connect</div>
           </div>
@@ -26,9 +26,10 @@
             <div class="col col-center lineh03">Rename</div>
           </div>
         </button>
+        <div ng-class="{visible: enableEditMode}" class="led">&nbsp;</div>
       </div>
       <div class="col">
-        <button ng-show='maxKeypad > 0' ng-click='nextKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad > 0' ng-click='nextKeypad()' class="button_custom orange">
           <div class="row row-center">
             <div class="col col-center lineh03">Next</div>
           </div>
@@ -38,9 +39,9 @@
 
     <div class="row phone">
       <div class="col">
-        <button ng-click='addMsg()' class="button_custom margin-top red">
+        <button ng-click='addMsg()' ng-class="{red: !WifiConnect, green: WifiConnect, connected: WifiConnect}" class="button_custom margin-top">
           <div class="row row-center">
-            <div class="col col-center lineh03">Connect</div>
+            <div class="col col-center lineh03">Connect{{ WifiConnect ? "ed" : "" }}</div>
           </div>
         </button>
       </div>
@@ -50,18 +51,19 @@
             <div class="col col-center lineh03">Rename</div>
           </div>
         </button>
+        <div ng-class="{visible: enableEditMode}" class="led editModeLED">&nbsp;</div>
       </div>
     </div>
     <div class="row phone">
       <div class="col">
-        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom orange">
           <div class="row row-center">
             <div class="col col-center lineh03">Prev</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom orange">
           <div class="row row-center">
             <div class="col col-center lineh03">Next</div>
           </div>
