@@ -48,6 +48,14 @@ angular.module('dash.controller', ['starter.services'])
         })
     }
 
+    var finishEditting = function(callback) {
+        ngDialog.open({
+            template: 'FinishEditting',
+            closeByDocument: true,
+            showClose: true,
+        })
+    };
+
     $scope.addMsg = function(data) {
         $rootScope.WifiConnect = true;
         socket.connect();
@@ -82,8 +90,14 @@ angular.module('dash.controller', ['starter.services'])
     };
 
     $scope.resetName = function(data){
-        $rootScope.enableEditMode = !$rootScope.enableEditMode;
-        console.log($rootScope.enableEditMode)
+        var finishEditCheck = $rootScope._.find($scope.keypad.buttons, function(button) {
+            return button.name === 'Click to Edit'
+        });
+        if (!finishEditCheck) {
+            $rootScope.enableEditMode = !$rootScope.enableEditMode;
+        } else {
+            finishEditting();
+        }
     }
 
     if ( $rootScope.config && _.isEmpty($rootScope.config.keypads) ) {
