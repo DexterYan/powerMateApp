@@ -9,9 +9,45 @@ angular.module('dash.controller', ['starter.services'])
     var editModeCheck = $rootScope._.find($scope.keypad.buttons, function(button) {
         return button.name === 'Click to Edit'
     });
-    $scope.enableEditMode = editModeCheck? true : false;
+    $rootScope.enableEditMode = editModeCheck? true : false;
+
+    var firstTimeWaring = function(callback) {
+        ngDialog.open({
+            template: 'FirstTimeWarning',
+            closeByDocument: false,
+            controller: ['$scope', '$state', function($scope, $state) {
+                $scope.nameButton = function() {
+                    $scope.closeThisDialog();
+                    callback();
+                };
+                $scope.goToDIY = function() {
+                    $scope.closeThisDialog();
+                    $state.go('app.diy');
+                }
+            }]
+        })
+    };
+
+    var firstTimeRenameWaring = function() {
+        ngDialog.open({
+            template: 'FirstTimeRenameWaring',
+            closeByDocument: false,
+            controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
+                $scope.closeThisDialog = function() {
+                    $scope.closeThisDialog();
+                    callback();
+                };
+                $scope.connectWifi = function() {
+                    $rootScope.WifiConnect = true;
+                    $scope.closeThisDialog();
+                    socket.connect();
+                }
+            }]
+        })
+    }
 
     $scope.addMsg = function(data) {
+        $rootScope.WifiConnect = true;
         socket.connect()
     };
 
@@ -44,23 +80,14 @@ angular.module('dash.controller', ['starter.services'])
     };
 
     $scope.resetName = function(data){
-        $rootScope.keypad[$rootScope.currentKeypad].buttons.forEach(function(e){
-            e.name = "Click to Edit";
-        });
+        $rootScope.enableEditMode = !$rootScope.enableEditMode;
+        console.log($rootScope.enableEditMode)
     }
 
-    if ($scope.enableEditMode) {
-        ngDialog.open({
-            template: 'EditModeWaring',
-            closeByDocument: false,
-            controller: ['$scope', '$rootScope', '$localstorage',
-                function($scope) {
-                $scope.closeThisDialog = function() {
-                    $scope.closeThisDialog();
-                }
-            }]
-        })
+    if ($rootScope.enableEditMode) {
+        firstTimeWaring(firstTimeRenameWaring);
     }
+
 }])
 .directive('fourButtonKeypad', function(){
     return {
@@ -83,13 +110,10 @@ angular.module('dash.controller', ['starter.services'])
 .directive('forteenButtonKeypad', function(){
     return {
         restrict: 'E',
-        templateUrl: 'templates/elements/forteenButtonKeypad.html',
-        scope: {
-            keypad: '='
-        }
+        templateUrl: 'templates/elements/forteenButtonKeypad.html'
     }
 })
-.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, ngDialog) {
+.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, ngDialog, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: 'templates/elements/button.html',
@@ -97,31 +121,32 @@ angular.module('dash.controller', ['starter.services'])
             info: '='
         },
         link: function(scope, element, attrs) {
-            element.on('click', function() {
-                scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
-                if (scope.info.name == "Click to Edit") {
+            console.log($rootScope.enableEditMode)
+           
+             element.on('click', function() {
+                 if ($rootScope.enableEditMode) {
+                    scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
+                        ngDialog.open({
+                            template: 'buttonsNameTemplate',
+                            closeByDocument: false,
+                            scope: scope,
+                            controller: ['$scope', '$rootScope', '$localstorage', 
+                                function($scope, $rootScope, $localstorage) {
+                                $scope.confirm = function(valName, val) {
+                                    scope.info.name = val;
+                                    console.log($rootScope.keypad);
+                                    $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
+                                        = $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                                    console.log($rootScope.storeKeypads);
 
-                    ngDialog.open({
-                        template: 'buttonsNameTemplate',
-                        closeByDocument: false,
-                        scope: scope,
-                        controller: ['$scope', '$rootScope', '$localstorage', 
-                            function($scope, $rootScope, $localstorage) {
-                            $scope.confirm = function(valName, val) {
-                                scope.info.name = val;
-                                console.log($rootScope.keypad);
-                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
-                                    = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                console.log($rootScope.storeKeypads);
+                                    $localstorage.setObject('keypads', $rootScope.storeKeypads);
+                                    $scope.closeThisDialog();
+                                }
+                            }]
+                        });
 
-                                $localstorage.setObject('keypads', $rootScope.storeKeypads);
-                                $scope.closeThisDialog();
-                            }
-                        }]
-                    });
+                    scope.$apply();
                 }
-
-                scope.$apply();
             });
 
             // var onTouch = function() {
