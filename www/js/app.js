@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                         $rootScope.keypad = [];
                         $rootScope.currentKeypad = 0;
                         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
-                        
+                        $rootScope.WifiConnect = $rootScope.WifiConnect || false;
                         console.log($rootScope)
 
                         for (var i = 0; i < $rootScope.config.keypads.length; i++) {
