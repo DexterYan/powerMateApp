@@ -1,6 +1,6 @@
 angular.module('diy.controller', ['starter.services'])
 
-.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage) {
+.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage, $state) {
      var keypadName = ['First', 'Second', 'Third', 'Fourth',
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
@@ -69,7 +69,8 @@ angular.module('diy.controller', ['starter.services'])
     }
 
     $scope.selectTabWithIndex = function(index) {
-        $ionicTabsDelegate.select(index);
+        $state.go('app.dash');
+        //$ionicTabsDelegate.select(index);
     }
 
     $scope.reset = function() {
