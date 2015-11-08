@@ -15,6 +15,7 @@ angular.module('dash.controller', ['starter.services'])
         ngDialog.open({
             template: 'FirstTimeWarning',
             closeByDocument: false,
+            showClose: false,
             controller: ['$scope', '$state', function($scope, $state) {
                 $scope.nameButton = function() {
                     $scope.closeThisDialog();
@@ -32,6 +33,7 @@ angular.module('dash.controller', ['starter.services'])
         ngDialog.open({
             template: 'FirstTimeRenameWaring',
             closeByDocument: false,
+            showClose: false,
             controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
                 $scope.goToDIY = function() {
                     $scope.closeThisDialog();
@@ -83,7 +85,7 @@ angular.module('dash.controller', ['starter.services'])
         $rootScope.enableEditMode = !$rootScope.enableEditMode;
         console.log($rootScope.enableEditMode)
     }
-   
+
     if ( $rootScope.config && _.isEmpty($rootScope.config.keypads) ) {
         firstTimeWaring(firstTimeRenameWaring);
     } else if ($rootScope.enableEditMode) {
