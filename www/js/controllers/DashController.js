@@ -2,7 +2,7 @@ angular.module('dash.controller', ['starter.services'])
 
 
 .controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", function($rootScope, $scope, socket, ngDialog) {
-
+    var _ = $rootScope._;
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
@@ -23,7 +23,7 @@ angular.module('dash.controller', ['starter.services'])
                 $scope.goToDIY = function() {
                     $scope.closeThisDialog();
                     $state.go('app.diy');
-                }
+                };
             }]
         })
     };
@@ -33,9 +33,9 @@ angular.module('dash.controller', ['starter.services'])
             template: 'FirstTimeRenameWaring',
             closeByDocument: false,
             controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
-                $scope.closeThisDialog = function() {
+                $scope.goToDIY = function() {
                     $scope.closeThisDialog();
-                    callback();
+                    firstTimeWaring(firstTimeRenameWaring);
                 };
                 $scope.connectWifi = function() {
                     $rootScope.WifiConnect = true;
@@ -83,9 +83,11 @@ angular.module('dash.controller', ['starter.services'])
         $rootScope.enableEditMode = !$rootScope.enableEditMode;
         console.log($rootScope.enableEditMode)
     }
-
-    if ($rootScope.enableEditMode) {
+   
+    if ( $rootScope.config && _.isEmpty($rootScope.config.keypads) ) {
         firstTimeWaring(firstTimeRenameWaring);
+    } else if ($rootScope.enableEditMode) {
+        firstTimeRenameWaring();
     }
 
 }])
@@ -122,7 +124,7 @@ angular.module('dash.controller', ['starter.services'])
         },
         link: function(scope, element, attrs) {
             console.log($rootScope.enableEditMode)
-           
+
              element.on('click', function() {
                  if ($rootScope.enableEditMode) {
                     scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
@@ -130,7 +132,7 @@ angular.module('dash.controller', ['starter.services'])
                             template: 'buttonsNameTemplate',
                             closeByDocument: false,
                             scope: scope,
-                            controller: ['$scope', '$rootScope', '$localstorage', 
+                            controller: ['$scope', '$rootScope', '$localstorage',
                                 function($scope, $rootScope, $localstorage) {
                                 $scope.confirm = function(valName, val) {
                                     scope.info.name = val;
@@ -160,7 +162,7 @@ angular.module('dash.controller', ['starter.services'])
             //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
             //   socket.send(sendData);
             // };
-            
+
             // element.on('touchstart', function() {
             //     scope.$apply(function() {
             //         scope.$eval(onTouch);
