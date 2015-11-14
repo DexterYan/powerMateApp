@@ -41,7 +41,7 @@
       <div class="col">
         <button ng-click='addMsg()' ng-class="{green: WifiConnect, red: !WifiConnect}" class="button_custom margin-top connected config_buttons">
           <div class="row row-center">
-            <div class="col col-center lineh03">Connect</div>
+              <div class="col col-center lineh03">Connect{{ WifiConnect ? "ed" : "" }}</div>
           </div>
         </button>
       </div>
