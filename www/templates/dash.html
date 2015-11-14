@@ -46,11 +46,12 @@
         </button>
       </div>
       <div class="col">
-        <button ng-click='resetName()' class="button_custom margin-top grey">
+          <button ng-click='resetName()' ng-class="{green: enableEditMode}" class="button_custom margin-top grey">
           <div class="row row-center">
-            <div class="col col-center lineh03">Reset</div>
+              <div class="col col-center lineh03">{{ enableEditMode ? "Save" : "Rename"}}</div>
           </div>
         </button>
+            <div ng-class="{visible: enableEditMode}" class="led editModeLED">&nbsp;</div>
       </div>
     </div>
     <div class="row phone">
@@ -72,15 +73,26 @@
   </ion-content>
 </ion-view>
 
-<script type="text/ng-template" id="buttonsNameTemplate" >
-    <h3>Rename this button:</h3>
-    <div class='list'>
-          <label class="item item-input">
-                <input type="text" ng-model='buttonsName'></input>
-            </label>
-    </div>
-    <div class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('buttonsName', buttonsName)">Confirm</button>
+<script type="text/ng-template" id="FirstTimeWarning" >
+    <h4>If it is your first time to use this keypad, please go to "DIY" page to config your keypad.<br></br>Afterwards, you can name your keypads&#39; buttons</h4>
+    <div  class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="nameButton()">Name buttons</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="goToDIY()">DIY</button>
     </div>
 </script>
+
+<script type="text/ng-template" id="FirstTimeRenameWaring" >
+    <h4>Before you start to edit your button&#39;s name, you must make sure your Powermate has been connected with wifi and other devices only for testing.</h4>
+    <div  class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="goToDIY()">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="connectWifi()">Ready</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="FinishEditting" >
+    <h4>You still have some buttons have not been edited</h4>
+    <div  class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Continue</button>
+    </div>
+</script>
+
