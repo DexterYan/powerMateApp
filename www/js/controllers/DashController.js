@@ -1,12 +1,11 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", function($rootScope, $scope, socket, ngDialog) {
-    var _ = $rootScope._;
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", function($rootScope, $scope, socket, ngDialog, _) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
-    var editModeCheck = $rootScope._.find($scope.keypad.buttons, function(button) {
+    var editModeCheck = _.find($scope.keypad.buttons, function(button) {
         return button.name === 'Click to Edit'
     });
     $rootScope.enableEditMode = editModeCheck? true : false;
@@ -90,7 +89,7 @@ angular.module('dash.controller', ['starter.services'])
     };
 
     $scope.resetName = function(data){
-        var finishEditCheck = $rootScope._.find($scope.keypad.buttons, function(button) {
+        var finishEditCheck = _.find($scope.keypad.buttons, function(button) {
             return button.name === 'Click to Edit'
         });
         if (!finishEditCheck) {
@@ -100,7 +99,8 @@ angular.module('dash.controller', ['starter.services'])
         }
     }
 
-    if ( $rootScope.config && _.isEmpty($rootScope.config.keypads) ) {
+
+    if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === 'yes' ) {
         firstTimeWaring(firstTimeRenameWaring);
     } else if ($rootScope.enableEditMode) {
         firstTimeRenameWaring();
@@ -139,11 +139,9 @@ angular.module('dash.controller', ['starter.services'])
             info: '='
         },
         link: function(scope, element, attrs) {
-            console.log($rootScope.enableEditMode)
 
              element.on('click', function() {
                  if ($rootScope.enableEditMode) {
-                    scope.info.led[0] = scope.info.led[0]=='on'?'off':'on';
                         ngDialog.open({
                             template: 'buttonsNameTemplate',
                             closeByDocument: false,
@@ -152,11 +150,9 @@ angular.module('dash.controller', ['starter.services'])
                                 function($scope, $rootScope, $localstorage) {
                                 $scope.confirm = function(valName, val) {
                                     scope.info.name = val;
-                                    console.log($rootScope.keypad);
+
                                     $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
                                         = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                    console.log($rootScope.storeKeypads);
-
                                     $localstorage.setObject('keypads', $rootScope.storeKeypads);
                                     $scope.closeThisDialog();
                                 }
@@ -167,29 +163,29 @@ angular.module('dash.controller', ['starter.services'])
                 }
             });
 
-            // var onTouch = function() {
-            //     var sendData;
-            //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toUpperCase();
-            //     socket.send(sendData);
-            // };
+            var onTouch = function() {
+                var sendData;
+                sendData = keypad.keypadNumberPrefix[0] + scope.info.value.toUpperCase();
+                socket.send(sendData);
+            };
 
-            // var onRelease =  function() {
-            //     var sendData;
-            //     sendData = keypad.keypadNumberPrefix[0] + scope.info.name.toLowerCase();
-            //   socket.send(sendData);
-            // };
+            var onRelease =  function() {
+                var sendData;
+                sendData = keypad.keypadNumberPrefix[0] + scope.info.value.toLowerCase();
+              socket.send(sendData);
+            };
 
-            // element.on('touchstart', function() {
-            //     scope.$apply(function() {
-            //         scope.$eval(onTouch);
-            //     });
-            // });
+            element.on('touchstart', function() {
+                scope.$apply(function() {
+                    scope.$eval(onTouch);
+                });
+            });
 
-            // element.on('touchend', function() {
-            //     scope.$apply(function() {
-            //         scope.$eval(onRelease);
-            //     });
-            // });
+            element.on('touchend', function() {
+                scope.$apply(function() {
+                    scope.$eval(onRelease);
+                });
+            });
         }
     }
 });

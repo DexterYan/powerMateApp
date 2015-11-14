@@ -9,11 +9,10 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
 
 .constant('_', window._)
 
-.run(function($ionicPlatform, $rootScope, keypadSetting, _, $localstorage) {
+.run(function($ionicPlatform, $rootScope, keypadSetting, $localstorage) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        $rootScope._ = window._;
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             window.plugins.insomnia.keepAwake()
@@ -56,7 +55,8 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                             $rootScope.config = {
                                 keypads: [
                                     {type: '10b', buttons: []}
-                                ]
+                                ],
+                                firstTime: 'yes'
                             };
                         } else {
                             $rootScope.config = {
@@ -71,7 +71,6 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                         $rootScope.currentKeypad = 0;
                         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
                         $rootScope.WifiConnect = $rootScope.WifiConnect || false;
-                        console.log($rootScope)
 
                         for (var i = 0; i < $rootScope.config.keypads.length; i++) {
                             var keypadType = $rootScope.config.keypads[i].type;

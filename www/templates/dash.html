@@ -1,20 +1,20 @@
 <ion-view view-title="Home">
   <ion-content id="dash">
-    <four-button-keypad ng-show="currentKeypadType=='4r'" keypad="keypad"></four-button-keypad>
-    <eight-button-keypad ng-show="currentKeypadType=='8r'" keypad="keypad"></eight-button-keypad>
+    <four-button-keypad ng-show="currentKeypadType=='4b'" keypad="keypad"></four-button-keypad>
+    <eight-button-keypad ng-show="currentKeypadType=='8b'" keypad="keypad"></eight-button-keypad>
     <ten-button-keypad ng-show="currentKeypadType=='10b'" keypad="keypad"></ten-button-keypad>
     <forteen-button-keypad ng-show="currentKeypadType=='14b'" keypad="keypad"></forteen-button-keypad>
-
+    
     <div class="row pad">
       <div class="col">
-        <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom orange">
+        <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">Prev</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-click='addMsg()' ng-class="{red: !WifiConnect, green: WifiConnect}" class="button_custom margin-top">
+        <button ng-click='addMsg()' class="button_custom margin-top red">
           <div class="row row-center">
             <div class="col col-center lineh03">Connect</div>
           </div>
@@ -23,47 +23,46 @@
       <div class="col">
         <button ng-click='resetName()' class="button_custom margin-top grey">
           <div class="row row-center">
-            <div class="col col-center lineh03">Rename</div>
+            <div class="col col-center lineh03">Reset</div>
           </div>
         </button>
-        <div ng-class="{visible: enableEditMode}" class="led">&nbsp;</div>
       </div>
       <div class="col">
-        <button ng-show='maxKeypad > 0' ng-click='nextKeypad()' class="button_custom orange">
+        <button ng-show='maxKeypad > 0' ng-click='nextKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">Next</div>
           </div>
         </button>
       </div>
     </div>
-
+    
+    
     <div class="row phone">
       <div class="col">
-        <button ng-click='addMsg()' ng-class="{green: WifiConnect, connected: WifiConnect}" class="button_custom margin-top red">
+        <button ng-click='addMsg()' class="button_custom margin-top red">
           <div class="row row-center">
-            <div class="col col-center lineh03">Connect{{ WifiConnect ? "ed" : "" }}</div>
+            <div class="col col-center lineh03">Connect</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-click='resetName()' ng-class="{green: enableEditMode}" class="button_custom margin-top grey">
+        <button ng-click='resetName()' class="button_custom margin-top grey">
           <div class="row row-center">
-            <div class="col col-center lineh03">{{ enableEditMode ? "Save" : "Rename"}}</div>
+            <div class="col col-center lineh03">Reset</div>
           </div>
         </button>
-        <div ng-class="{visible: enableEditMode}" class="led editModeLED">&nbsp;</div>
       </div>
     </div>
     <div class="row phone">
       <div class="col">
-        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom orange">
+        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">Prev</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom orange">
+        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">Next</div>
           </div>
@@ -83,28 +82,5 @@
     <div class="ngdialog-buttons">
         <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
         <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('buttonsName', buttonsName)">Confirm</button>
-    </div>
-</script>
-
-<script type="text/ng-template" id="FirstTimeWarning" >
-    <h4>If it is your first time to use this keypad, please go to "DIY" page to config your keypad.<br></br>Afterwards, you can name your keypads&#39; buttons</h4>
-    <div  class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="nameButton()">Name buttons</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="goToDIY()">DIY</button>
-    </div>
-</script>
-
-<script type="text/ng-template" id="FirstTimeRenameWaring" >
-    <h4>Before you start to edit your button&#39;s name, you must make sure your Powermate has been connected with wifi and other devices only for testing.</h4>
-    <div  class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="goToDIY()">Cancel</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="connectWifi()">Ready</button>
-    </div>
-</script>
-
-<script type="text/ng-template" id="FinishEditting" >
-    <h4>You still have some buttons have not been edited</h4>
-    <div  class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Continue</button>
     </div>
 </script>
