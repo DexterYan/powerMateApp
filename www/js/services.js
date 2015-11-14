@@ -30,21 +30,26 @@ angular.module('starter.services', [])
                 keypadSetting.ledStatusCheck(data);
             };
             socket.onError = function(errorMessage) {
+                $rootScope.WifiConnect = false;
+                $rootScope.$apply();
+                alert('Unable to connect WIFI');
                 // invoked after error occurs during connection
             };
             socket.onClose = function(hasError) {
+                $rootScope.WifiConnect = false;
+                $rootScope.$apply();
                 // invoked after connection close
             };
             socket.open(
                 host,
                 port,
                 function() {
-                    $rootScope.isConnected = true;
+                    $rootScope.WifiConnect = true;
                     $rootScope.$apply();
                     // invoked after successful opening of socket
                 },
                 function(errorMessage) {
-                    alert(errorMessage);
+                    alert('Unable to connect WIFI');
                     // invoked after unsuccessful opening of socket
                 });
         },

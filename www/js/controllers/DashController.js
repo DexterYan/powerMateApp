@@ -39,7 +39,6 @@ angular.module('dash.controller', ['starter.services'])
                     firstTimeWaring(firstTimeRenameWaring);
                 };
                 $scope.connectWifi = function() {
-                    $rootScope.WifiConnect = true;
                     $scope.closeThisDialog();
                     socket.connect();
                 }
@@ -56,7 +55,6 @@ angular.module('dash.controller', ['starter.services'])
     };
 
     $scope.addMsg = function(data) {
-        $rootScope.WifiConnect = true;
         socket.connect();
     };
 
