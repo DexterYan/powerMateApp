@@ -3,6 +3,6 @@
     <div class="col col-center lineh03">{{ info.name }}&nbsp;</div>
   </div>
 </button>
-<div ng-class="{visible: info.led[0]=='on'}" class="led eins">&nbsp;</div>
-<div ng-class="{visible: info.led[1]=='on'}" class="led zwei">&nbsp;</div>
-<div ng-class="{visible: info.led[2]=='on'}" class="led drei">&nbsp;</div>
+<div ng-class="{visible: info.led[0]=='on', blink: info.led[0]=='blink'}" class="led eins">&nbsp;</div>
+<div ng-class="{visible: info.led[1]=='on', blink: info.led[1]=='blink'}" class="led zwei">&nbsp;</div>
+<div ng-class="{visible: info.led[2]=='on', blink: info.led[2]=='blink'}" class="led drei">&nbsp;</div>

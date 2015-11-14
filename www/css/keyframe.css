@@ -1,0 +1,10 @@
+@keyframes blink { 
+   50% { opacity: 0; } 
+}
+#dash .blink { /*or other element you want*/
+    animation-name: blink ;
+    animation-duration: .5s ;
+    animation-timing-function: step-end ;
+    animation-iteration-count: infinite ;
+    animation-direction: alternate ;
+}
