@@ -73,6 +73,18 @@
   </ion-content>
 </ion-view>
 
+<script type="text/ng-template" id="buttonsNameTemplate" >
+    <h3>Rename this button:</h3>
+    <div class='list'>
+          <label class="item item-input">
+                <input type="text" ng-model='buttonsName'></input>
+            </label>
+    </div>
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('buttonsName', buttonsName)">Confirm</button>
+    </div>
+
 <script type="text/ng-template" id="FirstTimeWarning" >
     <h4>If it is your first time to use this keypad, please go to "DIY" page to config your keypad.<br></br>Afterwards, you can name your keypads&#39; buttons</h4>
     <div  class="ngdialog-buttons">
