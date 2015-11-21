@@ -5,10 +5,14 @@ angular.module('dash.controller', ['starter.services'])
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
-    var editModeCheck = _.find($scope.keypad.buttons, function(button) {
-        return button.name === 'Click to Edit'
-    });
-    $rootScope.enableEditMode = editModeCheck? true : false;
+
+    var editModeCheck = function (buttons) {
+        return _.find(buttons, function(button) {
+            return button.name === 'Click to Edit'
+        })
+    }
+
+    $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
 
     var firstTimeWaring = function(callback) {
         ngDialog.open({
@@ -67,8 +71,9 @@ angular.module('dash.controller', ['starter.services'])
         }
         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
         $scope.currentKeypadType = $rootScope.currentKeypadType;
-        console.log($scope.currentKeypadType);
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
+        $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
+
     };
 
     $scope.nextKeypad = function() {
@@ -83,7 +88,9 @@ angular.module('dash.controller', ['starter.services'])
         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
         $scope.currentKeypadType = $rootScope.currentKeypadType;
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
-        console.log($scope.currentKeypadType);
+        console.log($scope.keypad)
+        $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
+
     };
 
     $scope.resetName = function(data){
