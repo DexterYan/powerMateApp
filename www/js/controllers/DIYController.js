@@ -9,6 +9,7 @@ angular.module('diy.controller', ['starter.services'])
         ngDialog.open({
             template: 'stepTwo',
             closeByDocument: false,
+            showClose: false,
             scope: $scope,
             controller: ['$scope', function($scope) {
                 $scope.keypadName = keypadName[keypadNumberTmp];
@@ -35,6 +36,7 @@ angular.module('diy.controller', ['starter.services'])
         ngDialog.open({
             template: 'stepTwo',
             closeByDocument: false,
+            showClose: false,
             scope: $scope,
             controller: ['$scope', function($scope) {
                 $scope.keypadName = keypadName[index];
@@ -53,6 +55,7 @@ angular.module('diy.controller', ['starter.services'])
             ngDialog.open({
                 template: 'stepOne',
                 closeByDocument: false,
+                showClose: false,
                 scope: $scope,
                 controller: ['$scope', function($scope) {
                     $scope.confirm = function(valName, val) {
