@@ -1,7 +1,8 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", function($rootScope, $scope, socket, ngDialog, _) {
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", 
+    function($rootScope, $scope, socket, ngDialog, _) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;

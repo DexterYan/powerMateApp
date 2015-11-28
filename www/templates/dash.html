@@ -4,7 +4,7 @@
     <eight-button-keypad ng-show="currentKeypadType=='8r'" keypad="keypad"></eight-button-keypad>
     <ten-button-keypad ng-show="currentKeypadType=='10b'" keypad="keypad"></ten-button-keypad>
     <forteen-button-keypad ng-show="currentKeypadType=='14b'" keypad="keypad"></forteen-button-keypad>
-    
+
     <div class="row pad">
       <div class="col">
         <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom green">
@@ -35,8 +35,7 @@
         </button>
       </div>
     </div>
-    
-    
+
     <div class="row phone">
       <div class="col">
         <button ng-click='addMsg()' ng-class="{green: WifiConnect, red: !WifiConnect}" class="button_custom margin-top connected config_buttons">
@@ -87,17 +86,16 @@
 </script>
 
 <script type="text/ng-template" id="FirstTimeWarning" >
-    <h4>If it is your first time to use this keypad, please go to "DIY" page to config your keypad.<br></br>Afterwards, you can name your keypads&#39; buttons</h4>
+    <h4>If it is your first time to use this keypad, please go to "Config" page to config your keypad.<br></br>Afterwards, you can name your keypads&#39; buttons</h4>
     <div  class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="nameButton()">Name buttons</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ui-sref="app.diy" ng-click="closeThisDialog()">DIY</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ui-sref="app.diy" ng-click="closeThisDialog()">Config</button>
     </div>
 </script>
 
 <script type="text/ng-template" id="FirstTimeRenameWaring" >
     <h4>Before you start to edit your button&#39;s name, you must make sure your Powermate has been connected with wifi and other devices only for testing.</h4>
     <div  class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ui-sref="app.diy" ng-click="closeThisDialog()">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ui-sref="app.diy" ng-click="closeThisDialog()">ReConfig</button>
         <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="connectWifi()">Ready</button>
     </div>
 </script>
