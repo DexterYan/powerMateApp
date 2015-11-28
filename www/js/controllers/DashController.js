@@ -24,10 +24,6 @@ angular.module('dash.controller', ['starter.services'])
                     $scope.closeThisDialog();
                     callback();
                 };
-                $scope.goToDIY = function() {
-                    $scope.closeThisDialog();
-                    $state.go('app.diy');
-                };
             }]
         })
     };
