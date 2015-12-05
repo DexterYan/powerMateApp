@@ -42,6 +42,13 @@ angular.module('dash.controller', ['starter.services'])
                 $scope.connectWifi = function() {
                     $scope.closeThisDialog();
                     socket.connect();
+                    setTimeout(function() {
+                        if (!$rootScope.WifiConnect) {
+                            ngDialog.open({
+                                template: 'WifiWarning'
+                            })
+                        }
+                    }, 1000);
                 }
             }]
         })

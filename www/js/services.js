@@ -18,7 +18,7 @@ angular.module('starter.services', [])
     }
 }])
 
-.factory('socket', function($rootScope, keypadSetting) {
+.factory('socket', function($rootScope, keypadSetting, $ionicPopup) {
     var host = '10.10.100.254';
     var port = 8899;
     var socket;
@@ -32,7 +32,10 @@ angular.module('starter.services', [])
             socket.onError = function(errorMessage) {
                 $rootScope.WifiConnect = false;
                 $rootScope.$apply();
-                alert('Unable to connect WIFI');
+                $ionicPopup.alert({
+                     title: 'Unable to connect WIFI',
+                     template: 'Please check your WIFI device'
+                });
                 // invoked after error occurs during connection
             };
             socket.onClose = function(hasError) {
@@ -45,11 +48,18 @@ angular.module('starter.services', [])
                 port,
                 function() {
                     $rootScope.WifiConnect = true;
+                    $ionicPopup.alert({
+                         title: 'Wifi Connect',
+                         template: 'Your app has been connected successfully'
+                    });
                     $rootScope.$apply();
                     // invoked after successful opening of socket
                 },
                 function(errorMessage) {
-                    alert('Unable to connect WIFI');
+                    // $ionicPopup.alert({
+                    //      title: 'Unable to connect WIFI',
+                    //      template: 'Please check your WIFI device'
+                    // });
                     // invoked after unsuccessful opening of socket
                 });
         },
