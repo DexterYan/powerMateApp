@@ -7,7 +7,7 @@
                         <i class="icon ion-email"></i>
                         Amount of Keypads
                         <span class="badge badge-assertive">
-                            {{totalKeypad}}
+                            {{data.totalKeypad}}
                         </span>
                     </a>
                     <a class="item item-icon-left" ng-click='configStepTwoModify(keypadType.index)' ng-repeat="keypadType in keypadsTypes">
@@ -32,48 +32,3 @@
         </ion-tab>
   </ion-tabs>
 </ion-view>
-
-<!-- step one -->
-<script type="text/ng-template" id="stepOne">
-    <h3>How many keypads do you need?</h3>
-    <div class="list">
-        <label class="item item-input item-select">
-            <div class="input-label">
-                Choose
-            </div>
-            <select ng-model='totalKeypad'>
-                    <option value=1>1</option><option value=2>2</option>
-                    <option value=3>3</option><option value=4>4</option>
-                    <option value=5>5</option><option value=6>6</option>
-                    <option value=7>7</option><option value=8>8</option>
-                    <option value=9>9</option><option value=10>10</option>
-            </select>
-        </label>
-    </div>
-    <div class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('totalKeypad', totalKeypad)">Confirm</button>
-    </div>
-</script>
-
-<!-- step two -->
-
-<script type="text/ng-template" id="stepTwo">
-    <h3>Set {{keypadName}} Keypad Type</h3>
-    <div class="list">
-        <label class="item item-input item-select">
-            <div class="input-label">
-                Choose
-            </div>
-            <select ng-model='keypadType'>
-                    <option value='4r'>4 Round Buttons Keypad</option><option value='8r'>8 Round Buttons Keypad</option>
-                    <option value='10b'> 10 Unround Buttons Keypad</option><option value='14b'> 14 Unround Buttons Keypad</option>
-            </select>
-
-        </label>
-    </div>
-    <div class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm('keypadType', keypadType)">Confirm</button>
-    </div
-</script>
