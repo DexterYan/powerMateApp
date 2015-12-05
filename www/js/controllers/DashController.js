@@ -1,8 +1,8 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", 
-    function($rootScope, $scope, socket, ngDialog, _) {
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location", 
+    function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
@@ -29,29 +29,57 @@ angular.module('dash.controller', ['starter.services'])
         })
     };
 
-    var firstTimeRenameWaring = function() {
-        ngDialog.open({
-            template: 'FirstTimeRenameWaring',
-            closeByDocument: false,
-            showClose: false,
-            controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
-                $scope.goToDIY = function() {
-                    $scope.closeThisDialog();
-                    firstTimeWaring(firstTimeRenameWaring);
-                };
-                $scope.connectWifi = function() {
-                    $scope.closeThisDialog();
-                    socket.connect();
-                    setTimeout(function() {
-                        if (!$rootScope.WifiConnect) {
-                            ngDialog.open({
-                                template: 'WifiWarning'
-                            })
-                        }
-                    }, 1000);
-                }
-            }]
-        })
+    // var firstTimeRenameWaring = function() {
+    //     ngDialog.open({
+    //         template: 'FirstTimeRenameWaring',
+    //         closeByDocument: false,
+    //         showClose: false,
+    //         controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
+    //             $scope.goToDIY = function() {
+    //                 $scope.closeThisDialog();
+    //                 firstTimeWaring(firstTimeRenameWaring);
+    //             };
+    //             $scope.connectWifi = function() {
+    //                 $scope.closeThisDialog();
+    //                 socket.connect();
+    //                 setTimeout(function() {
+    //                     if (!$rootScope.WifiConnect) {
+    //                         ngDialog.open({
+    //                             template: 'WifiWarning'
+    //                         })
+    //                     }
+    //                 }, 1000);
+    //             }
+    //         }]
+    //     })
+    // }
+    
+    var firstTimeRenameWaring = function(){$ionicPopup.show({
+        title: 'Editing Buttons&#39 Name',
+        subTitle: 'Before you start to edit your button&#39;s name, you must make sure your Powermate has been connected with wifi and other devices only for testing.',
+        scope: $scope,
+        buttons: [
+          { 
+            text: '<b>ReConfig</b>',
+            onTap: function(){  $location.path('/app/diy'); }
+          },
+          {
+            text: '<b>Ready</b>',
+            type: 'button-positive',
+            onTap: connectWifi
+          }
+        ]
+    });}
+    
+    var connectWifi = function() {
+        socket.connect();
+        setTimeout(function() {
+            if (!$rootScope.WifiConnect) {
+                ngDialog.open({
+                    template: 'WifiWarning'
+                })
+            }
+        }, 1000);
     }
 
     var finishEditting = function(callback) {
