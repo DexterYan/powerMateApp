@@ -25,8 +25,8 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
 
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.views.transition('none');
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
@@ -64,9 +64,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                             };
                         }
 
-                        console.log($rootScope.config.keypads)
                         keypadSetting.initialize($rootScope.config.keypads);
-                        console.log($rootScope.config.keypads)
                         $rootScope.keypad = [];
                         $rootScope.currentKeypad = 0;
                         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
@@ -105,7 +103,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
 
     .state('app.diy', {
         url: "/diy",
-        cache: true,
+        cache: false,
         views: {
             'menuContent': {
                 templateUrl: "templates/diy.html",
