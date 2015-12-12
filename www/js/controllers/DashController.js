@@ -54,25 +54,33 @@ angular.module('dash.controller', ['starter.services'])
     //     })
     // }
     
-    var firstTimeRenameWaring = function(){$ionicPopup.show({
-        title: 'Editing Buttons&#39 Name',
-        subTitle: 'Before you start to edit your button&#39;s name, you must make sure your Powermate has been connected with wifi and other devices only for testing.',
-        scope: $scope,
-        buttons: [
-          { 
-            text: '<b>ReConfig</b>',
-            onTap: function(){  $location.path('/app/diy'); }
-          },
-          {
-            text: '<b>Ready</b>',
-            type: 'button-positive',
-            onTap: connectWifi
-          }
-        ]
-    });}
+    var firstTimeRenameWaring = function(){
+        ngDialog.open({
+            template: 'FirstTimeRenameWaring',
+            closeByDocument: false,
+            showClose: false,
+            controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
+                $scope.goToDIY = function() {
+                    $scope.closeThisDialog();
+                    firstTimeWaring(firstTimeRenameWaring);
+                };
+                $scope.connectWifi = function() {
+                    $scope.closeThisDialog();
+                    socket.connect();
+                    setTimeout(function() {
+                        if (!$rootScope.WifiConnect) {
+                            ngDialog.open({
+                                template: 'WifiWarning'
+                            })
+                        }
+                    }, 1000);
+                }
+            }]
+        }); 
+    }
     
     var connectWifi = function() {
-        socket.connect();
+        //socket.connect();
         setTimeout(function() {
             if (!$rootScope.WifiConnect) {
                 ngDialog.open({
@@ -168,7 +176,7 @@ angular.module('dash.controller', ['starter.services'])
         templateUrl: 'templates/elements/forteenButtonKeypad.html'
     }
 })
-.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, ngDialog, $rootScope) {
+.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage) {
     return {
         restrict: 'E',
         templateUrl: 'templates/elements/button.html',
@@ -179,24 +187,37 @@ angular.module('dash.controller', ['starter.services'])
 
              element.on('click', function() {
                  if ($rootScope.enableEditMode) {
-                        ngDialog.open({
-                            template: 'buttonsNameTemplate',
-                            closeByDocument: false,
-                            scope: scope,
-                            controller: ['$scope', '$rootScope', '$localstorage',
-                                function($scope, $rootScope, $localstorage) {
-                                $scope.confirm = function(valName, val) {
-                                    scope.info.name = val;
-
-                                    $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
-                                        = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                    $localstorage.setObject('keypads', $rootScope.storeKeypads);
-                                    $scope.closeThisDialog();
+                        scope.data = {}
+                        var myPopup = $ionicPopup.show({
+                            templateUrl: 'buttonsNameTemplate',
+                            scope:scope,
+                            buttons: [
+                                {
+                                    text: '<b>Confirm</b>',
+                                    type: 'button-positive',
+                                    onTap: function(e) {
+                                        console.log(scope.data.buttonsName);
+                                        if (scope.data.buttonsName) {
+                                            console.log(scope.data.buttonsName);
+                                            return scope.data.buttonsName;
+                                        }
+                                    }
+                                },
+                                {
+                                    text: '<b>Cancel</b>',
+                                    type: 'button-negative'
                                 }
-                            }]
+                            ]
                         });
-
-                    scope.$apply();
+                        
+                        myPopup.then(function(res){
+                            if (res) {
+                                scope.info.name = scope.data.buttonsName;
+                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
+                                    = $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                                $localstorage.setObject('keypads', $rootScope.storeKeypads);
+                            }
+                        })
                 }
             });
 
