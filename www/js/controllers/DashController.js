@@ -223,14 +223,14 @@ angular.module('dash.controller', ['starter.services'])
 
             var onTouch = function() {
                 var sendData;
-                sendData = keypad.keypadNumberPrefix[0] + scope.info.value.toUpperCase();
+                sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + scope.info.value.toUpperCase();
                 socket.send(sendData);
             };
 
             var onRelease =  function() {
                 var sendData;
-                sendData = keypad.keypadNumberPrefix[0] + scope.info.value.toLowerCase();
-              socket.send(sendData);
+                sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + scope.info.value.toLowerCase();
+                socket.send(sendData);
             };
 
             element.on('touchstart', function() {
