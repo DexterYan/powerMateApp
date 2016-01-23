@@ -26,9 +26,12 @@ angular.module('starter.services', [])
         connect: function() {
             socket = new Socket();
             socket.onData = function(data) {
-                var result = String.fromCharCode.apply(null, new Uint8Array(data));
-                keypadSetting.ledStatusCheck(data);
-                keypadSetting.renewDiagnosisMsg(data);
+                if ($rootScope.enableDebug) {
+                    $rootScope.debugMsg = String.fromCharCode.apply(null, new Uint8Array(data));
+                    keypadSetting.copyKeypadCheck(data);
+                } else {
+                    keypadSetting.ledStatusCheck(data);
+                }
             };
             socket.onError = function(errorMessage) {
                 $rootScope.WifiConnect = false;
@@ -340,12 +343,15 @@ angular.module('starter.services', [])
                 })
             });
         },
-        
-        renewDiagnosisMsg: function(res) {
-            var result = hexToString(res);
-            
-            $rootScope.diagnosisText = result;
-            $rootScope.$apply();
+
+        copyKeypadCheck: function(res) {
+            keypads.forEach(function(keypad, index) {
+                var tmp = new Uint8Array([keypad.prefix]);
+                 var copyKeypadCheckString = hexToString(tmp);
+                 if (res.match(copyKeypadCheckString)) {
+                    $rootScope.copyKeypad = index;
+                 }
+            });
         }
     };
 })

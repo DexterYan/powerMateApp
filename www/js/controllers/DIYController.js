@@ -1,98 +1,13 @@
 angular.module('diy.controller', ['starter.services'])
 
-.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage, $state, $ionicPopup) {
+.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage, $state, $ionicPopup, socket) {
      var keypadName = ['First', 'Second', 'Third', 'Fourth',
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
 
-    $scope.configStepTwo = function(keypadNumber) {
-        var keypadNumberTmp = keypadNumber - 1;
-        var myPopup = $ionicPopup.show({
-            template: '<select ng-model="data.keypadType">' +
-                '<option value="4r">4 Round Buttons Keypad</option>' +
-                '<option value="8r">8 Round Buttons Keypad</option>' +
-                '<option value="10b"> 10 Unround Buttons Keypad</option>' + 
-                '<option value="14b"> 14 Unround Buttons Keypad</option></select>',
-            title: 'Set ' + keypadName[keypadNumberTmp] + ' Keypad Type',
-            scope: $scope,
-            buttons: [
-                {
-                    text: '<b>Save</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
-                        if (!$scope.data.keypadType) {
-                        console.log($scope.data)
-                        //don't allow the user to close unless
-                            e.preventDefault();
-                        } else {
-                            return $scope.data.keypadType;
-                        }
-                    }
-                }
-            ]
-        });
-
-        myPopup.then(function(val) {
-            if (val) {
-                $rootScope.config.keypads.push({type: val, buttons: []});
-                $scope.keypadsTypes.push({
-                    name: keypadName[keypadNumberTmp],
-                    type: val,
-                    index: keypadNumberTmp
-                });
-                myPopup.close();
-                if (keypadNumber < $scope.data.totalKeypad) {
-                    $scope.data.keypadType = "";
-                    $scope.configStepTwo(keypadNumber+1);
-                } else {
-                    $localstorage.setObject('keypads', $rootScope.config.keypads);
-                }
-            }
-        })
-
-    };
-
-    $scope.configStepTwoModify = function(index) {
-
-        var myPopup = $ionicPopup.show({
-            template: '<select ng-model="data.keypadType">' +
-                '<option value="4r">4 Round Buttons Keypad</option>' +
-                '<option value="8r">8 Round Buttons Keypad</option>' +
-                '<option value="10b"> 10 Unround Buttons Keypad</option>' + 
-                '<option value="14b"> 14 Unround Buttons Keypad</option></select>',
-            title: 'Set ' + keypadName[keypadNumberTmp] + ' Keypad Type',
-            scope: $scope,
-            buttons: [
-                {
-                    text: '<b>Save</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
-                        if (!$scope.data.keypadType) {
-                        //don't allow the user to close unless
-                            e.preventDefault();
-                        } else {
-                            return $scope.data.keypadType;
-                        }
-                    }
-                }
-            ]
-        });
-
-        myPopup.then(function(val) {
-            if (val) {
-                $rootScope.config.keypads[index].type = val;
-                $localstorage.setObject('keypads', $rootScope.config.keypads);
-                $scope.keypadsTypes[index].type = val;
-                myPopup.close();
-            }
-        });
-
-    }
-
-
     $scope.configStepOne = function() {
        $scope.data = {}
-        var myPopup = $ionicPopup.show({
+        var howManyButtonPopup = $ionicPopup.show({
             template: '<select ng-model="data.totalKeypad">' +
                 '<option value=1>1</option><option value=2>2</option>' +
                 '<option value=3>3</option><option value=4>4</option>' + 
@@ -118,16 +33,46 @@ angular.module('diy.controller', ['starter.services'])
             ]
         });
 
-        myPopup.then(function(res) {
+        howManyButtonPopup.then(function(res) {
             if (res) {
                 $rootScope.config ={};
                 $rootScope.config.keypads = [];
                 $scope.keypadsTypes = [];
-                myPopup.close();
-                $scope.configStepTwo(1);
+                howManyButtonPopup.close();
+                $scope.configWifiWarning();
             }
-        })
-    }
+        });
+    };
+
+    $scope.configWifiWarning = function () {
+            var wifiWarningPopup = $ionicPopup.show({
+                template: '<div>Before you start to copy your keypad, ' +
+                    'you must make sure WiFi and keypads have been ' +
+                    'connected with your Powermate</div>',
+                title: 'Warning',
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel' },
+                    {
+                        text: '<b>Ready</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            $rootScope.enableDebug = true;
+                            socket.connect();
+                            setTimeout(function() {
+                                alert($rootScope.copyKeypad);
+                            }, 1000);
+                        }
+                    }
+                ]
+            });
+    };
+
+    $scope.configCopyButton = function(keypadNumber) {
+        if (keypadNumber < $scope.data.totalKeypad) {
+            
+        }
+    };
 
     $scope.selectTabWithIndex = function(index) {
         $state.go('app.dash');

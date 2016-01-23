@@ -29,31 +29,6 @@ angular.module('dash.controller', ['starter.services'])
         })
     };
 
-    // var firstTimeRenameWaring = function() {
-    //     ngDialog.open({
-    //         template: 'FirstTimeRenameWaring',
-    //         closeByDocument: false,
-    //         showClose: false,
-    //         controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
-    //             $scope.goToDIY = function() {
-    //                 $scope.closeThisDialog();
-    //                 firstTimeWaring(firstTimeRenameWaring);
-    //             };
-    //             $scope.connectWifi = function() {
-    //                 $scope.closeThisDialog();
-    //                 socket.connect();
-    //                 setTimeout(function() {
-    //                     if (!$rootScope.WifiConnect) {
-    //                         ngDialog.open({
-    //                             template: 'WifiWarning'
-    //                         })
-    //                     }
-    //                 }, 1000);
-    //             }
-    //         }]
-    //     })
-    // }
-    
     var firstTimeRenameWaring = function(){
         ngDialog.open({
             template: 'FirstTimeRenameWaring',
@@ -78,7 +53,7 @@ angular.module('dash.controller', ['starter.services'])
             }]
         }); 
     }
-    
+
     var connectWifi = function() {
         //socket.connect();
         setTimeout(function() {

@@ -32,3 +32,11 @@
         </ion-tab>
   </ion-tabs>
 </ion-view>
+
+<script type="text/ng-template" id="wifiWaring" >
+    <h4>Before you start to copy your keypad, you must make sure your Powermate has been connected with wifi and your keypads have been connected</h4>
+    <div  class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ui-sref="app.diy" ng-click="closeThisDialog()">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="connectWifi()">Ready</button>
+    </div>
+</script>

@@ -21,6 +21,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
             // org.apache.cordova.statusbar required
             StatusBar.styleLightContent();
         }
+        $rootScope.enableDebug = false;
     });
 
 })
@@ -107,7 +108,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         views: {
             'menuContent': {
                 templateUrl: "templates/diagnosis.html",
-                controller: 'DiagnosisCtrl'
+                controller: 'DIYCtrl'
             }
         }
     })
@@ -118,7 +119,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         views: {
             'menuContent': {
                 templateUrl: "templates/diy.html",
-                controller: 'DIYCtrl'
+                controller: 'DiagnosisCtrl'
             }
         }
     });

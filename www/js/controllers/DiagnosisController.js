@@ -1,5 +1,6 @@
 angular.module('diagnosis.controller', ['starter.services'])
 
-.controller('DashCtrl', ["$rootScope", "$scope"], function($rootScope, $scope){
-    $scope.diagnosisText = $rootScope.result;
+.controller('DiagnosisCtrl', ["$rootScope", "$scope"], function($rootScope, $scope){
+    $rootScope.enableDebug = true;
+    $scope.diagnosisText = $rootScope.debugMsg;
 })
