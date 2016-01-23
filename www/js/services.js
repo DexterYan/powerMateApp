@@ -28,8 +28,8 @@ angular.module('starter.services', [])
             $rootScope.debugMsg = 0;
             socket.onData = function(data) {
                 if (true) {
-                   keypadSetting.debugMsgDisplay(data);
-                    // keypadSetting.copyKeypadCheck(data);
+                    // keypadSetting.debugMsgDisplay(data);
+                    keypadSetting.copyKeypadCheck(data);
                 } else {
                     keypadSetting.ledStatusCheck(data);
                 }
@@ -351,7 +351,7 @@ angular.module('starter.services', [])
                 var tmp = new Uint8Array([keypad.prefix]);
                  var copyKeypadCheckString = hexToString(tmp);
                  if (result.match(copyKeypadCheckString)) {
-                    $rootScope.copyKeypad = $rootScope.copyKeypad || index;
+                    $rootScope.copyKeypad = $rootScope.copyKeypad || index + result;
                     $rootScope.$apply();
                  } else {
                     $rootScope.$apply();
