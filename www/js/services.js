@@ -28,6 +28,7 @@ angular.module('starter.services', [])
             socket.onData = function(data) {
                 var result = String.fromCharCode.apply(null, new Uint8Array(data));
                 keypadSetting.ledStatusCheck(data);
+                keypadSetting.renewDiagnosisMsg(data);
             };
             socket.onError = function(errorMessage) {
                 $rootScope.WifiConnect = false;
@@ -338,6 +339,13 @@ angular.module('starter.services', [])
                     })
                 })
             });
+        },
+        
+        renewDiagnosisMsg: function(res) {
+            var result = hexToString(res);
+            
+            $rootScope.diagnosisText = result;
+            $rootScope.$apply();
         }
     };
 })
