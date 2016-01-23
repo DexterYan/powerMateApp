@@ -118,7 +118,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         cache: false,
         views: {
             'menuContent': {
-                templateUrl: "templates/diy.html",
+                templateUrl: "templates/diagnosis.html",
                 controller: 'DiagnosisCtrl'
             }
         }
