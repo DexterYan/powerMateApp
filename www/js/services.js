@@ -97,7 +97,7 @@ angular.module('starter.services', [])
     return {
         "debugMsg": debugMsg,
         "debugMsgDisplay": function(res) {
-             $rootScope.debugMsg[0] += res + "\n";
+             $rootScope.debugMsg[0] += hexToString(res) + "\n";
              $rootScope.$apply();
         },
         
