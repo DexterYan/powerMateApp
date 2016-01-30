@@ -93,11 +93,18 @@ angular.module('starter.services', [])
 
 .factory('diagnosisSetting', function($rootScope) {
     var debugMsg = [""];
-    
+    var hexToString = function(data) {
+        var resultConvert = [];
+        var result = new Uint8Array(data);
+        for (var index in result) {
+            resultConvert[index] = result[index].toString();
+        }
+        return resultConvert.join();
+    }
     return {
         "debugMsg": debugMsg,
         "debugMsgDisplay": function(res) {
-             $rootScope.debugMsg[0] += res + "\n";
+             $rootScope.debugMsg[0] += hexToString(res) + "\n";
              $rootScope.$apply();
         },
         
