@@ -97,7 +97,7 @@ angular.module('starter.services', [])
         var resultConvert = [];
         var result = new Uint8Array(data);
         for (var index in result) {
-            resultConvert[index] = result[index].toString();
+            resultConvert[index] = String.fromCharCode(result[index]);
         }
         return resultConvert.join();
     }
