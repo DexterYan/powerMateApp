@@ -121,9 +121,8 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                 templateUrl: "templates/diagnosis.html",
                 controller: 'DiagnosisCtrl',
                 resolve: {
-                    setup: function($q, $rootScope, diagnosisSetting, _) {
-                        $rootScope.debugMsg = [0];
-                        return;
+                    setup: function(diagnosisSetting) {
+                       diagnosisSetting.initialize();
                     }
                 }
             }

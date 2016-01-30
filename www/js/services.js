@@ -92,14 +92,20 @@ angular.module('starter.services', [])
 
 
 .factory('diagnosisSetting', function($rootScope) {
-    var debugMsg = [0];
+    var debugMsg = [""];
     
     return {
         "debugMsg": debugMsg,
         "debugMsgDisplay": function(res) {
-             $rootScope.debugMsg[0] ++;
+             $rootScope.debugMsg[0] += res + "\n";
              $rootScope.$apply();
+        },
+        
+        "initialize": function() {
+            $rootScope.debugMsg = [""];
         }
+        
+        
     }
 })
 
