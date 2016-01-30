@@ -119,7 +119,13 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         views: {
             'menuContent': {
                 templateUrl: "templates/diagnosis.html",
-                controller: 'DiagnosisCtrl'
+                controller: 'DiagnosisCtrl',
+                resolve: {
+                    setup: function($q, $rootScope, diagnosisSetting, _) {
+                        $rootScope.debugMsg = [0];
+                        return;
+                    }
+                }
             }
         }
     });

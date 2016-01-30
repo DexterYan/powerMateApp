@@ -18,17 +18,16 @@ angular.module('starter.services', [])
     }
 }])
 
-.factory('socket', function($rootScope, keypadSetting, $ionicPopup) {
+.factory('socket', function($rootScope, keypadSetting, diagnosisSetting, $ionicPopup) {
     var host = '10.10.100.254';
     var port = 8899;
     var socket;
     return {
         connect: function() {
             socket = new Socket();
-            $rootScope.debugMsg = 0;
             socket.onData = function(data) {
                 if (true) {
-                    // keypadSetting.debugMsgDisplay(data);
+                    diagnosisSetting.debugMsgDisplay(data);
                     keypadSetting.copyKeypadCheck(data);
                 } else {
                     keypadSetting.ledStatusCheck(data);
@@ -88,6 +87,19 @@ angular.module('starter.services', [])
         msgs.push(keypadSetting.ledStatusCheck());
         console.log(msgs);
         $rootScope.msgs = msgs;
+    }
+})
+
+
+.factory('diagnosisSetting', function($rootScope) {
+    var debugMsg = [0];
+    
+    return {
+        "debugMsg": debugMsg,
+        "debugMsgDisplay": function(res) {
+             $rootScope.debugMsg[0] ++;
+             $rootScope.$apply();
+        }
     }
 })
 
@@ -357,12 +369,8 @@ angular.module('starter.services', [])
                     $rootScope.$apply();
                  }
             });
-        },
-
-        debugMsgDisplay: function(res) {
-             $rootScope.debugMsg = $rootScope.debugMsg+1;
-             $rootScope.$apply();
         }
+        
     };
 })
 
