@@ -18,7 +18,7 @@ angular.module('starter.services', [])
     }
 }])
 
-.factory('socket', function($rootScope, keypadSetting, diagnosisSetting, $ionicPopup) {
+.factory('socket', function($rootScope, keypadSetting, diagnosisSetting, $ionicPopup, keypad) {
     var host = '10.10.100.254';
     var port = 8899;
     var socket;
@@ -27,8 +27,8 @@ angular.module('starter.services', [])
             socket = new Socket();
             socket.onData = function(data) {
                 if (true) {
-                    diagnosisSetting.debugMsgDisplay(data);
-                    keypadSetting.copyKeypadCheck(data);
+                    // diagnosisSetting.debugMsgDisplay(data);
+                    keypadSetting.copyKeypadCheck(data, keypad.keypadNumberPrefix);
                 } else {
                     keypadSetting.ledStatusCheck(data);
                 }
@@ -370,18 +370,25 @@ angular.module('starter.services', [])
             });
         },
 
-        copyKeypadCheck: function(res) {
-            var result = hexToString(res);
-            keypads.forEach(function(keypad, index) {
-                var tmp = new Uint8Array([keypad.prefix]);
-                 var copyKeypadCheckString = hexToString(tmp);
-                 if (result.match(copyKeypadCheckString)) {
-                    $rootScope.copyKeypad = $rootScope.copyKeypad || index + result;
-                    $rootScope.$apply();
-                 } else {
-                    $rootScope.$apply();
-                 }
+        copyKeypadCheck: function(res, keypadsPrefix) {
+            var result =  String.fromCharCode.apply(null, new Uint8Array(res));
+            keypadsPrefix.forEach(function (prefix, index) {
+                var regex = new RegExp(prefix);
+                if (result.match(regex)) {
+                    $rootScope.copyKeypad[0] = index + 1;
+                }
             });
+            $rootScope.$apply();
+            // keypads.forEach(function(keypad, index) {
+            //     var tmp = new Uint8Array([keypad.prefix]);
+            //      var copyKeypadCheckString = hexToString(tmp);
+            //      if (result.match(copyKeypadCheckString)) {
+            //         $rootScope.copyKeypad = $rootScope.copyKeypad || index + result;
+            //         $rootScope.$apply();
+            //      } else {
+            //         $rootScope.$apply();
+            //      }
+            // });
         }
         
     };

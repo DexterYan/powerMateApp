@@ -4,6 +4,7 @@ angular.module('diy.controller', ['starter.services'])
      var keypadName = ['First', 'Second', 'Third', 'Fourth',
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
+    $scope.currentKeypad = $rootScope.copyKeypad;
 
     $scope.configStepOne = function() {
        $scope.data = {}

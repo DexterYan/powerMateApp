@@ -108,7 +108,13 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         views: {
             'menuContent': {
                 templateUrl: "templates/diy.html",
-                controller: 'DIYCtrl'
+                controller: 'DIYCtrl',
+                resolve: {
+                    setup: function($rootScope) {
+                       $rootScope.copyKeypad = [""];
+                    }
+                }
+
             }
         }
     })
