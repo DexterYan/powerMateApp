@@ -144,6 +144,9 @@ angular.module('diy.controller', ['starter.services'])
                     });
                 });
         } else {
+            $rootScope.copyKeypad[0] = null;
+            $rootScope.enableCopy = false;
+            $rootScope.$apply();
             $localstorage.setObject('keypads', $rootScope.config.keypads);
         }
     };
