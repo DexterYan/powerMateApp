@@ -1,10 +1,9 @@
 angular.module('diy.controller', ['starter.services'])
 
-.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage, $state, $ionicPopup, socket) {
+.controller('DIYCtrl', function($scope, $ionicTabsDelegate, ngDialog, $rootScope, $localstorage, $state, $ionicPopup, socket, keypad) {
      var keypadName = ['First', 'Second', 'Third', 'Fourth',
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
-    $scope.currentKeypad = $rootScope.copyKeypad;
 
     $scope.configStepOne = function() {
        $scope.data = {}
@@ -60,18 +59,92 @@ angular.module('diy.controller', ['starter.services'])
                         onTap: function(e) {
                             $rootScope.enableCopy = true;
                             socket.connect(true);
-                            setTimeout(function() {
-                                alert($rootScope.copyKeypad);
-                            }, 5000);
+                            return null;
                         }
                     }
                 ]
             });
+
+            wifiWarningPopup.then(function () {
+                $scope.configCopyButton(0);
+            });
     };
 
     $scope.configCopyButton = function(keypadNumber) {
+        var keypadNumberTmp = keypadNumber;
+
         if (keypadNumber < $scope.data.totalKeypad) {
-            
+            var copyIndicatorPopup = $ionicPopup.show({
+                template: '<div>Please press any button in your' + 
+                    keypadName[keypadNumberTmp]  + 'keypad</div>',
+                title: 'Copy ' + keypadName[keypadNumberTmp] + ' Keypad Type',
+                scope: $scope,
+                buttons: [
+                    { text: 'Cancel' },
+                    {
+                        text: '<b>Pressed</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            if (!$rootScope.copyKeypad) {
+                                e.preventDefault();
+                            } else {
+                                $rootScope.enableCopy = false;
+                                return $rootScope.copyKeypad;
+                            }
+                        }
+                    }
+                ]
+            })
+                .then(function(copyKeypadNumber) {
+                    var myPopup = $ionicPopup.show({
+                        template: 
+                            '<div>This keypad is ' + copyKeypadNumber + 
+                            '. Please choose this keypad style</div>' +
+                            '<select ng-model="data.keypadType">' +
+                            '<option value="4r">4 Round Buttons Keypad</option>' +
+                            '<option value="8r">8 Round Buttons Keypad</option>' +
+                            '<option value="10b"> 10 Unround Buttons Keypad</option>' + 
+                            '<option value="14b"> 14 Unround Buttons Keypad</option></select>',
+                        title: 'Set ' + keypadName[keypadNumberTmp] + ' Keypad Type',
+                        scope: $scope,
+                        buttons: [
+                            {
+                                text: '<b>Save</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                    if (!$scope.data.keypadType) {
+                                        e.preventDefault();
+                                    } else {
+                                        return $scope.data.keypadType;
+                                    }
+                                }
+                            }
+                        ]
+                    });
+
+                    myPopup.then(function(val) {
+                        if (val) {
+                            $rootScope.config.keypads.push({
+                                prefix: keypad.keypadNumberPrefix[copyKeypadNumber - 1],
+                                type: val,
+                                buttons: []
+                            });
+                            $scope.keypadsTypes.push({
+                                name: keypadName[keypadNumberTmp],
+                                type: val,
+                                index: keypadNumberTmp
+                            });
+                            myPopup.close();
+                            $scope.data.keypadType = "";
+                            $rootScope.copyKeypad[0] = null;
+                            $rootScope.enableCopy = true;
+                            $rootScope.$apply();
+                            $scope.configCopyButton(keypadNumber+1);
+                        }
+                    });
+                });
+        } else {
+            $localstorage.setObject('keypads', $rootScope.config.keypads);
         }
     };
 

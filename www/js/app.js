@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                         if (_.isEmpty($rootScope.storeKeypads)) {
                             $rootScope.config = {
                                 keypads: [
-                                    {type: '10b', buttons: []}
+                                    {prefix: '!', type: '10b', buttons: []}
                                 ],
                                 firstTime: 'yes'
                             };
@@ -74,6 +74,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                         for (var i = 0; i < $rootScope.config.keypads.length; i++) {
                             var keypadType = $rootScope.config.keypads[i].type;
                             $rootScope.keypad.push({
+                                "prefix": $rootScope.config.keypads[i].prefix,
                                 "buttons": []
                             });
                             //check  if the diy mode has already generate the buttons names

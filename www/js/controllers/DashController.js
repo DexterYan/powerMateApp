@@ -156,6 +156,7 @@ angular.module('dash.controller', ['starter.services'])
         restrict: 'E',
         templateUrl: 'templates/elements/button.html',
         scope: {
+            prefix: '=',
             info: '='
         },
         link: function(scope, element, attrs) {
@@ -173,7 +174,6 @@ angular.module('dash.controller', ['starter.services'])
                                     onTap: function(e) {
                                         console.log(scope.data.buttonsName);
                                         if (scope.data.buttonsName) {
-                                            console.log(scope.data.buttonsName);
                                             return scope.data.buttonsName;
                                         }
                                     }
@@ -198,13 +198,13 @@ angular.module('dash.controller', ['starter.services'])
 
             var onTouch = function() {
                 var sendData;
-                sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + scope.info.value.toUpperCase();
+                sendData = scope.prefix+ scope.info.value.toUpperCase();
                 socket.send(sendData);
             };
 
             var onRelease =  function() {
                 var sendData;
-                sendData = keypad.keypadNumberPrefix[$rootScope.currentKeypad] + scope.info.value.toLowerCase();
+                sendData = scope.prefix + scope.info.value.toLowerCase();
                 socket.send(sendData);
             };
 
