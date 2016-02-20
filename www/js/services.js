@@ -23,11 +23,13 @@ angular.module('starter.services', [])
     var port = 8899;
     var socket;
     return {
-        connect: function() {
+        connect: function(disableWarning) {
+            disableWarning = disableWarning || false;
             socket = new Socket();
             socket.onData = function(data) {
-                if (true) {
-                    // diagnosisSetting.debugMsgDisplay(data);
+                if ($rootScope.enableDebug) {
+                    diagnosisSetting.debugMsgDisplay(data);
+                } else if ($rootScope.enableCopy) {
                     keypadSetting.copyKeypadCheck(data, keypad.keypadNumberPrefix);
                 } else {
                     keypadSetting.ledStatusCheck(data);
@@ -52,10 +54,12 @@ angular.module('starter.services', [])
                 port,
                 function() {
                     $rootScope.WifiConnect = true;
-                    $ionicPopup.alert({
-                         title: 'Wifi Connect',
-                         template: 'Your app has been connected successfully'
-                    });
+                    if (!disableWarning) {
+                        $ionicPopup.alert({
+                             title: 'Wifi Connect',
+                             template: 'Your app has been connected successfully'
+                        });
+                    };
                     $rootScope.$apply();
                     // invoked after successful opening of socket
                 },
@@ -373,24 +377,13 @@ angular.module('starter.services', [])
         copyKeypadCheck: function(res, keypadsPrefix) {
             var result =  String.fromCharCode.apply(null, new Uint8Array(res));
             keypadsPrefix.forEach(function (prefix, index) {
-                var regex = new RegExp(prefix);
+                var regex = new RegExp('\\' + prefix);
                 if (result.match(regex)) {
-                    $rootScope.copyKeypad[0] = index + 1;
+                    $rootScope.copyKeypad[0] = $rootScope.copyKeypad[0] || index + 1;
                 }
             });
             $rootScope.$apply();
-            // keypads.forEach(function(keypad, index) {
-            //     var tmp = new Uint8Array([keypad.prefix]);
-            //      var copyKeypadCheckString = hexToString(tmp);
-            //      if (result.match(copyKeypadCheckString)) {
-            //         $rootScope.copyKeypad = $rootScope.copyKeypad || index + result;
-            //         $rootScope.$apply();
-            //      } else {
-            //         $rootScope.$apply();
-            //      }
-            // });
         }
-        
     };
 })
 

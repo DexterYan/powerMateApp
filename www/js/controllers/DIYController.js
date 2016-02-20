@@ -58,11 +58,11 @@ angular.module('diy.controller', ['starter.services'])
                         text: '<b>Ready</b>',
                         type: 'button-positive',
                         onTap: function(e) {
-                            $rootScope.enableDebug = true;
-                            socket.connect();
+                            $rootScope.enableCopy = true;
+                            socket.connect(true);
                             setTimeout(function() {
                                 alert($rootScope.copyKeypad);
-                            }, 1000);
+                            }, 5000);
                         }
                     }
                 ]
