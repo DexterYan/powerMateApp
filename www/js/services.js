@@ -123,7 +123,7 @@ angular.module('starter.services', [])
     }
 })
 
-.factory('keypadSetting', function($rootScope) {
+.factory('keypadSetting', function($rootScope, keypad) {
     var ledStatus = {
             on: 0x01,
             off: 0x00,
@@ -138,204 +138,107 @@ angular.module('starter.services', [])
         ledPrefix = 0x80,
         buttons = {
             '4r': [{
-                name: "Click to Edit",
-                value: "a",
-                led: [0x01]
+                name: "Click to Edit", value: "a", led: [0x01]
             }, {
-                name: "Click to Edit",
-                value: "b",
-                led: [0x02]
+                name: "Click to Edit", value: "b", led: [0x02]
             }, {
-                name: "Click to Edit",
-                value: "c",
-                led: [0x03]
+                name: "Click to Edit", value: "c", led: [0x03]
             }, {
-                name: "Click to Edit",
-                value: "d",
-                led: [0x04]
+                name: "Click to Edit", value: "d", led: [0x04]
             }],
             '8r': [{
-                name: "Click to Edit",
-                value: "a",
-                led: [0x01, 0x09]
+                name: "Click to Edit", value: "a", led: [0x01, 0x09]
             }, {
-                name: "Click to Edit",
-                value: "b",
-                led: [0x02, 0x0A]
+                name: "Click to Edit",value: "b",led: [0x02, 0x0A]
             }, {
-                name: "Click to Edit",
-                value: "c",
-                led: [0x03, 0x0B]
+                name: "Click to Edit",value: "c",led: [0x03, 0x0B]
             }, {
-                name: "Click to Edit",
-                value: "d",
-                led: [0x04, 0x0C]
+                name: "Click to Edit",value: "d",led: [0x04, 0x0C]
             }, {
-                name: "Click to Edit",
-                value: "e",
-                led: [0x05, 0x0D]
+                name: "Click to Edit",value: "e",led: [0x05, 0x0D]
             }, {
-                name: "Click to Edit",
-                value: "f",
-                led: [0x06, 0x0E]
+                name: "Click to Edit",value: "f",led: [0x06, 0x0E]
             }, {
-                name: "Click to Edit",
-                value: "g",
-                led: [0x07, 0x0F]
+                name: "Click to Edit",value: "g",led: [0x07, 0x0F]
             }, {
-                name: "Click to Edit",
-                value: "h",
-                led: [0x08, 0x10]
+                name: "Click to Edit",value: "h",led: [0x08, 0x10]
             }],
             '10b': [{
-                    name: "Click to Edit",
-                    value: "a",
-                    led: [0x11, 0x12, 0x13]
-                }, {
-                    name: "Click to Edit",
-                    value: "b",
-                    led: [0x14, 0x15, 0x16]
-                }, {
-                    name: "Click to Edit",
-                    value: "c",
-                    led: [0x17, 0x18, 0x19]
-                }, {
-                    name: "Click to Edit",
-                    value: "d",
-                    led: [0x1A, 0x1B, 0x1C]
-                }, {
-                    name: "Click to Edit",
-                    value: "e",
-                    led: [0x05, 0x06, 0x07]
-                }, {
-                    name: "Click to Edit",
-                    value: "f",
-                    led: [0x08, 0x09, 0x0A]
-                }, {
-                    name: "Click to Edit",
-                    value: "g",
-                    led: [0x0B, 0x0C, 0x0D]
-                }, {
-                    name: "Click to Edit",
-                    value: "h",
-                    led: [0x0E, 0x0F, 0x10]
-                }, {
-                    name: "Click to Edit",
-                    value: "i",
-                    led: [0x03, 0x04]
-                }, {
-                    name: "Click to Edit",
-                    value: "j",
-                    led: [0x1D, 0x1E]
-                }],
+                name: "Click to Edit",value: "a",led: [0x11, 0x12, 0x13]
+            }, {
+                name: "Click to Edit",value: "b",led: [0x14, 0x15, 0x16]
+            }, {
+                name: "Click to Edit",value: "c",led: [0x17, 0x18, 0x19]
+            }, {
+                name: "Click to Edit",value: "d",led: [0x1A, 0x1B, 0x1C]
+            }, {
+                name: "Click to Edit",value: "e",led: [0x05, 0x06, 0x07]
+            }, {
+                name: "Click to Edit",value: "f",led: [0x08, 0x09, 0x0A]
+            }, {
+                name: "Click to Edit",value: "g",led: [0x0B, 0x0C, 0x0D]
+            }, {
+                name: "Click to Edit",value: "h",led: [0x0E, 0x0F, 0x10]
+            }, {
+                name: "Click to Edit",value: "i",led: [0x03, 0x04]
+            }, {
+                name: "Click to Edit",value: "j",led: [0x1D, 0x1E]
+            }],
             '12b': [{
-                name: "Click to Edit",
-                value: "a",
-                led: [0x01, 0x0D]
+                name: "Click to Edit",value: "a",led: [0x01, 0x0D]
             }, {
-                name: "Click to Edit",
-                value: "b",
-                led: [0x02, 0x0E]
+                name: "Click to Edit",value: "b",led: [0x02, 0x0E]
             }, {
-                name: "Click to Edit",
-                value: "c",
-                led: [0x03, 0x0F]
+                name: "Click to Edit",value: "c",led: [0x03, 0x0F]
             }, {
-                name: "Click to Edit",
-                value: "d",
-                led: [0x04, 0x10]
+                name: "Click to Edit",value: "d",led: [0x04, 0x10]
             }, {
-                name: "Click to Edit",
-                value: "e",
-                led: [0x05, 0x11]
+                name: "Click to Edit",value: "e",led: [0x05, 0x11]
             }, {
-                name: "Click to Edit",
-                value: "f",
-                led: [0x06, 0x12]
+                name: "Click to Edit",value: "f",led: [0x06, 0x12]
             }, {
-                name: "Click to Edit",
-                value: "g",
-                led: [0x07, 0x13]
+                name: "Click to Edit",value: "g",led: [0x07, 0x13]
             }, {
-                name: "Click to Edit",
-                value: "h",
-                led: [0x08, 0x14]
+                name: "Click to Edit",value: "h",led: [0x08, 0x14]
             }, {
-                name: "Click to Edit",
-                value: "i",
-                led: [0x09, 0x15]
+                name: "Click to Edit",value: "i",led: [0x09, 0x15]
             }, {
-                name: "Click to Edit",
-                value: "j",
-                led: [0x0A, 0x16]
+                name: "Click to Edit",value: "j",led: [0x0A, 0x16]
             }, {
-                name: "Click to Edit",
-                value: "k",
-                led: [0x0B, 0x17]
+                name: "Click to Edit",value: "k",led: [0x0B, 0x17]
             }, {
-                name: "Click to Edit",
-                value: "l",
-                led: [0x0C, 0x18]
+                name: "Click to Edit",value: "l",led: [0x0C, 0x18]
             }],
             '14b': [{
-                    name: "Click to Edit",
-                    value: "a",
-                    led: [0x04, 0x05, 0x06]
-                }, {
-                    name: "Click to Edit",
-                    value: "b",
-                    led: [0x07, 0x08, 0x09]
-                }, {
-                    name: "Click to Edit",
-                    value: "c",
-                    led: [0x0A, 0x0B, 0x0C]
-                }, {
-                    name: "Click to Edit",
-                    value: "d",
-                    led: [0x0D, 0x0E, 0x0F]
-                }, {
-                    name: "Click to Edit",
-                    value: "e",
-                    led: [0x10, 0x11, 0x12]
-                }, {
-                    name: "Click to Edit",
-                    value: "f",
-                    led: [0x13, 0x14, 0x15]
-                }, {
-                    name: "Click to Edit",
-                    value: "g",
-                    led: [0x18, 0x19, 0x1A]
-                }, {
-                    name: "Click to Edit",
-                    value: "h",
-                    led: [0x1B, 0x1C, 0x1D]
-                }, {
-                    name: "Click to Edit",
-                    value: "i",
-                    led: [0x1E, 0x1F, 0x20]
-                }, {
-                    name: "Click to Edit",
-                    value: "j",
-                    led: [0x21, 0x22, 0x23]
-                }, {
-                    name: "Click to Edit",
-                    value: "k",
-                    led: [0x24, 0x25, 0x26]
-                }, {
-                    name: "Click to Edit",
-                    value: "l",
-                    led: [0x27, 0x28, 0x29]
-                }, {
-                    name: "Click to Edit",
-                    value: "m",
-                    led: [0x03, 0x17]
-                }, {
-                    name: "Click to Edit",
-                    value: "n",
-                    led: [0x16, 0x2A]
-                }]
+                name: "Click to Edit",value: "a",led: [0x04, 0x05, 0x06]
+            }, {
+                name: "Click to Edit",value: "b",led: [0x07, 0x08, 0x09]
+            }, {
+                name: "Click to Edit",value: "c",led: [0x0A, 0x0B, 0x0C]
+            }, {
+                name: "Click to Edit",value: "d",led: [0x0D, 0x0E, 0x0F]
+            }, {
+                name: "Click to Edit",value: "e",led: [0x10, 0x11, 0x12]
+            }, {
+                name: "Click to Edit",value: "f",led: [0x13, 0x14, 0x15]
+            }, {
+                name: "Click to Edit",value: "g",led: [0x18, 0x19, 0x1A]
+            }, {
+                name: "Click to Edit",value: "h",led: [0x1B, 0x1C, 0x1D]
+            }, {
+                name: "Click to Edit",value: "i",led: [0x1E, 0x1F, 0x20]
+            }, {
+                name: "Click to Edit",value: "j",led: [0x21, 0x22, 0x23]
+            }, {
+                name: "Click to Edit",value: "k",led: [0x24, 0x25, 0x26]
+            }, {
+                name: "Click to Edit",value: "l",led: [0x27, 0x28, 0x29]
+            }, {
+                name: "Click to Edit",value: "m",led: [0x03, 0x17]
+            }, {
+                name: "Click to Edit",value: "n",led: [0x16, 0x2A]
+            }]
         };
-
 
     var keypads = [keypadsConst[0]];
 
@@ -353,9 +256,11 @@ angular.module('starter.services', [])
 
         initialize: function(keypadConfigs) {
             keypadConfigs.forEach(function(keypadConfig, i) {
+                var keypadNumber = keypad.keypadNumberPrefix.indexOf(keypadConfig.prefix);
                 keypadsConst[i].type = keypadConfig.type;
-                keypads[i] = keypadsConst[i];
+                keypads[i] = keypadsConst[keypadNumber];
             });
+            console.error(keypads);
         },
 
         ledStatusCheck: function(res) {

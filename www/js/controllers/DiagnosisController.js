@@ -1,15 +1,15 @@
 angular.module('diagnosis.controller', ['starter.services'])
 
-.controller('DiagnosisCtrl', function($rootScope, $scope){
+.controller('DiagnosisCtrl', function($rootScope, $scope, socket){
     $rootScope.enableDebug = true;
     $scope.diagnosisText = $rootScope.debugMsg;
     
     $scope.zx31 = function() {
-        socket.send([0x31]);
+        socket.sendHex([0x31, 0x80, 0x11,0x01]);
     }
     
     $scope.zx30 = function() {
-        socket.send([0x30]);
+        socket.sendHex([0x31, 0x80, 0x11,0x00]);
     }
     
     $scope.reset = function() {

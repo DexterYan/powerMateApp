@@ -21,6 +21,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
             // org.apache.cordova.statusbar required
             StatusBar.styleLightContent();
         }
+        console.log("console.log works well");
         // $rootScope.enableDebug = false;
     });
 
