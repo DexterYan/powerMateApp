@@ -1,8 +1,16 @@
 <ion-view view-title="Home">
     <ion-content id="diagnosis" overflow-scroll=true>
-        <div>Hello</div>
-        <div id="innerText">
-            {{ diagnosisText[0] }}
+        <div class="content padding">
+            <p><button ng-click="zx31()" class="button button-outline button-positive">
+                0x31
+            </button>
+            <button ng-click="zx30()" class="button button-outline button-positive">
+                0x30
+            </button></p>
+            
+            <p><div id="innerText">
+                {{ diagnosisText[0] }}
+            </div></p>
         </div>
     </ion-content>
 </ion-view>

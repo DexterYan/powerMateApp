@@ -78,6 +78,9 @@ angular.module('starter.services', [])
             }
             socket.write(data);
         },
+        sendHex: function(hexArray) {
+            socket.write(hexArray);
+        },
         close: function() {
             socket.shutdownWrite();
         }
