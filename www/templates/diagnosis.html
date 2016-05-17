@@ -1,24 +1,23 @@
 <ion-view view-title="Home">
     <ion-content id="diagnosis" overflow-scroll=true>
         <div class="content padding">
-            
+
             <p><div id="innerText">
                 {{ diagnosisText[0] }}
             </div></p>
         </div>
         <div class="bar bar-footer">
-            <p>
+            <div>
                 <button ng-click='addMsg()' ng-class="{'button-positive': WifiConnect, 'button-assertive': !WifiConnect}" class="button">
                   Connect{{ WifiConnect ? "ed" : "" }}
                 </button>
-                <button ng-click="zx31()" class="button button-outline button-positive">
-                    0x31
+                <button ng-click="zQuery()" class="button button-outline button-positive">
+                    Debug
                 </button>
-                <button ng-click="zx30()" class="button button-outline button-positive">
-                    0x30
-                </button>
-            </p>
+                <input ng-model="debugMsg" class="button button-outline button-positive">
+                <button ng-click="sendMsg(debugMsg)" class="button button-outline button-positive icon ion-checkmark-round">Send</button>
+            </div>
         </div>
-        
+
     </ion-content>
 </ion-view>
