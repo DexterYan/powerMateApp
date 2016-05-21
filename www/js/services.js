@@ -15,7 +15,7 @@ angular.module('starter.services', [])
         getObject: function(key) {
             return JSON.parse($window.localStorage[key] || '{}');
         }
-    }
+    };
 }])
 
 .factory('socket', function($rootScope, keypadSetting, diagnosisSetting, $ionicPopup, keypad) {
@@ -30,10 +30,8 @@ angular.module('starter.services', [])
                 if ($rootScope.enableDebug) {
                     diagnosisSetting.debugMsgDisplay(data);
                 } else if ($rootScope.enableCopy) {
-                    $rootScope.debugMsg[0] = '';
                     keypadSetting.copyKeypadCheck(data, keypad.keypadNumberPrefix);
                 } else {
-                    $rootScope.debugMsg[0] = '';
                     keypadSetting.ledStatusCheck(data);
                 }
             };
@@ -61,7 +59,7 @@ angular.module('starter.services', [])
                              title: 'Wifi Connect',
                              template: 'Your app has been connected successfully'
                         });
-                    };
+                    }
                     $rootScope.$apply();
                     // invoked after successful opening of socket
                 },
@@ -94,9 +92,8 @@ angular.module('starter.services', [])
     var msgs = ['hello'];
     return function(msg) {
         msgs.push(keypadSetting.ledStatusCheck());
-        console.log(msgs);
         $rootScope.msgs = msgs;
-    }
+    };
 })
 
 
@@ -113,7 +110,7 @@ angular.module('starter.services', [])
     return {
         "debugMsg": debugMsg,
         "debugMsgDisplay": function(res) {
-             $rootScope.debugMsg[0] += hexToString(res) + "\n\n\n";
+             $rootScope.debugMsg[0] += hexToString(res) + "\n";
              $rootScope.$apply();
         },
 
@@ -251,7 +248,8 @@ angular.module('starter.services', [])
             resultConvert[index] = result[index].toString();
         }
         return resultConvert.join();
-    }
+    };
+
     return {
         keypads: keypads,
         buttons: buttons,
@@ -262,7 +260,7 @@ angular.module('starter.services', [])
                 keypadsConst[i].type = keypadConfig.type;
                 keypads[i] = keypadsConst[keypadNumber];
             });
-            console.error(keypads);
+            // console.error(keypads);
         },
 
         ledStatusCheck: function(res) {

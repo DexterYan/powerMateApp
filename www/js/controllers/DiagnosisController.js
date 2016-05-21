@@ -1,28 +1,17 @@
 angular.module('diagnosis.controller', ['starter.services'])
 
-.controller('DiagnosisCtrl', function($rootScope, $scope, socket){
+.controller('DiagnosisCtrl', function($rootScope, $scope, socket, $ionicScrollDelegate){
     $scope.diagnosisText = $rootScope.debugMsg;
     $scope.debugMsg = "";
+    setInterval(function () {
+        $ionicScrollDelegate.$getByHandle('debugScroll').scrollBottom();
+    }, 2000);
     $scope.zQuery = function(str) {
         socket.send(str);
     };
 
-    $scope.zx31 = function() {
-        socket.sendHex([0x31, 0x80, 0x11,0x01]);
-    };
-
-    $scope.zx30 = function() {
-        socket.sendHex([0x31, 0x80, 0x11,0x00]);
-    };
-
     $scope.addMsg = function() {
         socket.connect();
-    };
-
-    $scope.sendMsg = function (msg) {
-        if (msg) {
-            socket.send(msg);
-        }
     };
 
     $scope.$on('$ionicView.enter', function(){ //This is fired twice in a row

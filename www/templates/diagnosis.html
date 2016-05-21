@@ -1,10 +1,12 @@
 <ion-view view-title="Home">
     <ion-content id="diagnosis" overflow-scroll=true>
-        
 
         <div class="content padding">
-            
+
             <div class="buttons-gp">
+                <button ng-click="zQuery('ZPA1')" class="button button-outline button-positive">
+                    Kpd1
+                </button>
                 <button ng-click="zQuery('ZPA2')" class="button button-outline button-positive">
                     Kpd2
                 </button>
@@ -14,11 +16,11 @@
                 <button ng-click="zQuery('ZPA4')" class="button button-outline button-positive">
                     Kpd4
                 </button>
+            </div>
+            <div class="buttons-gp padding-vertical">
                 <button ng-click="zQuery('ZPA5')" class="button button-outline button-positive">
                     Kpd5
                 </button>
-            </div>
-            <div class="buttons-gp padding-vertical">
                 <button ng-click="zQuery('ZPA6')" class="button button-outline button-positive">
                     Kpd6
                 </button>
@@ -28,13 +30,10 @@
                 <button ng-click="zQuery('ZPA8')" class="button button-outline button-positive">
                     Kpd8
                 </button>
-                <button ng-click="zQuery('ZPA9')" class="button button-outline button-positive">
-                    Kpd9
-                </button>
             </div>
-            <div id="innerText">
-                <p>Hello!{{ diagnosisText[0] }}</p>
-            </div>
+            <ion-scroll delegate-handle="debugScroll" zooming="true" direction="y" id="debugText">
+                <pre>{{ diagnosisText[0] }}</pre>
+            </ion-scroll>
             <div class="footer">
                 <div class="row buttons-gp"><div class="col">
                     <button ng-click='addMsg()' ng-class="{'button-positive': WifiConnect, 'button-assertive': !WifiConnect}" class="button button-outline">
@@ -63,6 +62,5 @@
                 </div></div>
             </div>
         </div>
-
     </ion-content>
 </ion-view>
