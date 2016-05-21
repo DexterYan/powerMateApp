@@ -30,8 +30,10 @@ angular.module('starter.services', [])
                 if ($rootScope.enableDebug) {
                     diagnosisSetting.debugMsgDisplay(data);
                 } else if ($rootScope.enableCopy) {
+                    $rootScope.debugMsg[0] = '';
                     keypadSetting.copyKeypadCheck(data, keypad.keypadNumberPrefix);
                 } else {
+                    $rootScope.debugMsg[0] = '';
                     keypadSetting.ledStatusCheck(data);
                 }
             };
@@ -106,21 +108,21 @@ angular.module('starter.services', [])
         for (var index in result) {
             resultConvert[index] = String.fromCharCode(result[index]);
         }
-        return resultConvert.join();
+        return resultConvert.join('');
     }
     return {
         "debugMsg": debugMsg,
         "debugMsgDisplay": function(res) {
-             $rootScope.debugMsg[0] += hexToString(res) + "\n";
+             $rootScope.debugMsg[0] += hexToString(res) + "\n\n\n";
              $rootScope.$apply();
         },
-        
+
         "initialize": function() {
             $rootScope.debugMsg = [""];
         }
-        
-        
-    }
+
+
+    };
 })
 
 .factory('keypadSetting', function($rootScope, keypad) {
@@ -298,7 +300,7 @@ angular.module('starter.services', [])
 .factory('keypad', function() {
     return {
         keypadNumberPrefix: ["!", "\"", "#", "$", "%", "&",
-            "'", "(", ")", "*", "+", ","
+            "'", "(", ")", "*"
         ]
-    }
+    };
 });
