@@ -35,32 +35,33 @@
             <div id="innerText">
                 <p>Hello!{{ diagnosisText[0] }}</p>
             </div>
-        </div>
-        <div class="bar bar-footer">
-            <div>
-                <button ng-click='addMsg()' ng-class="{'button-positive': WifiConnect, 'button-assertive': !WifiConnect}" class="button">
-                  Connect{{ WifiConnect ? "ed" : "" }}
-                </button>
-                <button ng-click="zQuery('ZR')" class="button button-outline button-positive">
-                    RST
-                </button>
-                <button ng-click="zQuery('Z?')" class="button button-outline button-positive">
-                    Vers
-                </button>
-                <button ng-click="zQuery('ZS')" class="button button-outline button-positive">
-                    Stat
-                </button>
-                <button ng-click="zQuery('ZL')" class="button button-outline button-positive">
-                    Binp
-                </button>
-                <button ng-click="zQuery('ZV')" class="button button-outline button-positive">
-                    Ainp
-                </button>
-                <button ng-click="zQuery('!S')" class="button button-outline button-positive">
-                    Sleep
-                </button>
+            <div class="footer">
+                <div class="row buttons-gp"><div class="col">
+                    <button ng-click='addMsg()' ng-class="{'button-positive': WifiConnect, 'button-assertive': !WifiConnect}" class="button button-outline">
+                      Connect{{ WifiConnect ? "ed" : "" }}
+                    </button>
+                    <button ng-click="zQuery('ZR')" class="button button-outline button-positive">
+                        RST
+                    </button>
+                    <button ng-click="zQuery('Z?')" class="button button-outline button-positive">
+                        Vers
+                    </button>
+                    <button ng-click="zQuery('ZS')" class="button button-outline button-positive">
+                        Stat
+                    </button>
+                </div></div>
+                <div class="row buttons-gp"><div class="col">
+                    <button ng-click="zQuery('ZL')" class="button button-outline button-positive">
+                        Binp
+                    </button>
+                    <button ng-click="zQuery('ZV')" class="button button-outline button-positive">
+                        Ainp
+                    </button>
+                    <button ng-click="zQuery('!S')" class="button button-outline button-positive">
+                        Sleep
+                    </button>
+                </div></div>
             </div>
-            
         </div>
 
     </ion-content>
