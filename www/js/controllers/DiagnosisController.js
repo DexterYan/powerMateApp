@@ -3,8 +3,8 @@ angular.module('diagnosis.controller', ['starter.services'])
 .controller('DiagnosisCtrl', function($rootScope, $scope, socket){
     $scope.diagnosisText = $rootScope.debugMsg;
     $scope.debugMsg = "";
-    $scope.zQuery = function() {
-        socket.send('z?');
+    $scope.zQuery = function(str) {
+        socket.send(str);
     };
 
     $scope.zx31 = function() {
