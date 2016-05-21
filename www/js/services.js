@@ -298,7 +298,7 @@ angular.module('starter.services', [])
 .factory('keypad', function() {
     return {
         keypadNumberPrefix: ["!", "\"", "#", "$", "%", "&",
-            "'", "(", ")", "*", "+", ",", "-", ".", "/"
+            "'", "(", ")", "*", "+", ","
         ]
     }
 });
