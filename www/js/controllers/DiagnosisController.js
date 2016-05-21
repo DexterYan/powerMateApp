@@ -4,7 +4,8 @@ angular.module('diagnosis.controller', ['starter.services'])
     $scope.diagnosisText = $rootScope.debugMsg;
     $scope.debugMsg = "";
     $scope.zQuery = function() {
-        socket.send('z?');
+        $rootScope.debugMsg[0] += '\n';
+        socket.send('Z?');
     };
 
     $scope.zx31 = function() {
