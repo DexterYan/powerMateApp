@@ -255,30 +255,30 @@ angular.module('starter.services', [])
         buttons: buttons,
 
         initialize: function(keypadConfigs) {
+            var self = this;
             keypadConfigs.forEach(function(keypadConfig, i) {
                 var keypadNumber = keypad.keypadNumberPrefix.indexOf(keypadConfig.prefix);
-                keypadsConst[i].type = keypadConfig.type;
-                keypads[i] = keypadsConst[keypadNumber];
+                keypadsConst[keypadNumber].type = keypadConfig.type;
+                self.keypads[i] = keypadsConst[keypadNumber];
             });
-            // console.error(keypads);
         },
 
         ledStatusCheck: function(res) {
             var result = hexToString(res);
 
-            keypads.forEach(function(keypad, index) {
-                buttons[keypad.type].forEach(function(button, buttonIndex) {
+            this.keypads.forEach(function(kd, index) {
+                buttons[kd.type].forEach(function(button, buttonIndex) {
                     button.led.forEach(function(led, ledIndex){
                         for(var status in ledStatus) {
-                            var tmp = new Uint8Array([keypad.prefix, ledPrefix, led, ledStatus[status]])
+                            var tmp = new Uint8Array([kd.prefix, ledPrefix, led, ledStatus[status]]);
                             var ledStatusCheckString = hexToString(tmp);
                             if ( result.match(ledStatusCheckString) ) {
                                 $rootScope.keypad[index].buttons[buttonIndex].led[ledIndex] = status;
                                 $rootScope.$apply();
                             }
                         }
-                    })
-                })
+                    });
+                });
             });
         },
 
