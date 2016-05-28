@@ -162,37 +162,21 @@ angular.module('dash.controller', ['starter.services'])
         link: function(scope, element, attrs) {
 
              element.on('click', function() {
-                 if ($rootScope.enableEditMode) {
-                        scope.data = {}
-                        var myPopup = $ionicPopup.show({
-                            templateUrl: 'buttonsNameTemplate',
-                            scope:scope,
-                            buttons: [
-                                {
-                                    text: '<b>Confirm</b>',
-                                    type: 'button-positive',
-                                    onTap: function(e) {
-                                        console.log(scope.data.buttonsName);
-                                        if (scope.data.buttonsName) {
-                                            return scope.data.buttonsName;
-                                        }
-                                    }
-                                },
-                                {
-                                    text: '<b>Cancel</b>',
-                                    type: 'button-negative'
-                                }
-                            ]
-                        });
+                if ($rootScope.enableEditMode) {
+                    scope.data = {};
 
-                        myPopup.then(function(res){
-                            if (res) {
-                                scope.info.name = scope.data.buttonsName;
-                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
-                                    = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                $localstorage.setObject('keypads', $rootScope.storeKeypads);
-                            }
-                        })
+                    $ionicPopup.prompt({
+                        "title": "Rename this button:"
+                    })
+                    .then(function(res){
+                        if (res) {
+                            scope.data.buttonsName = res;
+                            scope.info.name = scope.data.buttonsName;
+                            $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
+                                = $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                            $localstorage.setObject('keypads', $rootScope.storeKeypads);
+                        }
+                    });
                 }
             });
 
