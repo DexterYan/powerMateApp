@@ -1,7 +1,7 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location", 
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location",
     function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
@@ -14,7 +14,7 @@ angular.module('dash.controller', ['starter.services'])
     }
 
     $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
-
+    $rootScope.enableEditMode = true;
     var firstTimeWaring = function(callback) {
         ngDialog.open({
             template: 'FirstTimeWarning',
@@ -51,7 +51,7 @@ angular.module('dash.controller', ['starter.services'])
                     }, 1000);
                 }
             }]
-        }); 
+        });
     }
 
     var connectWifi = function() {
@@ -118,13 +118,13 @@ angular.module('dash.controller', ['starter.services'])
             finishEditting();
         }
     }
+    firstTimeRenameWaring();
 
-
-    if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === 'yes' ) {
-        firstTimeWaring(firstTimeRenameWaring);
-    } else if ($rootScope.enableEditMode) {
-        firstTimeRenameWaring();
-    }
+    // if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === 'yes' ) {
+    //     firstTimeWaring(firstTimeRenameWaring);
+    // } else if ($rootScope.enableEditMode) {
+    //     firstTimeRenameWaring();
+    // }
 
 }])
 .directive('fourButtonKeypad', function(){
@@ -184,7 +184,7 @@ angular.module('dash.controller', ['starter.services'])
                                 }
                             ]
                         });
-                        
+
                         myPopup.then(function(res){
                             if (res) {
                                 scope.info.name = scope.data.buttonsName;
