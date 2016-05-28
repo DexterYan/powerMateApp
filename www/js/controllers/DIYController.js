@@ -10,8 +10,8 @@ angular.module('diy.controller', ['starter.services'])
         var howManyButtonPopup = $ionicPopup.show({
             template: '<select ng-model="data.totalKeypad">' +
                 '<option value=1>1</option><option value=2>2</option>' +
-                '<option value=3>3</option><option value=4>4</option>' + 
-                '<option value=5>5</option><option value=6>6</option>' + 
+                '<option value=3>3</option><option value=4>4</option>' +
+                '<option value=5>5</option><option value=6>6</option>' +
                 '<option value=7>7</option><option value=8>8</option>' +
                 '<option value=9>9</option><option value=10>10</option></select>',
             title: 'How many keypads do you need?',
@@ -59,14 +59,11 @@ angular.module('diy.controller', ['starter.services'])
                         onTap: function(e) {
                             $rootScope.enableCopy = true;
                             socket.connect(true);
+                            $scope.configCopyButton(0);
                             return null;
                         }
                     }
                 ]
-            });
-
-            wifiWarningPopup.then(function () {
-                $scope.configCopyButton(0);
             });
     };
 
@@ -75,12 +72,11 @@ angular.module('diy.controller', ['starter.services'])
 
         if (keypadNumber < $scope.data.totalKeypad) {
             var copyIndicatorPopup = $ionicPopup.show({
-                template: '<div>Please press any button in your' + 
+                template: '<div>Please press any button in your' +
                     keypadName[keypadNumberTmp]  + 'keypad</div>',
                 title: 'Copy ' + keypadName[keypadNumberTmp] + ' Keypad Type',
                 scope: $scope,
                 buttons: [
-                    { text: 'Cancel' },
                     {
                         text: '<b>Pressed</b>',
                         type: 'button-positive',
@@ -97,13 +93,13 @@ angular.module('diy.controller', ['starter.services'])
             })
                 .then(function(copyKeypadNumber) {
                     var myPopup = $ionicPopup.show({
-                        template: 
-                            '<div>This keypad is ' + copyKeypadNumber + 
+                        template:
+                            '<div>This keypad is ' + copyKeypadNumber +
                             '. Please choose this keypad style</div>' +
                             '<select ng-model="data.keypadType">' +
                             '<option value="4r">4 Round Buttons Keypad</option>' +
                             '<option value="8r">8 Round Buttons Keypad</option>' +
-                            '<option value="10b"> 10 Unround Buttons Keypad</option>' + 
+                            '<option value="10b"> 10 Unround Buttons Keypad</option>' +
                             '<option value="14b"> 14 Unround Buttons Keypad</option></select>',
                         title: 'Set ' + keypadName[keypadNumberTmp] + ' Keypad Type',
                         scope: $scope,

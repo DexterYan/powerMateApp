@@ -1,7 +1,7 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location", 
+.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location",
     function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
@@ -51,7 +51,7 @@ angular.module('dash.controller', ['starter.services'])
                     }, 1000);
                 }
             }]
-        }); 
+        });
     }
 
     var connectWifi = function() {
@@ -172,7 +172,6 @@ angular.module('dash.controller', ['starter.services'])
                                     text: '<b>Confirm</b>',
                                     type: 'button-positive',
                                     onTap: function(e) {
-                                        console.log(scope.data.buttonsName);
                                         if (scope.data.buttonsName) {
                                             return scope.data.buttonsName;
                                         }
@@ -184,7 +183,7 @@ angular.module('dash.controller', ['starter.services'])
                                 }
                             ]
                         });
-                        
+
                         myPopup.then(function(res){
                             if (res) {
                                 scope.info.name = scope.data.buttonsName;
