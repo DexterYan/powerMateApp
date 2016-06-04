@@ -151,7 +151,7 @@ angular.module('dash.controller', ['starter.services'])
         templateUrl: 'templates/elements/forteenButtonKeypad.html'
     }
 })
-.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage) {
+.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage, $timeout) {
     return {
         restrict: 'E',
         templateUrl: 'templates/elements/button.html',
