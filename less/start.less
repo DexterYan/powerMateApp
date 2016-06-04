@@ -264,6 +264,10 @@
           -moz-transition: all 0.1s linear;
              -o-transition: all 0.1s linear;
                 transition: all 0.1s linear;
+
+        &.activated {
+            pointer-events: none;
+        }
     }
     .button_custom:hover {
         -webkit-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
@@ -440,21 +444,26 @@ select {
     width: 225px;
 }
 
-#diagnosis .buttons-gp {
+#diagnosis {
+    .buttons-gp {
 
-    width: 320px;
-    text-align: center;
+        width: 320px;
+        text-align: center;
+    }
+
+    .footer {
+        bottom: 0;
+        position: fixed;
+    }
+
+    .innerHTML {
+        max-height: 280px;
+        overflow: scroll;
+    }
 }
 
-#diagnosis .footer {
-    bottom: 0;
-    position: fixed;
-}
 
-#diagnosis .innerHTML {
-    max-height: 280px;
-    overflow: scroll;
-}
+
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
