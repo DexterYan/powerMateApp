@@ -161,7 +161,10 @@ angular.module('dash.controller', ['starter.services'])
         },
         link: function(scope, element, attrs) {
 
-             element.on('click', function() {
+             element.on('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+
                 if ($rootScope.enableEditMode) {
                     scope.data = {};
 
@@ -177,6 +180,8 @@ angular.module('dash.controller', ['starter.services'])
                             $localstorage.setObject('keypads', $rootScope.storeKeypads);
                         }
                     });
+
+                    
                 }
             });
 
