@@ -165,23 +165,25 @@ angular.module('dash.controller', ['starter.services'])
                 e.stopPropagation();
                 e.preventDefault();
 
+
+
                 if ($rootScope.enableEditMode) {
                     scope.data = {};
 
-                    $ionicPopup.prompt({
-                        "title": "Rename this button:"
-                    })
-                    .then(function(res){
-                        if (res) {
-                            scope.data.buttonsName = res;
-                            scope.info.name = scope.data.buttonsName;
-                            $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
-                                = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                            $localstorage.setObject('keypads', $rootScope.storeKeypads);
-                        }
-                    });
-
-                    
+                    $timeout(function(){
+                        $ionicPopup.prompt({
+                            "title": "Rename this button:"
+                        })
+                        .then(function(res){
+                            if (res) {
+                                scope.data.buttonsName = res;
+                                scope.info.name = scope.data.buttonsName;
+                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
+                                    = $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                                $localstorage.setObject('keypads', $rootScope.storeKeypads);
+                            }
+                        });
+                    }, 500);
                 }
             });
 
