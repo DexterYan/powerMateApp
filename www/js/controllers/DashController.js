@@ -14,7 +14,7 @@ angular.module('dash.controller', ['starter.services'])
     }
 
     $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
-    $rootScope.enableEditMode = true;
+
     var firstTimeWaring = function(callback) {
         ngDialog.open({
             template: 'FirstTimeWarning',
@@ -118,13 +118,13 @@ angular.module('dash.controller', ['starter.services'])
             finishEditting();
         }
     }
-    firstTimeRenameWaring();
 
-    // if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === 'yes' ) {
-    //     firstTimeWaring(firstTimeRenameWaring);
-    // } else if ($rootScope.enableEditMode) {
-    //     firstTimeRenameWaring();
-    // }
+
+    if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === 'yes' ) {
+        firstTimeWaring(firstTimeRenameWaring);
+    } else if ($rootScope.enableEditMode) {
+        firstTimeRenameWaring();
+    }
 
 }])
 .directive('fourButtonKeypad', function(){
