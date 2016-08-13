@@ -72,8 +72,8 @@ angular.module('diy.controller', ['starter.services'])
 
         if (keypadNumber < $scope.data.totalKeypad) {
             var copyIndicatorPopup = $ionicPopup.show({
-                template: '<div>Please press any button in your' +
-                    keypadName[keypadNumberTmp]  + 'keypad</div>',
+                template: '<div>Please press any button in your ' +
+                    keypadName[keypadNumberTmp].toLowerCase()  + ' keypad</div>',
                 title: 'Copy ' + keypadName[keypadNumberTmp] + ' Keypad Type',
                 scope: $scope,
                 buttons: [
