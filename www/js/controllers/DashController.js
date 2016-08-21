@@ -1,7 +1,7 @@
 angular.module('dash.controller', ['starter.services'])
 
 
-.controller('DashCtrl', ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location",
+.controller('DashCtrl', ['$rootScope', '$scope', 'socket', 'ngDialog', '_', '$ionicPopup', '$location',
     function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
@@ -172,7 +172,7 @@ angular.module('dash.controller', ['starter.services'])
 
                     $timeout(function(){
                         $ionicPopup.prompt({
-                            "title": "Rename this button:"
+                            'title': 'Rename this button:'
                         })
                         .then(function(res){
                             if (res) {
