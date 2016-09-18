@@ -24,6 +24,10 @@
     "com.ionic.keyboard"
   ],
   "cordovaPlatforms": [
-    "ios"
+    {
+      "platform": "ios",
+      "version": "3.5",
+      "locator": "ios@3.5"
+    }
   ]
 }

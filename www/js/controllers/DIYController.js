@@ -11,7 +11,7 @@ angular.module('diy.controller', ['starter.services'])
     }
 
     $scope.configStepOne = function() {
-       $scope.data = {}
+       $scope.data = {};
         var howManyButtonPopup = $ionicPopup.show({
             template: '<select ng-model="data.totalKeypad">' +
                 '<option value=1>1</option><option value=2>2</option>' +
@@ -97,6 +97,7 @@ angular.module('diy.controller', ['starter.services'])
                 ]
             })
                 .then(function(copyKeypadNumber) {
+                    copyKeypadNumber = copyKeypadNumber || 1;
                     var myPopup = $ionicPopup.show({
                         template:
                             '<div>This keypad is ' + copyKeypadNumber +
@@ -155,7 +156,7 @@ angular.module('diy.controller', ['starter.services'])
     $scope.selectTabWithIndex = function(index) {
         $state.go('app.dash');
         //$ionicTabsDelegate.select(index);
-    }
+    };
 
     $scope.reset = function() {
         $localstorage.setObject('keypads', []);
@@ -164,10 +165,10 @@ angular.module('diy.controller', ['starter.services'])
         $scope.data.totalKeypad = null;
         $ionicTabsDelegate.select(0);
         $scope.configStepOne();
-    }
+    };
 
     $scope.configStepOne();
 
 
 
-})
+});
