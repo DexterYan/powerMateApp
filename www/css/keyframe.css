@@ -1,5 +1,5 @@
-@-webkit-keyframes blink { 
-   50% { opacity: 0; } 
+@-webkit-keyframes blink {
+   50% { opacity: 0; }
 }
 #dash .blink { /*or other element you want*/
     animation-name: blink ;

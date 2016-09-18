@@ -15,7 +15,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            window.plugins.insomnia.keepAwake()
+            window.plugins.insomnia.keepAwake();
         }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
@@ -86,7 +86,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                                         "value": element.value,
                                         "led": ['off', 'off', 'off']
                                     });
-                                })
+                                });
                             } else {
                                 $rootScope.config.keypads[i].buttons.forEach(function(element) {
                                     $rootScope.keypad[i].buttons.push({
@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                                         "value": element.value,
                                         "led": ['off', 'off', 'off']
                                     });
-                                })
+                                });
                             }
                         }
                         return;
@@ -120,7 +120,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
             }
         }
     })
-    
+
     .state('app.diagnosis', {
         url: "/diagnosis",
         cache: false,
@@ -138,9 +138,5 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
     });
 
     $urlRouterProvider.otherwise('/app/dash');
-    // // setup an abstract state for the tabs directive
-
-    // // if none of the above states are matched, use this as the fallback
-    // $urlRouterProvider.otherwise('/dash');
 
 });

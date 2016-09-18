@@ -12,7 +12,7 @@ angular.module('dash.controller', ['starter.services'])
     function onDeviceReady() {
         window.screen.lockOrientation('landscape');
 
-        
+
     }
 
     var initalBgLocation = ["url('../img/png_4_keypads/battery.png')",
@@ -28,15 +28,15 @@ angular.module('dash.controller', ['starter.services'])
 
     _.map(initalBgLocation, function(v,k){
         $scope.keypad.buttons[k].bgLocation = { "background-image": v};
-    })
+    });
 
 
 
     var editModeCheck = function (buttons) {
         return _.find(buttons, function(button) {
-            return button.name === 'Click to Edit'
-        })
-    }
+            return button.name === 'Click to Edit';
+        });
+    };
 
     $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
 
@@ -51,7 +51,7 @@ angular.module('dash.controller', ['starter.services'])
                     callback();
                 };
             }]
-        })
+        });
     };
 
     var firstTimeRenameWaring = function(){
