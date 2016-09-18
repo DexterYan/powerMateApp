@@ -5,7 +5,32 @@ angular.module('dash.controller', ['starter.services'])
     function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
-    $scope.maxKeypad = $rootScope.config.keypads.length -1 ;
+    $scope.maxKeypad = $rootScope.config.keypads.length -1;
+
+    document.addEventListener('deviceready', onDeviceReady, false);
+    $scope.currentKeypadType = '10b2';
+    function onDeviceReady() {
+        window.screen.lockOrientation('landscape');
+
+        
+    }
+
+    var initalBgLocation = ["url('../img/png_4_keypads/battery.png')",
+        "url('../img/png_4_keypads/beacon.png')",
+        "url('../img/png_4_keypads/gear.png')",
+        "url('../img/png_4_keypads/hori_light.png')",
+        "url('../img/png_4_keypads/key.png')",
+        "url('../img/png_4_keypads/light.png')",
+        "url('../img/png_4_keypads/lock.png')",
+        "url('../img/png_4_keypads/skeleton.png')",
+        "url('../img/png_4_keypads/truck_with_box.png')",
+        "url('../img/png_4_keypads/truck_with_leg.png')"];
+
+    _.map(initalBgLocation, function(v,k){
+        $scope.keypad.buttons[k].bgLocation = { "background-image": v};
+    })
+
+
 
     var editModeCheck = function (buttons) {
         return _.find(buttons, function(button) {
@@ -145,6 +170,12 @@ angular.module('dash.controller', ['starter.services'])
         templateUrl: 'templates/elements/tenButtonKeypad.html'
     }
 })
+.directive('landscapeTenButtonKeypad', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/elements/landscapeTenButtonKeypad.html'
+    }
+})
 .directive('forteenButtonKeypad', function(){
     return {
         restrict: 'E',
@@ -157,11 +188,16 @@ angular.module('dash.controller', ['starter.services'])
         templateUrl: 'templates/elements/button.html',
         scope: {
             prefix: '=',
-            info: '='
+            info: '=',
+            bg: '='
         },
         link: function(scope, element, attrs) {
 
-             element.on('click', function(e) {
+            console.log(scope.info.bgLocation);
+
+
+
+            element.on('click', function(e) {
                 e.stopPropagation();
                 e.preventDefault();
 

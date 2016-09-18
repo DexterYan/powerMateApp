@@ -5,6 +5,11 @@ angular.module('diy.controller', ['starter.services'])
                                         'Fifth', 'Sixth', 'Seventh', 'Eighth'];
     $scope.keypadsTypes = [];
 
+    document.addEventListener('deviceready', onDeviceReady, false);
+    function onDeviceReady() {
+        window.screen.lockOrientation('portrait');
+    }
+
     $scope.configStepOne = function() {
        $scope.data = {}
         var howManyButtonPopup = $ionicPopup.show({

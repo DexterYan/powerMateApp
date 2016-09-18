@@ -1,226 +1,4 @@
-/* For iPhone 6
-
-#dash {
-    .button_custom {
-
-        font-family: 'museoslab500';
-        text-transform: uppercase;
-        background: #333;
-        font-size: 75%;
-        text-align: center;
-        -webkit-user-select: none;
-             -o-user-select: none;
-                user-select: none;
-
-        z-index: 1;
-        min-height: 1.5em;
-        display: block;
-        width: 100%;
-        padding: 12px 36px 12px;
-        margin: 0px 5px 5px 0px;
-        cursor: pointer;
-        opacity: 0.9;
-
-        color: #FFF;
-        font-size: 1em;
-        letter-spacing: 1px;
-        text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
-
-        background: #434343;
-        border: 1px solid #242424;
-
-        -webkit-border-radius: 4px;
-         -khtml-border-radius: 4px;
-          -moz-border-radius: 4px;
-             -o-border-radius: 4px;
-                border-radius: 4px;
-        -webkit-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-         -khtml-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-          -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-             -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-                box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-        -webkit-transition: all 0.1s linear;
-         -khtml-transition: all 0.1s linear;
-          -moz-transition: all 0.1s linear;
-             -o-transition: all 0.1s linear;
-                transition: all 0.1s linear;
-    }
-    .button_custom:hover {
-        -webkit-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-         -khtml-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-          -moz-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-             -o-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-                box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-    }
-    .button_custom:active {
-        -webkit-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px,inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-         -khtml-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px,inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-          -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-             -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-                box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
-    }
-    .shine {
-        display: block;
-        position: relative;
-        background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
-        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
-        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
-        background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
-        background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
-        background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
-        padding: 0px 12px;
-        top: -12px;
-        left: -24px;
-        height: 1px;
-        -webkit-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
-         -khtml-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
-          -moz-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
-             -o-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
-                box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
-        -webkit-transition: all 0.3s ease-in-out;
-         -khtml-transition: all 0.3s ease-in-out;
-          -moz-transition: all 0.3s ease-in-out;
-             -o-transition: all 0.3s ease-in-out;
-                transition: all 0.3s ease-in-out;
-    }
-    .button_custom:hover .shine {left: 24px;}
-    .button_custom:active .shine {opacity: 0;}
-
-    .button_custom.gray {background: #555;}
-    .button_custom.blue {background: #3a617e;}
-    .button_custom.green {background: #477343;}
-    .button_custom.red {background: #723131;}
-    .button_custom.purple {background: #4b3f5e;}
-    .button_custom.orange {background: #624529;}
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    .col {line-height:1em;}
-
-    .float-right, .float {float:right;}
-    .float-left {float:left;}
-    .lineh03 {line-height:0.3em;}
-
-    .info {
-        margin-top:50px;
-    }
-
-    .info a {
-        text-decoration:none;
-        color:#fff;
-        font-size:15px
-    }
-
-    .button_custom.margin-top {margin-top:20px;}
-
-
-    .led {
-        position: relative;
-        display: block;
-        float: left;
-        height: 0;
-        line-height: 0;
-        padding-bottom: 4px;
-        width: 30%;
-        background-color: rgb(31,241,47);
-        top: -0.4em;
-        z-index: -1;
-        visibility: hidden;
-    }
-    .visible { visibility: visible; }
-    .eins { margin-left: 3%;}
-    .zwei { margin-left: 2%;}
-    .drei { margin-left: 2%;}
-    .editModeLED {
-        margin-left:2%;
-        width: 96%;
-    }
-    .connected {
-        .row {
-            padding: 5px 0;
-        }
-
-        .col {
-            padding: 5px 0;
-        }
-    }
-
-    background-color: white;
-    background-image:url("../img/bg.png");
-    background-size: cover;
-
-    .button4 {
-        .button_custom.blue .col {
-            line-height: 1.5em;
-            font-size: 1.2em;
-        }
-    }
-
-    .button8 {
-        .button_custom.blue .col {
-            line-height: 1.1em;
-            font-size: 1.1em;
-        }
-        margin-bottom: -28px;
-    }
-
-    .button10 {
-        .button_custom.blue .col {
-            line-height: 1em;
-            font-size: 1em;
-        }
-
-        > .row {
-             margin-bottom: 18px;
-        }
-
-        .button_custom.blue {
-            padding: 5px 0;
-        }
-        margin-bottom: -28px;
-    }
-
-    .button14 {
-        .button_custom.blue .col {
-            line-height: 1em;
-            font-size: 1em;
-        }
-
-        > .row {
-             margin-bottom: -12px;
-        }
-
-        .button_custom.blue {
-            padding: 5px 0;
-        }
-        margin-bottom: -28px;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    // For mobile phones:
-    #dash {
-        .pad {
-            display: none;
-        }
-        .phone {
-            .lineh03 {
-                line-height: 1.3em;
-            }
-        }
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    // For desktop:
-    #dash {
-        .phone {
-            display: none;
-        }
-    }
-}*/
-
-#dash {
+.dash {
     .button_custom {
 
         font-family: 'museoslab500';
@@ -433,6 +211,77 @@
             padding: 5px 0;
         }
         margin-bottom: -28px;
+    }
+}
+
+.theme {
+    background-color: white;
+    background-image:url("../img/png_4_keypads/bg.png");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+
+    button {
+        color: white;
+    }
+
+    .led {
+        position: relative;
+        display: block;
+        float: left;
+        height: 0;
+        line-height: 0;
+        padding-bottom: 4px;
+        width: 30%;
+        background-color: rgb(31,241,47);
+        top: -0.4em;
+        z-index: -1;
+    }
+
+    .eins { margin-left: 3%;}
+    .zwei { margin-left: 2%;}
+    .drei { margin-left: 2%;}
+    .editModeLED {
+        margin-left:2%;
+        width: 96%;
+    }
+
+    .battery {
+        background-image: url("../img/png_4_keypads/battery.png");
+    }
+    .beacon {
+        background-image: url("../img/png_4_keypads/beacon.png");
+    }
+    .gear {
+        background-image: url("../img/png_4_keypads/gear.png");
+    }
+    .hori_light {
+        background-image: url("../img/png_4_keypads/hori_light.png");
+    }
+    .key {
+        background-image: url("../img/png_4_keypads/key.png");
+    }
+    .light {
+        background-image: url("../img/png_4_keypads/light.png");
+    }
+    .lock {
+        background-image: url("../img/png_4_keypads/lock.png");
+    }
+    .skeleton {
+        background-image: url("../img/png_4_keypads/skeleton.png");
+    }
+    .truck_with_box {
+        background-image: url("../img/png_4_keypads/truck_with_box.png");
+    }
+    .truck_with_leg {
+        background-image: url("../img/png_4_keypads/truck_with_leg.png");
+    }
+    .cs-icon {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center; 
+        width: 15vw;
+        height: 21vh;
     }
 }
 
