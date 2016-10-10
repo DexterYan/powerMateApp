@@ -1,8 +1,8 @@
 <ion-view view-title="Home">
-  <ion-content id="dash" class="theme" overflow-scroll=true>
+  <ion-content id="dash" ng-class="{theme: customKeypad, dash: !customKeypad}" overflow-scroll=true>
     <four-button-keypad ng-show="currentKeypadType=='4r'" keypad="keypad"></four-button-keypad>
     <ten-button-keypad ng-show="currentKeypadType=='10b'" keypad="keypad"></ten-button-keypad>
-    <landscape-ten-button-keypad ng-show="currentKeypadType=='10b2'" keypad="keypad"></ten-button-keypad>
+    <landscape-ten-button-keypad ng-show="currentKeypadType=='10b2'" keypad="keypad"></landscape-ten-button-keypad>
     <eight-button-keypad ng-show="currentKeypadType=='8r'" keypad="keypad"></eight-button-keypad>
     <forteen-button-keypad ng-show="currentKeypadType=='14b'" keypad="keypad"></forteen-button-keypad>
 

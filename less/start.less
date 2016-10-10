@@ -221,8 +221,9 @@
     width: 100vw;
     height: 100vh;
 
-    button {
+    .button_custom {
         color: white;
+        text-align: center;
     }
 
     .led {
@@ -234,7 +235,7 @@
         padding-bottom: 4px;
         width: 30%;
         background-color: rgb(31,241,47);
-        top: -0.4em;
+        top: 0.6em;
         z-index: -1;
     }
 
@@ -280,9 +281,13 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center; 
-        width: 15vw;
-        height: 21vh;
+        height: 24vh;
     }
+
+    .pad, .phone {
+        display: none;
+    }
+
 }
 
 .popup-container.active .popup {

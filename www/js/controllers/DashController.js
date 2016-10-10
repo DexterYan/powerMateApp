@@ -1,30 +1,29 @@
-angular.module('dash.controller', ['starter.services'])
+angular.module("dash.controller", ["starter.services"])
 
 
-.controller('DashCtrl', ['$rootScope', '$scope', 'socket', 'ngDialog', '_', '$ionicPopup', '$location',
+.controller("DashCtrl", ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location",
     function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
 
-    document.addEventListener('deviceready', onDeviceReady, false);
-    $scope.currentKeypadType = '10b2';
+    document.addEventListener("deviceready", onDeviceReady, false);
+    //$scope.currentKeypadType = "10b2";
+    //$scope.customKeypad = true;
     function onDeviceReady() {
-        window.screen.lockOrientation('landscape');
-
-        
+        //window.screen.lockOrientation("landscape");
     }
 
-    var initalBgLocation = ["url('../img/png_4_keypads/battery.png')",
-        "url('../img/png_4_keypads/beacon.png')",
-        "url('../img/png_4_keypads/gear.png')",
-        "url('../img/png_4_keypads/hori_light.png')",
-        "url('../img/png_4_keypads/key.png')",
-        "url('../img/png_4_keypads/light.png')",
-        "url('../img/png_4_keypads/lock.png')",
-        "url('../img/png_4_keypads/skeleton.png')",
-        "url('../img/png_4_keypads/truck_with_box.png')",
-        "url('../img/png_4_keypads/truck_with_leg.png')"];
+    var initalBgLocation = ["url('./img/png_4_keypads/battery.png')",
+        "url('./img/png_4_keypads/beacon.png')",
+        "url('./img/png_4_keypads/gear.png')",
+        "url('./img/png_4_keypads/hori_light.png')",
+        "url('./img/png_4_keypads/key.png')",
+        "url('./img/png_4_keypads/light.png')",
+        "url('./img/png_4_keypads/lock.png')",
+        "url('./img/png_4_keypads/skeleton.png')",
+        "url('./img/png_4_keypads/truck_with_box.png')",
+        "url('./img/png_4_keypads/truck_with_leg.png')"];
 
     _.map(initalBgLocation, function(v,k){
         $scope.keypad.buttons[k].bgLocation = { "background-image": v};
@@ -34,7 +33,7 @@ angular.module('dash.controller', ['starter.services'])
 
     var editModeCheck = function (buttons) {
         return _.find(buttons, function(button) {
-            return button.name === 'Click to Edit'
+            return button.name === "Click to Edit"
         })
     }
 
@@ -42,10 +41,10 @@ angular.module('dash.controller', ['starter.services'])
 
     var firstTimeWaring = function(callback) {
         ngDialog.open({
-            template: 'FirstTimeWarning',
+            template: "FirstTimeWarning",
             closeByDocument: false,
             showClose: false,
-            controller: ['$scope', '$state', function($scope, $state) {
+            controller: ["$scope", "$state", function($scope, $state) {
                 $scope.nameButton = function() {
                     $scope.closeThisDialog();
                     callback();
@@ -56,10 +55,10 @@ angular.module('dash.controller', ['starter.services'])
 
     var firstTimeRenameWaring = function(){
         ngDialog.open({
-            template: 'FirstTimeRenameWaring',
+            template: "FirstTimeRenameWaring",
             closeByDocument: false,
             showClose: false,
-            controller: ['$scope', '$state', 'socket', '$rootScope', function($scope, $state, socket, $rootScope) {
+            controller: ["$scope", "$state", "socket", "$rootScope", function($scope, $state, socket, $rootScope) {
                 $scope.goToDIY = function() {
                     $scope.closeThisDialog();
                     firstTimeWaring(firstTimeRenameWaring);
@@ -70,7 +69,7 @@ angular.module('dash.controller', ['starter.services'])
                     setTimeout(function() {
                         if (!$rootScope.WifiConnect) {
                             ngDialog.open({
-                                template: 'WifiWarning'
+                                template: "WifiWarning"
                             })
                         }
                     }, 1000);
@@ -84,7 +83,7 @@ angular.module('dash.controller', ['starter.services'])
         setTimeout(function() {
             if (!$rootScope.WifiConnect) {
                 ngDialog.open({
-                    template: 'WifiWarning'
+                    template: "WifiWarning"
                 })
             }
         }, 1000);
@@ -92,7 +91,7 @@ angular.module('dash.controller', ['starter.services'])
 
     var finishEditting = function(callback) {
         ngDialog.open({
-            template: 'FinishEditting',
+            template: "FinishEditting",
             closeByDocument: true,
             showClose: true,
         })
@@ -135,7 +134,7 @@ angular.module('dash.controller', ['starter.services'])
 
     $scope.resetName = function(data){
         var finishEditCheck = _.find($scope.keypad.buttons, function(button) {
-            return button.name === 'Click to Edit'
+            return button.name === "Click to Edit"
         });
         if (!finishEditCheck) {
             $rootScope.enableEditMode = !$rootScope.enableEditMode;
@@ -145,59 +144,54 @@ angular.module('dash.controller', ['starter.services'])
     }
 
 
-    if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === 'yes' ) {
+    if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === "yes" ) {
         firstTimeWaring(firstTimeRenameWaring);
     } else if ($rootScope.enableEditMode) {
         firstTimeRenameWaring();
     }
 
 }])
-.directive('fourButtonKeypad', function(){
+.directive("fourButtonKeypad", function(){
     return {
-        restrict: 'E',
-        templateUrl: 'templates/elements/fourButtonKeypad.html'
+        restrict: "E",
+        templateUrl: "templates/elements/fourButtonKeypad.html"
     }
 })
-.directive('eightButtonKeypad', function(){
+.directive("eightButtonKeypad", function(){
     return {
-        restrict: 'E',
-        templateUrl: 'templates/elements/eightButtonKeypad.html'
+        restrict: "E",
+        templateUrl: "templates/elements/eightButtonKeypad.html"
     }
 })
-.directive('tenButtonKeypad', function(){
+.directive("tenButtonKeypad", function(){
     return {
-        restrict: 'E',
-        templateUrl: 'templates/elements/tenButtonKeypad.html'
+        restrict: "E",
+        templateUrl: "templates/elements/tenButtonKeypad.html"
     }
 })
-.directive('landscapeTenButtonKeypad', function(){
+.directive("landscapeTenButtonKeypad", function(){
     return {
-        restrict: 'E',
-        templateUrl: 'templates/elements/landscapeTenButtonKeypad.html'
+        restrict: "E",
+        templateUrl: "templates/elements/landscapeTenButtonKeypad.html"
     }
 })
-.directive('forteenButtonKeypad', function(){
+.directive("forteenButtonKeypad", function(){
     return {
-        restrict: 'E',
-        templateUrl: 'templates/elements/forteenButtonKeypad.html'
+        restrict: "E",
+        templateUrl: "templates/elements/forteenButtonKeypad.html"
     }
 })
-.directive('keypadButton', function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage, $timeout) {
+.directive("keypadButton", function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage, $timeout) {
     return {
-        restrict: 'E',
-        templateUrl: 'templates/elements/button.html',
+        restrict: "E",
+        templateUrl: "templates/elements/button.html",
         scope: {
-            prefix: '=',
-            info: '=',
-            bg: '='
+            prefix: "=",
+            info: "="
         },
         link: function(scope, element, attrs) {
 
-            console.log(scope.info.bgLocation);
-
-
-
-            element.on('click', function(e) {
+            element.on("click", function(e) {
                 e.stopPropagation();
                 e.preventDefault();
 
@@ -208,7 +202,7 @@ angular.module('dash.controller', ['starter.services'])
 
                     $timeout(function(){
                         $ionicPopup.prompt({
-                            'title': 'Rename this button:'
+                            "title": "Rename this button:"
                         })
                         .then(function(res){
                             if (res) {
@@ -216,7 +210,7 @@ angular.module('dash.controller', ['starter.services'])
                                 scope.info.name = scope.data.buttonsName;
                                 $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
                                     = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                $localstorage.setObject('keypads', $rootScope.storeKeypads);
+                                $localstorage.setObject("keypads", $rootScope.storeKeypads);
                             }
                         });
                     }, 500);
@@ -235,13 +229,13 @@ angular.module('dash.controller', ['starter.services'])
                 socket.send(sendData);
             };
 
-            element.on('touchstart', function() {
+            element.on("touchstart", function() {
                 scope.$apply(function() {
                     scope.$eval(onTouch);
                 });
             });
 
-            element.on('touchend', function() {
+            element.on("touchend", function() {
                 scope.$apply(function() {
                     scope.$eval(onRelease);
                 });
