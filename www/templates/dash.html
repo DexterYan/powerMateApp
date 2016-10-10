@@ -8,28 +8,28 @@
 
     <div class="row pad">
       <div class="col">
-        <button ng-show='maxKeypad > 0' ng-click='previousKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">Prev</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-click='addMsg()' class="button_custom margin-top red">
+        <button ng-click='addMsg()' ng-class="{green: WifiConnect, red: !WifiConnect}" class="button_custom margin-top connected config_buttons">
           <div class="row row-center">
-            <div class="col col-center lineh03">Connect</div>
+            <div class="col col-center lineh03">Connect{{ WifiConnect ? "ed" : "" }}</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-click='resetName()' class="button_custom margin-top grey">
+        <button ng-click='resetName()' ng-class="{green: enableEditMode}" class="button_custom margin-top grey config_buttons">
           <div class="row row-center">
-            <div class="col col-center lineh03">Reset</div>
+            <div class="col col-center lineh03">{{ enableEditMode ? "Save" : "Rename"}}</div>
           </div>
         </button>
       </div>
       <div class="col">
-        <button ng-show='maxKeypad > 0' ng-click='nextKeypad()' class="button_custom green">
+        <button ng-show='maxKeypad' ng-click='nextKeypad()' class="button_custom green">
           <div class="row row-center">
             <div class="col col-center lineh03">Next</div>
           </div>

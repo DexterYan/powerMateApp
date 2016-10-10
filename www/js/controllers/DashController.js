@@ -8,10 +8,10 @@ angular.module("dash.controller", ["starter.services"])
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
 
     document.addEventListener("deviceready", onDeviceReady, false);
-    //$scope.currentKeypadType = "10b2";
-    //$scope.customKeypad = true;
+    // $scope.currentKeypadType = "10b2";
+    // $scope.customKeypad = true;
     function onDeviceReady() {
-        //window.screen.lockOrientation("landscape");
+        // window.screen.lockOrientation("landscape");
     }
 
     var initalBgLocation = ["url('./img/png_4_keypads/battery.png')",
@@ -116,9 +116,7 @@ angular.module("dash.controller", ["starter.services"])
     };
 
     $scope.nextKeypad = function() {
-        console.log($rootScope.config.keypads);
         var maxKeypad = $rootScope.config.keypads.length - 1;
-        console.log(maxKeypad);
         if ($rootScope.currentKeypad === maxKeypad) {
             $rootScope.currentKeypad = 0;
         } else {
@@ -127,7 +125,6 @@ angular.module("dash.controller", ["starter.services"])
         $rootScope.currentKeypadType = $rootScope.config.keypads[$rootScope.currentKeypad].type;
         $scope.currentKeypadType = $rootScope.currentKeypadType;
         $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
-        console.log($scope.keypad)
         $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
 
     };

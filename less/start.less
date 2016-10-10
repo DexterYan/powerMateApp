@@ -1,3 +1,102 @@
+button {
+    &.button_custom {
+
+        font-family: 'museoslab500';
+        text-transform: uppercase;
+        background: #333;
+        font-size: 75%;
+        text-align: center;
+        -webkit-user-select: none;
+             -o-user-select: none;
+                user-select: none;
+
+        z-index: 1;
+        min-height: 1.5em;
+        display: block;
+        width: 100%;
+        padding: 12px 36px 12px;
+        margin: 0px 5px 5px 0px;
+        cursor: pointer;
+        opacity: 0.9;
+
+        color: #FFF;
+        font-size: 1em;
+        letter-spacing: 1px;
+        text-shadow: rgba(0,0,0,0.9) 0px 1px 2px;
+
+        background: #434343;
+        border: 1px solid #242424;
+
+        -webkit-border-radius: 4px;
+         -khtml-border-radius: 4px;
+          -moz-border-radius: 4px;
+             -o-border-radius: 4px;
+                border-radius: 4px;
+        -webkit-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+         -khtml-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+          -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+             -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+                box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+        -webkit-transition: all 0.1s linear;
+         -khtml-transition: all 0.1s linear;
+          -moz-transition: all 0.1s linear;
+             -o-transition: all 0.1s linear;
+                transition: all 0.1s linear;
+
+        &.activated {
+            pointer-events: none;
+        }
+    }
+    &.button_custom:hover {
+        -webkit-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+         -khtml-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+          -moz-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+             -o-box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+                box-shadow: rgba(0,0,0,0.5) 0px 2px 5px, inset rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(0,0,0,0.25) 0px 0px 0px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    }
+    &.button_custom:active {
+        -webkit-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px,inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+         -khtml-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px,inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+          -moz-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+             -o-box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+                box-shadow: rgba(255,255,255,0.25) 0px 1px 0px, inset rgba(255,255,255,0) 0px 1px 0px, inset rgba(0,0,0,0.5) 0px 0px 5px, inset rgba(255,255,255,0.03) 0px 20px 0px, inset rgba(0,0,0,0.15) 0px -20px 20px, inset rgba(255,255,255,0.05) 0px 20px 20px;
+    }
+    &.shine {
+        display: block;
+        position: relative;
+        background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(50%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+        background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+        background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
+        background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+        padding: 0px 12px;
+        top: -12px;
+        left: -24px;
+        height: 1px;
+        -webkit-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+         -khtml-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+          -moz-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+             -o-box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+                box-shadow: rgba(255,255,255,0.2) 0px 1px 5px;
+        -webkit-transition: all 0.3s ease-in-out;
+         -khtml-transition: all 0.3s ease-in-out;
+          -moz-transition: all 0.3s ease-in-out;
+             -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+    }
+    &.button_custom:hover .shine {left: 24px;}
+    &.button_custom:active .shine {opacity: 0;}
+
+    &.button_custom.gray {background: #555;}
+    &.button_custom.blue {background: #3a617e;}
+    &.button_custom.green {background: #477343;}
+    &.button_custom.red {background: #723131;}
+    &.button_custom.purple {background: #4b3f5e;}
+    &.button_custom.orange {background: #624529;}
+}
+
 .dash {
     .button_custom {
 
@@ -281,11 +380,14 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center; 
-        height: 24vh;
+        height: 22vh;
     }
 
-    .pad, .phone {
-        display: none;
+    .pad{
+        button {
+            margin: 0;
+            padding: 0;
+        }
     }
 
 }
@@ -319,25 +421,21 @@ select {
 
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 700px) {
     /* For mobile phones: */
-    #dash {
-        .pad {
-            display: none;
-        }
-        .phone {
-            .lineh03 {
-                line-height: 1.3em;
-            }
+    .pad {
+        display: none;
+    }
+    .phone {
+        .lineh03 {
+            line-height: 1.3em;
         }
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 700px) {
     /* For desktop: */
-    #dash {
-        .phone {
-            display: none;
-        }
+    .phone {
+        display: none;
     }
 }
