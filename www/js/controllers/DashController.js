@@ -1,4 +1,4 @@
-angular.module("dash.controller", ["starter.services"])
+angular.module("dash.controller", ["starter.services", "ionic"])
 
 
 .controller("DashCtrl", ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location",
@@ -8,11 +8,19 @@ angular.module("dash.controller", ["starter.services"])
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
 
     document.addEventListener("deviceready", onDeviceReady, false);
-    // $scope.currentKeypadType = "10b2";
-    // $scope.customKeypad = true;
+    $scope.currentKeypadType = "10b2";
+    $scope.customKeypad = true;
+
+    console.log(ionic);
     function onDeviceReady() {
-        // window.screen.lockOrientation("landscape");
+        window.screen.lockOrientation("landscape");
+        ionic.Platform.ready(function() {
+            // $cordovaStatusbar.hide();
+            ionic.Platform.fullScreen();
+        });
     }
+
+    
 
     var initalBgLocation = ["url('./img/png_4_keypads/battery.png')",
         "url('./img/png_4_keypads/beacon.png')",
