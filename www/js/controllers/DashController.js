@@ -194,6 +194,29 @@ angular.module("dash.controller", ["starter.services", "ionic"])
         },
         link: function(scope, element, attrs) {
 
+            var renameProcess = function(res) {
+                scope.data.buttonsName = res;
+                scope.info.name = scope.data.buttonsName;
+
+                window.imagePicker.getPictures(function(results) {
+                    filename = results[0].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
+                    newFileName = Math.random().toString(36).substr(2, 5) + filename;
+                    $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, newFileName)
+                        .then(function (success) {
+                            v = "url('"+ success.nativeURL + "')";
+                            scope.info.bgLocation["background-image"] = v;
+                            scope.$apply();
+                            $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
+                                $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                            $localstorage.setObject("keypads", $rootScope.storeKeypads);
+                        }, function (error) {});
+                }, function (error) {
+                    console.log('Error: ' + error);
+                }, {
+                    maximumImagesCount: 1
+                });
+            }
+
             element.on("click", function(e) {
                 e.stopPropagation();
                 e.preventDefault();
@@ -207,29 +230,7 @@ angular.module("dash.controller", ["starter.services", "ionic"])
                         })
                         .then(function(res){
                             if (res) {
-                                scope.data.buttonsName = res;
-                                scope.info.name = scope.data.buttonsName;
-
-                                window.imagePicker.getPictures(
-                                    function(results) {
-                                        filename = results[0].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
-                                        newFileName = Math.random().toString(36).substr(2, 5) + filename;
-                                        $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, newFileName)
-                                            .then(function (success) {
-                                                v = "url('"+ success.nativeURL + "')";
-                                                scope.info.bgLocation["background-image"] = v;
-                                                scope.$apply();
-                                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
-                                                    $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                                $localstorage.setObject("keypads", $rootScope.storeKeypads);
-                                            }, function (error) {
-                                            });
-                                    }, function (error) {
-                                        console.log('Error: ' + error);
-                                    }, {
-                                        maximumImagesCount: 1
-                                    }
-                                );
+                                renameProcess(res);
                             }
                         });
                     }, 500);
