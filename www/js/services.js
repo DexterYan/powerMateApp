@@ -163,25 +163,25 @@ angular.module('starter.services', [])
                 name: "Click to Edit",value: "h",led: [0x08, 0x10]
             }],
             '10b': [{
-                name: "Click to Edit",value: "a",led: [0x11, 0x12, 0x13],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "a",led: [0x11, 0x12, 0x13],bgLocation: { "background-image": "url('./img/png_4_keypads/battery.png')"}
             }, {
-                name: "Click to Edit",value: "b",led: [0x14, 0x15, 0x16],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "b",led: [0x14, 0x15, 0x16],bgLocation: { "background-image": "url('./img/png_4_keypads/beacon.png')"}
             }, {
-                name: "Click to Edit",value: "c",led: [0x17, 0x18, 0x19],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "c",led: [0x17, 0x18, 0x19],bgLocation: { "background-image": "url('./img/png_4_keypads/gear.png')"}
             }, {
-                name: "Click to Edit",value: "d",led: [0x1A, 0x1B, 0x1C],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "d",led: [0x1A, 0x1B, 0x1C],bgLocation: { "background-image": "url('./img/png_4_keypads/hori_light.png')"}
             }, {
-                name: "Click to Edit",value: "e",led: [0x05, 0x06, 0x07],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "e",led: [0x05, 0x06, 0x07],bgLocation: { "background-image": "url('./img/png_4_keypads/key.png')"}
             }, {
                 name: "Click to Edit",value: "f",led: [0x08, 0x09, 0x0A],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
             }, {
-                name: "Click to Edit",value: "g",led: [0x0B, 0x0C, 0x0D],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "g",led: [0x0B, 0x0C, 0x0D],bgLocation: { "background-image": "url('./img/png_4_keypads/lock.png')"}
             }, {
-                name: "Click to Edit",value: "h",led: [0x0E, 0x0F, 0x10],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "h",led: [0x0E, 0x0F, 0x10],bgLocation: { "background-image": "url('./img/png_4_keypads/skeleton.png')"}
             }, {
-                name: "Click to Edit",value: "i",led: [0x03, 0x04],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "i",led: [0x03, 0x04],bgLocation: { "background-image": "url('./img/png_4_keypads/truck_with_box.png')"}
             }, {
-                name: "Click to Edit",value: "j",led: [0x1D, 0x1E],bgLocation: { "background-image": "url('./img/png_4_keypads/light.png')"}
+                name: "Click to Edit",value: "j",led: [0x1D, 0x1E],bgLocation: { "background-image": "url('./img/png_4_keypads/truck_with_leg.png')"}
             }],
             '12b': [{
                 name: "Click to Edit",value: "a",led: [0x01, 0x0D]

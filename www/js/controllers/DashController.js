@@ -213,7 +213,8 @@ angular.module("dash.controller", ["starter.services", "ionic"])
                                 window.imagePicker.getPictures(
                                     function(results) {
                                         filename = results[0].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
-                                        $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, filename)
+                                        newFileName = Math.random().toString(36).substr(2, 5) + filename;
+                                        $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, newFileName)
                                             .then(function (success) {
                                                 v = "url('"+ success.nativeURL + "')";
                                                 scope.info.bgLocation["background-image"] = v;
