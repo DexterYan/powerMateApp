@@ -212,24 +212,17 @@ angular.module("dash.controller", ["starter.services", "ionic"])
 
                                 window.imagePicker.getPictures(
                                     function(results) {
-                                        alert(results[0]);
-                                        for (var i = 0; i < results.length; i++) {
-                                            filename = results[i].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
-                                            alert(filename);
-                                            $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, filename, cordova.file.dataDirectory, filename)
-                                                .then(function (success) {
-                                                    v = "url('"+ success.nativeURL + "')";
-                                                    scope.info.bgLocation["background-image"] = v;
-                                                    alert(v);
-                                                    scope.$apply();
-                                                    $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
-                                                        $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                                    $localstorage.setObject("keypads", $rootScope.storeKeypads);
-                                                }, function (error) {
-                                                    alert(error.toString());
-                                                    console.log(error)
-                                                });
-                                        }
+                                        filename = results[0].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
+                                        $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, filename)
+                                            .then(function (success) {
+                                                v = "url('"+ success.nativeURL + "')";
+                                                scope.info.bgLocation["background-image"] = v;
+                                                scope.$apply();
+                                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
+                                                    $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                                                $localstorage.setObject("keypads", $rootScope.storeKeypads);
+                                            }, function (error) {
+                                            });
                                     }, function (error) {
                                         console.log('Error: ' + error);
                                     }, {
