@@ -97,6 +97,14 @@ button {
     &.button_custom.orange {background: #624529;}
 }
 
+#header h1{
+    margin: 0px;
+}
+
+body{
+    margin: 0;
+}
+
 .dash {
     .button_custom {
 
@@ -315,7 +323,7 @@ button {
 
 .theme {
     background-color: white;
-    background-image:url("../img/png_4_keypads/bg.png");
+    background-image: url("../img/png_4_keypads/bg.png");
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -346,36 +354,6 @@ button {
         width: 96%;
     }
 
-    .battery {
-        background-image: url("../img/png_4_keypads/battery.png");
-    }
-    .beacon {
-        background-image: url("../img/png_4_keypads/beacon.png");
-    }
-    .gear {
-        background-image: url("../img/png_4_keypads/gear.png");
-    }
-    .hori_light {
-        background-image: url("../img/png_4_keypads/hori_light.png");
-    }
-    .key {
-        background-image: url("../img/png_4_keypads/key.png");
-    }
-    .light {
-        background-image: url("../img/png_4_keypads/light.png");
-    }
-    .lock {
-        background-image: url("../img/png_4_keypads/lock.png");
-    }
-    .skeleton {
-        background-image: url("../img/png_4_keypads/skeleton.png");
-    }
-    .truck_with_box {
-        background-image: url("../img/png_4_keypads/truck_with_box.png");
-    }
-    .truck_with_leg {
-        background-image: url("../img/png_4_keypads/truck_with_leg.png");
-    }
     .cs-icon {
         background-size: contain;
         background-repeat: no-repeat;
@@ -384,11 +362,26 @@ button {
     }
 
     .pad{
+        margin-top: 10px;
         button {
             margin: 0;
-            padding: 0;
+            padding: 1vh;
         }
     }
+
+    .col {
+        padding: 0;
+    }
+
+    .row {
+        padding: 1vh;
+    }
+
+    .row + .row {
+        margin-top: 10px;
+    }
+
+
 
 }
 
@@ -421,7 +414,7 @@ select {
 
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 560px) {
     /* For mobile phones: */
     .pad {
         display: none;
@@ -433,7 +426,7 @@ select {
     }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 560px) {
     /* For desktop: */
     .phone {
         display: none;

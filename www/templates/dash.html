@@ -6,7 +6,7 @@
     <eight-button-keypad ng-show="currentKeypadType=='8r'" keypad="keypad"></eight-button-keypad>
     <forteen-button-keypad ng-show="currentKeypadType=='14b'" keypad="keypad"></forteen-button-keypad>
 
-    <div class="row pad">
+    <div class="row second pad">
       <div class="col">
         <button ng-show='maxKeypad' ng-click='previousKeypad()' class="button_custom green">
           <div class="row row-center">
@@ -70,8 +70,8 @@
         </button>
       </div>
     </div>
-  </ion-content>
-</ion-view>
+
+
 
 <script type="text/ng-template" id="FirstTimeWarning" >
     <h4>If it is your first time to use this keypad, please go to "Config" page to config your keypad.<br></br>Afterwards, you can name your keypads&#39; buttons</h4>
@@ -102,3 +102,9 @@
         <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Continue</button>
     </div>
 </script>
+
+
+  </ion-content>
+</ion-view>
+
+
