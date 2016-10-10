@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controller', 'diagnosis.controller' ,'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova', 'ngDialog' ,'dash.controller', 'diy.controller', 'diagnosis.controller' ,'starter.services'])
 
 .constant('_', window._)
 
@@ -15,7 +15,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            window.plugins.insomnia.keepAwake()
+            window.plugins.insomnia.keepAwake();
         }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
@@ -84,17 +84,19 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
                                     $rootScope.keypad[i].buttons.push({
                                         "name": element.name,
                                         "value": element.value,
+                                        "bgLocation": element.bgLocation,
                                         "led": ['off', 'off', 'off']
                                     });
-                                })
+                                });
                             } else {
                                 $rootScope.config.keypads[i].buttons.forEach(function(element) {
                                     $rootScope.keypad[i].buttons.push({
                                         "name": element.name,
                                         "value": element.value,
+                                        "bgLocation": element.bgLocation,
                                         "led": ['off', 'off', 'off']
                                     });
-                                })
+                                });
                             }
                         }
                         return;
@@ -120,7 +122,7 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
             }
         }
     })
-    
+
     .state('app.diagnosis', {
         url: "/diagnosis",
         cache: false,
@@ -138,9 +140,5 @@ angular.module('starter', ['ionic', 'ngDialog' ,'dash.controller', 'diy.controll
     });
 
     $urlRouterProvider.otherwise('/app/dash');
-    // // setup an abstract state for the tabs directive
-
-    // // if none of the above states are matched, use this as the fallback
-    // $urlRouterProvider.otherwise('/dash');
 
 });

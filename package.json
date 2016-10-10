@@ -21,13 +21,15 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer"
   ],
   "cordovaPlatforms": [
     {
       "platform": "ios",
-      "version": "3.5",
-      "locator": "ios@3.5"
+      "version": "4.1.1",
+      "locator": "ios@4.1.1"
     }
   ]
 }

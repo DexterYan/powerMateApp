@@ -1,41 +1,41 @@
 angular.module("dash.controller", ["starter.services"])
 
 
-.controller("DashCtrl", ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location",
-    function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location) {
+.controller("DashCtrl", ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location", "$cordovaFile",
+    function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location, $cordovaFile) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
 
     document.addEventListener("deviceready", onDeviceReady, false);
-    // $scope.currentKeypadType = "10b2";
-    // $scope.customKeypad = true;
+    $scope.currentKeypadType = "10b2";
+    $scope.customKeypad = true;
     function onDeviceReady() {
-        // window.screen.lockOrientation("landscape");
+        window.screen.lockOrientation("landscape");
     }
 
-    var initalBgLocation = ["url('./img/png_4_keypads/battery.png')",
-        "url('./img/png_4_keypads/beacon.png')",
-        "url('./img/png_4_keypads/gear.png')",
-        "url('./img/png_4_keypads/hori_light.png')",
-        "url('./img/png_4_keypads/key.png')",
-        "url('./img/png_4_keypads/light.png')",
-        "url('./img/png_4_keypads/lock.png')",
-        "url('./img/png_4_keypads/skeleton.png')",
-        "url('./img/png_4_keypads/truck_with_box.png')",
-        "url('./img/png_4_keypads/truck_with_leg.png')"];
-
-    _.map(initalBgLocation, function(v,k){
-        $scope.keypad.buttons[k].bgLocation = { "background-image": v};
-    })
+    // var initalBgLocation = ["url('./img/png_4_keypads/battery.png')",
+    //     "url('./img/png_4_keypads/beacon.png')",
+    //     "url('./img/png_4_keypads/gear.png')",
+    //     "url('./img/png_4_keypads/hori_light.png')",
+    //     "url('./img/png_4_keypads/key.png')",
+    //     "url('./img/png_4_keypads/light.png')",
+    //     "url('./img/png_4_keypads/lock.png')",
+    //     "url('./img/png_4_keypads/skeleton.png')",
+    //     "url('./img/png_4_keypads/truck_with_box.png')",
+    //     "url('./img/png_4_keypads/truck_with_leg.png')"];
+    //
+    // _.map(initalBgLocation, function(v,k){
+    //     $scope.keypad.buttons[k].bgLocation = { "background-image": v};
+    // });
 
 
 
     var editModeCheck = function (buttons) {
         return _.find(buttons, function(button) {
-            return button.name === "Click to Edit"
-        })
-    }
+            return button.name === "Click to Edit";
+        });
+    };
 
     $rootScope.enableEditMode = editModeCheck($scope.keypad.buttons)? true : false;
 
@@ -50,7 +50,7 @@ angular.module("dash.controller", ["starter.services"])
                     callback();
                 };
             }]
-        })
+        });
     };
 
     var firstTimeRenameWaring = function(){
@@ -70,13 +70,13 @@ angular.module("dash.controller", ["starter.services"])
                         if (!$rootScope.WifiConnect) {
                             ngDialog.open({
                                 template: "WifiWarning"
-                            })
+                            });
                         }
                     }, 1000);
-                }
+                };
             }]
         });
-    }
+    };
 
     var connectWifi = function() {
         //socket.connect();
@@ -84,17 +84,17 @@ angular.module("dash.controller", ["starter.services"])
             if (!$rootScope.WifiConnect) {
                 ngDialog.open({
                     template: "WifiWarning"
-                })
+                });
             }
         }, 1000);
-    }
+    };
 
     var finishEditting = function(callback) {
         ngDialog.open({
             template: "FinishEditting",
             closeByDocument: true,
             showClose: true,
-        })
+        });
     };
 
     $scope.addMsg = function(data) {
@@ -131,14 +131,14 @@ angular.module("dash.controller", ["starter.services"])
 
     $scope.resetName = function(data){
         var finishEditCheck = _.find($scope.keypad.buttons, function(button) {
-            return button.name === "Click to Edit"
+            return button.name === "Click to Edit";
         });
         if (!finishEditCheck) {
             $rootScope.enableEditMode = !$rootScope.enableEditMode;
         } else {
             finishEditting();
         }
-    }
+    };
 
 
     if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === "yes" ) {
@@ -152,33 +152,33 @@ angular.module("dash.controller", ["starter.services"])
     return {
         restrict: "E",
         templateUrl: "templates/elements/fourButtonKeypad.html"
-    }
+    };
 })
 .directive("eightButtonKeypad", function(){
     return {
         restrict: "E",
         templateUrl: "templates/elements/eightButtonKeypad.html"
-    }
+    };
 })
 .directive("tenButtonKeypad", function(){
     return {
         restrict: "E",
         templateUrl: "templates/elements/tenButtonKeypad.html"
-    }
+    };
 })
 .directive("landscapeTenButtonKeypad", function(){
     return {
         restrict: "E",
         templateUrl: "templates/elements/landscapeTenButtonKeypad.html"
-    }
+    };
 })
 .directive("forteenButtonKeypad", function(){
     return {
         restrict: "E",
         templateUrl: "templates/elements/forteenButtonKeypad.html"
-    }
+    };
 })
-.directive("keypadButton", function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage, $timeout) {
+.directive("keypadButton", function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage, $timeout, $cordovaFile) {
     return {
         restrict: "E",
         templateUrl: "templates/elements/button.html",
@@ -192,8 +192,6 @@ angular.module("dash.controller", ["starter.services"])
                 e.stopPropagation();
                 e.preventDefault();
 
-
-
                 if ($rootScope.enableEditMode) {
                     scope.data = {};
 
@@ -205,9 +203,33 @@ angular.module("dash.controller", ["starter.services"])
                             if (res) {
                                 scope.data.buttonsName = res;
                                 scope.info.name = scope.data.buttonsName;
-                                $rootScope.storeKeypads[$rootScope.currentKeypad].buttons
-                                    = $rootScope.keypad[$rootScope.currentKeypad].buttons;
-                                $localstorage.setObject("keypads", $rootScope.storeKeypads);
+
+                                window.imagePicker.getPictures(
+                                    function(results) {
+                                        alert(results[0]);
+                                        for (var i = 0; i < results.length; i++) {
+                                            filename = results[i].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
+                                            alert(filename);
+                                            $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, filename, cordova.file.dataDirectory, filename)
+                                                .then(function (success) {
+                                                    v = "url('"+ success.nativeURL + "')";
+                                                    scope.info.bgLocation["background-image"] = v;
+                                                    alert(v);
+                                                    scope.$apply();
+                                                    $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
+                                                        $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                                                    $localstorage.setObject("keypads", $rootScope.storeKeypads);
+                                                }, function (error) {
+                                                    alert(error.toString());
+                                                    console.log(error)
+                                                });
+                                        }
+                                    }, function (error) {
+                                        console.log('Error: ' + error);
+                                    }, {
+                                        maximumImagesCount: 1
+                                    }
+                                );
                             }
                         });
                     }, 500);
@@ -238,5 +260,5 @@ angular.module("dash.controller", ["starter.services"])
                 });
             });
         }
-    }
+    };
 });

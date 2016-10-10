@@ -16,8 +16,13 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="iosPersistentFileLocation" value="Library" />
+  <preference name="iosPersistentFileLocation" value="Compatibility" />
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
+  </feature>
+  <feature name="File">
+    <param name="ios-package" value="CDVFile" />
   </feature>
   <platform name="ios">
     <splash src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
