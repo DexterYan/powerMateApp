@@ -86,7 +86,7 @@ angular.module('diy.controller', ['starter.services'])
                         text: '<b>Pressed</b>',
                         type: 'button-positive',
                         onTap: function(e) {
-                            if (!$rootScope.copyKeypad) {
+                            if ($rootScope.copyKeypad <= 0) {
                                 e.preventDefault();
                             } else {
                                 $rootScope.enableCopy = false;
@@ -97,7 +97,7 @@ angular.module('diy.controller', ['starter.services'])
                 ]
             })
                 .then(function(copyKeypadNumber) {
-                    copyKeypadNumber = copyKeypadNumber || 1;
+                    copyKeypadNumber = copyKeypadNumber;
                     var myPopup = $ionicPopup.show({
                         template:
                             '<div>This keypad is ' + copyKeypadNumber +
