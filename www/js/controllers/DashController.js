@@ -7,13 +7,19 @@ angular.module("dash.controller", ["starter.services", "ionic"])
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-    $scope.currentKeypadType = "10b2";
-    $scope.customKeypad = true;
 
-    console.log(ionic);
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+
     function onDeviceReady() {
-        window.screen.lockOrientation("landscape");
+
+        if (/2$/.test($scope.currentKeypadType)) {
+            window.screen.lockOrientation("landscape");
+            $scope.customKeypad = true;
+        } else {
+            $scope.customKeypad = false;
+        }
+
         ionic.Platform.ready(function() {
             // $cordovaStatusbar.hide();
             ionic.Platform.fullScreen();
@@ -182,6 +188,24 @@ angular.module("dash.controller", ["starter.services", "ionic"])
     return {
         restrict: "E",
         templateUrl: "templates/elements/forteenButtonKeypad.html"
+    };
+})
+.directive("landscapeFourButtonKeypad", function(){
+    return {
+        restrict: "E",
+        templateUrl: "templates/elements/landscapeFourButtonKeypad.html"
+    };
+})
+.directive("landscapeEightButtonKeypad", function(){
+    return {
+        restrict: "E",
+        templateUrl: "templates/elements/landscapeEightButtonKeypad.html"
+    };
+})
+.directive("landscapeForteenButtonKeypad", function(){
+    return {
+        restrict: "E",
+        templateUrl: "templates/elements/landscapeForteenButtonKeypad.html"
     };
 })
 .directive("keypadButton", function(keypad, socket, $ionicScrollDelegate, $ionicPopup, $rootScope, $localstorage, $timeout, $cordovaFile) {

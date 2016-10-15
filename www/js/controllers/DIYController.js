@@ -103,10 +103,10 @@ angular.module('diy.controller', ['starter.services'])
                             '<div>This keypad is ' + copyKeypadNumber +
                             '. Please choose this keypad style</div>' +
                             '<select ng-model="data.keypadType">' +
-                            '<option value="4r">4 Button Relegendable</option>' +
-                            '<option value="8r">8 Button Relegendable</option>' +
-                            '<option value="10b">10 Button Custom</option>' +
-                            '<option value="14b">14 Button Custom</option></select>',
+                            '<option value="4r2">4 Button Relegendable</option>' +
+                            '<option value="8r2">8 Button Relegendable</option>' +
+                            '<option value="10b2">10 Button Custom</option>' +
+                            '<option value="14b2">14 Button Custom</option></select>',
                         title: 'Set ' + keypadName[keypadNumberTmp] + ' Keypad Type',
                         scope: $scope,
                         buttons: [
