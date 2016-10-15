@@ -1,8 +1,7 @@
 angular.module("dash.controller", ["starter.services", "ionic"])
 
 
-.controller("DashCtrl", ["$rootScope", "$scope", "socket", "ngDialog", "_", "$ionicPopup", "$location", "$cordovaFile",
-    function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location, $cordovaFile) {
+.controller("DashCtrl", function($rootScope, $scope, socket, ngDialog, _, $ionicPopup, $location, $cordovaFile) {
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
@@ -25,23 +24,6 @@ angular.module("dash.controller", ["starter.services", "ionic"])
             ionic.Platform.fullScreen();
         });
     }
-
-
-
-    // var initalBgLocation = ["url('./img/png_4_keypads/battery.png')",
-    //     "url('./img/png_4_keypads/beacon.png')",
-    //     "url('./img/png_4_keypads/gear.png')",
-    //     "url('./img/png_4_keypads/hori_light.png')",
-    //     "url('./img/png_4_keypads/key.png')",
-    //     "url('./img/png_4_keypads/light.png')",
-    //     "url('./img/png_4_keypads/lock.png')",
-    //     "url('./img/png_4_keypads/skeleton.png')",
-    //     "url('./img/png_4_keypads/truck_with_box.png')",
-    //     "url('./img/png_4_keypads/truck_with_leg.png')"];
-    //
-    // _.map(initalBgLocation, function(v,k){
-    //     $scope.keypad.buttons[k].bgLocation = { "background-image": v};
-    // })
 
     var editModeCheck = function (buttons) {
         return _.find(buttons, function(button) {
@@ -159,7 +141,7 @@ angular.module("dash.controller", ["starter.services", "ionic"])
         firstTimeRenameWaring();
     }
 
-}])
+})
 .directive("fourButtonKeypad", function(){
     return {
         restrict: "E",
@@ -223,23 +205,29 @@ angular.module("dash.controller", ["starter.services", "ionic"])
                 scope.info.name = scope.data.buttonsName;
 
                 window.imagePicker.getPictures(function(results) {
-                    filename = results[0].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
-                    newFileName = Math.random().toString(36).substr(2, 5) + filename;
-                    $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, newFileName)
+                    if (results.length >= 1) {
+                        filename = results[0].replace(cordova.file.applicationStorageDirectory + "tmp/", "");
+                        newFileName = Math.random().toString(36).substr(2, 5) + filename;
+                        $cordovaFile.moveFile(cordova.file.applicationStorageDirectory, "tmp/" + filename, cordova.file.dataDirectory, newFileName)
                         .then(function (success) {
                             v = "url('"+ success.nativeURL + "')";
                             scope.info.bgLocation["background-image"] = v;
                             scope.$apply();
                             $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
-                                $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                            $rootScope.keypad[$rootScope.currentKeypad].buttons;
                             $localstorage.setObject("keypads", $rootScope.storeKeypads);
                         }, function (error) {});
+                    } else {
+                        $rootScope.storeKeypads[$rootScope.currentKeypad].buttons =
+                        $rootScope.keypad[$rootScope.currentKeypad].buttons;
+                        $localstorage.setObject("keypads", $rootScope.storeKeypads);
+                    }
                 }, function (error) {
                     console.log('Error: ' + error);
                 }, {
                     maximumImagesCount: 1
                 });
-            }
+            };
 
             element.on("click", function(e) {
                 e.stopPropagation();
