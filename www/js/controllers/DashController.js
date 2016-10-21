@@ -21,6 +21,11 @@ angular.module("dash.controller", ["starter.services", "ionic"])
 
         ionic.Platform.ready(function() {
             // $cordovaStatusbar.hide();
+            if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === "yes" ) {
+                firstTimeWaring(firstTimeRenameWaring);
+            } else if ($rootScope.enableEditMode) {
+                firstTimeRenameWaring();
+            }
             ionic.Platform.fullScreen();
         });
     }
@@ -134,42 +139,11 @@ angular.module("dash.controller", ["starter.services", "ionic"])
         }
     };
 
-
-    if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === "yes" ) {
-        firstTimeWaring(firstTimeRenameWaring);
-    } else if ($rootScope.enableEditMode) {
-        firstTimeRenameWaring();
-    }
-
-})
-.directive("fourButtonKeypad", function(){
-    return {
-        restrict: "E",
-        templateUrl: "templates/elements/fourButtonKeypad.html"
-    };
-})
-.directive("eightButtonKeypad", function(){
-    return {
-        restrict: "E",
-        templateUrl: "templates/elements/eightButtonKeypad.html"
-    };
-})
-.directive("tenButtonKeypad", function(){
-    return {
-        restrict: "E",
-        templateUrl: "templates/elements/tenButtonKeypad.html"
-    };
 })
 .directive("landscapeTenButtonKeypad", function(){
     return {
         restrict: "E",
         templateUrl: "templates/elements/landscapeTenButtonKeypad.html"
-    };
-})
-.directive("forteenButtonKeypad", function(){
-    return {
-        restrict: "E",
-        templateUrl: "templates/elements/forteenButtonKeypad.html"
     };
 })
 .directive("landscapeFourButtonKeypad", function(){

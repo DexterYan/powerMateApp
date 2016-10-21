@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngDialog' ,'dash.controller', 
                         if (_.isEmpty($rootScope.storeKeypads)) {
                             $rootScope.config = {
                                 keypads: [
-                                    {prefix: '!', type: '10b', buttons: []}
+                                    {prefix: '!', type: '10b2', buttons: []}
                                 ],
                                 firstTime: 'yes'
                             };
