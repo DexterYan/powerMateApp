@@ -5,32 +5,11 @@ angular.module("dash.controller", ["starter.services", "ionic"])
     $scope.keypad = $rootScope.keypad[$rootScope.currentKeypad];
     $scope.currentKeypadType = $rootScope.currentKeypadType;
     $scope.maxKeypad = $rootScope.config.keypads.length -1;
+    $scope.customKeypad = true;
 
-
-
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-
-        if (/2$/.test($scope.currentKeypadType)) {
-            window.screen.lockOrientation("landscape");
-            $scope.customKeypad = true;
-            $scope.$apply();
-        } else {
-            $scope.customKeypad = false;
-            $scope.$apply();
-        }
-
-        ionic.Platform.ready(function() {
-            // $cordovaStatusbar.hide();
-            if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === "yes" ) {
-                firstTimeWaring(firstTimeRenameWaring);
-            } else if ($rootScope.enableEditMode) {
-                firstTimeRenameWaring();
-            }
-            ionic.Platform.fullScreen();
-        });
-    }
+    $scope.firstTimeWaring_nontriggerflag = true;
+    $scope.firstTimeRenameWaring_nontriggerflag = true;
+    
 
     var editModeCheck = function (buttons) {
         return _.find(buttons, function(button) {
@@ -140,6 +119,37 @@ angular.module("dash.controller", ["starter.services", "ionic"])
             finishEditting();
         }
     };
+
+
+    function onDeviceReady() {
+
+        if (/2$/.test($scope.currentKeypadType)) {
+            if (window && window.screenl && window.screen.lockOrientation)
+                window.screen.lockOrientation("landscape");
+            $scope.customKeypad = true;
+        } else {
+            $scope.customKeypad = false;
+        }
+
+        if (ionic && ionic.Platform && ionic.Platform.ready)
+            ionic.Platform.ready(function() {
+                // $cordovaStatusbar.hide();
+                if ( $rootScope.config && $rootScope.config.firstTime && $rootScope.config.firstTime === "yes"
+                && $scope.firstTimeWaring_nontriggerflag ) {
+
+                    $scope.firstTimeWaring_nontriggerflag = false;
+                    firstTimeWaring(firstTimeRenameWaring);
+                } else if ($rootScope.enableEditMode && $scope.firstTimeRenameWaring_nontriggerflag) {
+
+                    $scope.firstTimeRenameWaring_nontriggerflag = false;
+                    firstTimeRenameWaring();
+                }
+                if (ionic && ionic.Platform && ionic.Platform.fullScreen)
+                ionic.Platform.fullScreen();
+            });
+    }
+    document.addEventListener("deviceready", onDeviceReady, false);
+    onDeviceReady();
 
 })
 .directive("landscapeTenButtonKeypad", function(){
