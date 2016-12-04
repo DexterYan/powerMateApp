@@ -15,8 +15,10 @@ angular.module("dash.controller", ["starter.services", "ionic"])
         if (/2$/.test($scope.currentKeypadType)) {
             window.screen.lockOrientation("landscape");
             $scope.customKeypad = true;
+            $scope.$apply();
         } else {
             $scope.customKeypad = false;
+            $scope.$apply();
         }
 
         ionic.Platform.ready(function() {
@@ -226,13 +228,17 @@ angular.module("dash.controller", ["starter.services", "ionic"])
             var onTouch = function() {
                 var sendData;
                 sendData = scope.prefix+ scope.info.value.toUpperCase();
-                socket.send(sendData);
+                if (!$rootScope.enableEditMode) {
+                    socket.send(sendData);
+                }
             };
 
             var onRelease =  function() {
                 var sendData;
                 sendData = scope.prefix + scope.info.value.toLowerCase();
-                socket.send(sendData);
+                if (!$rootScope.enableEditMode) {
+                    socket.send(sendData);
+                }
             };
 
             element.on("touchstart", function() {
