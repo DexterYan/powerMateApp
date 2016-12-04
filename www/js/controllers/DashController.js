@@ -124,7 +124,7 @@ angular.module("dash.controller", ["starter.services", "ionic"])
     function onDeviceReady() {
 
         if (/2$/.test($scope.currentKeypadType)) {
-            if (window && window.screenl && window.screen.lockOrientation)
+            if (window && window.screen && window.screen.lockOrientation)
                 window.screen.lockOrientation("landscape");
             $scope.customKeypad = true;
         } else {
